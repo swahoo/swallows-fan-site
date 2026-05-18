@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>選手名鑑 | スワローズファンサイト</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    .player-roster { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .roster-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .roster-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .roster-num {
+      background: var(--sw-blue);
+      color: var(--sw-gold);
+      font-size: 22px;
+      font-weight: 900;
+      width: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .roster-body { padding: 14px; flex: 1; }
+    .roster-name { font-size: 16px; font-weight: 900; color: var(--sw-blue-dark); margin-bottom: 3px; }
+    .roster-ruby { font-size: 11px; color: var(--text-muted); }
+    .roster-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .roster-pos { font-size: 12px; font-weight: 600; background: #e8f4ff; color: var(--sw-blue); padding: 2px 8px; border-radius: 20px; }
+    .roster-detail { font-size: 12px; color: var(--text-muted); }
+    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: 24px;
+      border: 2px solid var(--border);
+      background: #fff;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      color: var(--text-secondary);
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--sw-blue);
+      color: #fff;
+      border-color: var(--sw-blue);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-swallow">🐦</span>
+        <div class="logo-text">
+          <span class="logo-main">東京ヤクルトスワローズ</span>
+          <span class="logo-sub">FANS SITE</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../index.html">トップ</a></li>
+          <li><a href="season2025.html">2025シーズン</a></li>
+          <li><a href="players.html" class="active">選手名鑑</a></li>
+          <li><a href="history.html">歴代成績</a></li>
+          <li><a href="records.html">記録・データ</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>選手名鑑 2025</h1>
+    <p>東京ヤクルトスワローズ 2025年度登録選手</p>
+  </div>
+
+  <main>
+    <section class="section" style="background:#fff;">
+      <div class="container">
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">全選手</button>
+          <button class="filter-btn" data-filter="pitcher">投手</button>
+          <button class="filter-btn" data-filter="catcher">捕手</button>
+          <button class="filter-btn" data-filter="infielder">内野手</button>
+          <button class="filter-btn" data-filter="outfielder">外野手</button>
+        </div>
+
+        <div class="player-roster" id="rosterGrid">
+
+          <!-- 投手 -->
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">19</div>
+            <div class="roster-body">
+              <div class="roster-name">小川 泰弘</div>
+              <div class="roster-ruby">おがわ やすひろ</div>
+              <div class="roster-meta">
+                <span class="roster-pos">先発投手</span>
+                <span class="roster-detail">右投右打 / 1990.7.26 / 178cm 78kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">創価大→2012年ドラフト1位。チームのエース格として活躍。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">41</div>
+            <div class="roster-body">
+              <div class="roster-name">高橋 奎二</div>
+              <div class="roster-ruby">たかはし けいじ</div>
+              <div class="roster-meta">
+                <span class="roster-pos">先発投手</span>
+                <span class="roster-detail">左投左打 / 1998.1.13 / 185cm 83kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">龍谷大平安高→2016年ドラフト3位。左のエース候補。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">48</div>
+            <div class="roster-body">
+              <div class="roster-name">吉村 貢司郎</div>
+              <div class="roster-ruby">よしむら こうじろう</div>
+              <div class="roster-meta">
+                <span class="roster-pos">先発投手</span>
+                <span class="roster-detail">右投右打 / 1998.3.1 / 183cm 84kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">東芝→2021年ドラフト1位。社会人出身の本格派右腕。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">16</div>
+            <div class="roster-body">
+              <div class="roster-name">原 樹理</div>
+              <div class="roster-ruby">はら じゅり</div>
+              <div class="roster-meta">
+                <span class="roster-pos">先発投手</span>
+                <span class="roster-detail">右投右打 / 1993.12.22 / 182cm 84kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">東洋大→2013年ドラフト1位。先発ローテーションの一角。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">14</div>
+            <div class="roster-body">
+              <div class="roster-name">石山 泰稚</div>
+              <div class="roster-ruby">いしやま たいち</div>
+              <div class="roster-meta">
+                <span class="roster-pos">抑え投手</span>
+                <span class="roster-detail">右投右打 / 1989.9.28 / 183cm 88kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">ヤマハ→2012年ドラフト4位。チームの守護神として安定感抜群。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">36</div>
+            <div class="roster-body">
+              <div class="roster-name">清水 昇</div>
+              <div class="roster-ruby">しみず のぼる</div>
+              <div class="roster-meta">
+                <span class="roster-pos">中継ぎ投手</span>
+                <span class="roster-detail">右投右打 / 1996.9.4 / 177cm 83kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">国際武道大→2018年ドラフト3位。セットアッパーとして登板多数。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">35</div>
+            <div class="roster-body">
+              <div class="roster-name">今野 龍太</div>
+              <div class="roster-ruby">こんの りゅうた</div>
+              <div class="roster-meta">
+                <span class="roster-pos">中継ぎ投手</span>
+                <span class="roster-detail">右投右打 / 1996.7.25 / 180cm 80kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">東北福祉大→2018年ドラフト6位。精力的なリリーフ投手。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="pitcher">
+            <div class="roster-num">29</div>
+            <div class="roster-body">
+              <div class="roster-name">田口 麗斗</div>
+              <div class="roster-ruby">たぐち れいと</div>
+              <div class="roster-meta">
+                <span class="roster-pos">中継ぎ投手</span>
+                <span class="roster-detail">左投左打 / 1994.10.16 / 180cm 82kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">巨人より移籍。経験豊富な左腕リリーフ。</div>
+            </div>
+          </div>
+
+          <!-- 捕手 -->
+          <div class="roster-card" data-pos="catcher">
+            <div class="roster-num">22</div>
+            <div class="roster-body">
+              <div class="roster-name">中村 悠平</div>
+              <div class="roster-ruby">なかむら ゆうへい</div>
+              <div class="roster-meta">
+                <span class="roster-pos">捕手</span>
+                <span class="roster-detail">右投右打 / 1989.3.3 / 180cm 85kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">敦賀気比高→2007年ドラフト3位。チームキャプテン兼正捕手。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="catcher">
+            <div class="roster-num">27</div>
+            <div class="roster-body">
+              <div class="roster-name">松本 直樹</div>
+              <div class="roster-ruby">まつもと なおき</div>
+              <div class="roster-meta">
+                <span class="roster-pos">捕手</span>
+                <span class="roster-detail">右投右打 / 1994.9.1 / 175cm 82kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">西濃運輸→2016年ドラフト8位。バックアップ捕手として貢献。</div>
+            </div>
+          </div>
+
+          <!-- 内野手 -->
+          <div class="roster-card" data-pos="infielder">
+            <div class="roster-num">5</div>
+            <div class="roster-body">
+              <div class="roster-name">村上 宗隆</div>
+              <div class="roster-ruby">むらかみ むねたか</div>
+              <div class="roster-meta">
+                <span class="roster-pos">三塁手</span>
+                <span class="roster-detail">右投左打 / 2000.2.2 / 188cm 97kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">九州学院高→2017年ドラフト1位。2022年三冠王・MVP。チームの主砲。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="infielder">
+            <div class="roster-num">3</div>
+            <div class="roster-body">
+              <div class="roster-name">山田 哲人</div>
+              <div class="roster-ruby">やまだ てつと</div>
+              <div class="roster-meta">
+                <span class="roster-pos">二塁手</span>
+                <span class="roster-detail">右投右打 / 1992.7.16 / 177cm 82kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">履正社高→2010年ドラフト1位。トリプルスリー3回達成の球団レジェンド。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="infielder">
+            <div class="roster-num">23</div>
+            <div class="roster-body">
+              <div class="roster-name">長岡 秀樹</div>
+              <div class="roster-ruby">ながおか ひでき</div>
+              <div class="roster-meta">
+                <span class="roster-pos">遊撃手</span>
+                <span class="roster-detail">右投左打 / 2002.4.8 / 174cm 70kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">八千代松陰高→2020年ドラフト5位。レギュラー遊撃手として成長中。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="infielder">
+            <div class="roster-num">2</div>
+            <div class="roster-body">
+              <div class="roster-name">西浦 直亨</div>
+              <div class="roster-ruby">にしうら なおみち</div>
+              <div class="roster-meta">
+                <span class="roster-pos">内野手</span>
+                <span class="roster-detail">右投右打 / 1991.4.26 / 177cm 77kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">法政大→2013年ドラフト2位。守備力の高いユーティリティ内野手。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="infielder">
+            <div class="roster-num">55</div>
+            <div class="roster-body">
+              <div class="roster-name">オスナ</div>
+              <div class="roster-ruby">José Osuna</div>
+              <div class="roster-meta">
+                <span class="roster-pos">一塁手・外野手</span>
+                <span class="roster-detail">右投右打 / 1992.12.12 / 190cm 102kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">ベネズエラ出身。パワーヒッターとして長打力を発揮。</div>
+            </div>
+          </div>
+
+          <!-- 外野手 -->
+          <div class="roster-card" data-pos="outfielder">
+            <div class="roster-num">8</div>
+            <div class="roster-body">
+              <div class="roster-name">青木 宣親</div>
+              <div class="roster-ruby">あおき のりちか</div>
+              <div class="roster-meta">
+                <span class="roster-pos">外野手</span>
+                <span class="roster-detail">右投左打 / 1982.1.5 / 177cm 80kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">早稲田大→2003年ドラフト4位。MLB経験も持つ球団のレジェンド。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="outfielder">
+            <div class="roster-num">7</div>
+            <div class="roster-body">
+              <div class="roster-name">塩見 泰隆</div>
+              <div class="roster-ruby">しおみ やすたか</div>
+              <div class="roster-meta">
+                <span class="roster-pos">中堅手</span>
+                <span class="roster-detail">右投左打 / 1995.10.3 / 181cm 88kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">BCリーグ→2017年ドラフト5位。俊足強打の1番打者として定着。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="outfielder">
+            <div class="roster-num">51</div>
+            <div class="roster-body">
+              <div class="roster-name">サンタナ</div>
+              <div class="roster-ruby">Domingo Santana</div>
+              <div class="roster-meta">
+                <span class="roster-pos">外野手</span>
+                <span class="roster-detail">右投右打 / 1992.8.5 / 196cm 108kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">ドミニカ共和国出身。長打力と肩の強さが武器の大型外野手。</div>
+            </div>
+          </div>
+
+          <div class="roster-card" data-pos="outfielder">
+            <div class="roster-num">62</div>
+            <div class="roster-body">
+              <div class="roster-name">丸山 和郁</div>
+              <div class="roster-ruby">まるやま かずや</div>
+              <div class="roster-meta">
+                <span class="roster-pos">外野手</span>
+                <span class="roster-detail">右投左打 / 2001.4.30 / 176cm 78kg</span>
+              </div>
+              <div class="roster-detail" style="margin-top:6px;">明治大→2022年ドラフト2位。若手外野手の有望株。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="logo-swallow">🐦</span><span>東京ヤクルトスワローズ ファンサイト</span></div>
+      <p class="footer-note">このサイトはファンが作成した非公式サイトです。</p>
+      <p class="footer-copy">&copy; 2025 Swallows Fan Site.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.roster-card');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        cards.forEach(card => {
+          card.style.display = (f === 'all' || card.dataset.pos === f) ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

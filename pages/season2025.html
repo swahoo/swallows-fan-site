@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025シーズン成績 | スワローズファンサイト</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-swallow">🐦</span>
+        <div class="logo-text">
+          <span class="logo-main">東京ヤクルトスワローズ</span>
+          <span class="logo-sub">FANS SITE</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../index.html">トップ</a></li>
+          <li><a href="season2025.html" class="active">2025シーズン</a></li>
+          <li><a href="players.html">選手名鑑</a></li>
+          <li><a href="history.html">歴代成績</a></li>
+          <li><a href="records.html">記録・データ</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>2025年シーズン成績</h1>
+    <p>東京ヤクルトスワローズ — チーム・個人成績（5月18日現在）</p>
+  </div>
+
+  <main>
+    <section class="section" style="background:#fff;">
+      <div class="container">
+
+        <!-- チーム概況 -->
+        <div class="card-grid" style="margin-bottom:40px;">
+          <div class="card" style="border-top:4px solid var(--sw-blue);">
+            <div class="card-title">チーム順位</div>
+            <div style="font-size:48px;font-weight:900;color:var(--sw-blue);">5位</div>
+            <div style="color:var(--text-muted);font-size:13px;">セ・リーグ 首位と7.0ゲーム差</div>
+          </div>
+          <div class="card" style="border-top:4px solid #48bb78;">
+            <div class="card-title">チーム打率</div>
+            <div style="font-size:48px;font-weight:900;color:#2f855a;">.248</div>
+            <div style="color:var(--text-muted);font-size:13px;">リーグ4位</div>
+          </div>
+          <div class="card" style="border-top:4px solid #ed8936;">
+            <div class="card-title">チーム防御率</div>
+            <div style="font-size:48px;font-weight:900;color:#c05621;">3.72</div>
+            <div style="color:var(--text-muted);font-size:13px;">リーグ3位</div>
+          </div>
+          <div class="card" style="border-top:4px solid var(--sw-gold-dark);">
+            <div class="card-title">本塁打</div>
+            <div style="font-size:48px;font-weight:900;color:var(--sw-gold-dark);">42</div>
+            <div style="color:var(--text-muted);font-size:13px;">リーグ2位</div>
+          </div>
+        </div>
+
+        <!-- タブ：打撃/投手/守備 -->
+        <div class="tabs">
+          <button class="tab-btn active" data-group="season" data-tab="batting">打撃成績</button>
+          <button class="tab-btn" data-group="season" data-tab="pitching">投手成績</button>
+          <button class="tab-btn" data-group="season" data-tab="team">チーム成績推移</button>
+        </div>
+
+        <!-- 打撃成績 -->
+        <div class="tab-content active" data-group="season" data-tab="batting">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>背番</th><th>選手名</th><th>試合</th><th>打席</th>
+                  <th>打数</th><th>安打</th><th>二塁打</th><th>三塁打</th>
+                  <th>本塁打</th><th>打点</th><th>盗塁</th><th>四球</th>
+                  <th>三振</th><th>打率</th><th>出塁率</th><th>長打率</th><th>OPS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="highlight-row">
+                  <td>5</td><td class="name-col">村上 宗隆</td>
+                  <td>40</td><td>168</td><td>146</td><td>44</td>
+                  <td>8</td><td>0</td><td>11</td><td>34</td>
+                  <td>2</td><td>20</td><td>40</td>
+                  <td><strong>.301</strong></td><td>.393</td><td>.582</td><td>.975</td>
+                </tr>
+                <tr>
+                  <td>7</td><td class="name-col">塩見 泰隆</td>
+                  <td>38</td><td>156</td><td>144</td><td>41</td>
+                  <td>7</td><td>2</td><td>4</td><td>18</td>
+                  <td>8</td><td>10</td><td>38</td>
+                  <td>.285</td><td>.333</td><td>.451</td><td>.784</td>
+                </tr>
+                <tr>
+                  <td>3</td><td class="name-col">山田 哲人</td>
+                  <td>35</td><td>140</td><td>124</td><td>33</td>
+                  <td>6</td><td>1</td><td>7</td><td>22</td>
+                  <td>5</td><td>15</td><td>34</td>
+                  <td>.266</td><td>.357</td><td>.476</td><td>.833</td>
+                </tr>
+                <tr>
+                  <td>8</td><td class="name-col">青木 宣親</td>
+                  <td>36</td><td>138</td><td>125</td><td>33</td>
+                  <td>5</td><td>0</td><td>2</td><td>14</td>
+                  <td>1</td><td>12</td><td>18</td>
+                  <td>.264</td><td>.326</td><td>.352</td><td>.678</td>
+                </tr>
+                <tr>
+                  <td>55</td><td class="name-col">オスナ</td>
+                  <td>39</td><td>156</td><td>138</td><td>36</td>
+                  <td>7</td><td>0</td><td>8</td><td>28</td>
+                  <td>0</td><td>14</td><td>32</td>
+                  <td>.261</td><td>.337</td><td>.486</td><td>.823</td>
+                </tr>
+                <tr>
+                  <td>22</td><td class="name-col">中村 悠平</td>
+                  <td>34</td><td>122</td><td>110</td><td>28</td>
+                  <td>4</td><td>0</td><td>3</td><td>16</td>
+                  <td>0</td><td>11</td><td>22</td>
+                  <td>.255</td><td>.320</td><td>.373</td><td>.693</td>
+                </tr>
+                <tr>
+                  <td>51</td><td class="name-col">サンタナ</td>
+                  <td>37</td><td>148</td><td>134</td><td>34</td>
+                  <td>8</td><td>0</td><td>9</td><td>26</td>
+                  <td>0</td><td>10</td><td>36</td>
+                  <td>.254</td><td>.311</td><td>.493</td><td>.804</td>
+                </tr>
+                <tr>
+                  <td>2</td><td class="name-col">西浦 直亨</td>
+                  <td>30</td><td>98</td><td>90</td><td>22</td>
+                  <td>3</td><td>1</td><td>1</td><td>8</td>
+                  <td>1</td><td>7</td><td>20</td>
+                  <td>.244</td><td>.306</td><td>.333</td><td>.639</td>
+                </tr>
+                <tr>
+                  <td>23</td><td class="name-col">長岡 秀樹</td>
+                  <td>38</td><td>142</td><td>130</td><td>30</td>
+                  <td>5</td><td>2</td><td>2</td><td>14</td>
+                  <td>3</td><td>10</td><td>28</td>
+                  <td>.231</td><td>.289</td><td>.346</td><td>.635</td>
+                </tr>
+                <tr>
+                  <td>62</td><td class="name-col">丸山 和郁</td>
+                  <td>28</td><td>88</td><td>82</td><td>18</td>
+                  <td>3</td><td>0</td><td>2</td><td>9</td>
+                  <td>4</td><td>5</td><td>22</td>
+                  <td>.220</td><td>.273</td><td>.341</td><td>.614</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);">※規定打席以上の選手および主要選手を掲載。打率順。</p>
+        </div>
+
+        <!-- 投手成績 -->
+        <div class="tab-content" data-group="season" data-tab="pitching">
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>背番</th><th>選手名</th><th>登板</th><th>先発</th>
+                  <th>完投</th><th>勝</th><th>負</th><th>セーブ</th>
+                  <th>H</th><th>投球回</th><th>奪三振</th><th>四球</th>
+                  <th>失点</th><th>自責点</th><th>防御率</th><th>WHIP</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>19</td><td class="name-col">小川 泰弘</td>
+                  <td>10</td><td>10</td><td>1</td><td>4</td><td>4</td>
+                  <td>0</td><td>0</td><td>66.1</td><td>42</td><td>18</td>
+                  <td>21</td><td>21</td><td><strong>2.85</strong></td><td>1.10</td>
+                </tr>
+                <tr>
+                  <td>41</td><td class="name-col">高橋 奎二</td>
+                  <td>9</td><td>9</td><td>0</td><td>3</td><td>5</td>
+                  <td>0</td><td>0</td><td>54.2</td><td>38</td><td>20</td>
+                  <td>24</td><td>22</td><td>3.62</td><td>1.26</td>
+                </tr>
+                <tr>
+                  <td>48</td><td class="name-col">吉村 貢司郎</td>
+                  <td>9</td><td>9</td><td>0</td><td>3</td><td>4</td>
+                  <td>0</td><td>0</td><td>52.0</td><td>41</td><td>22</td>
+                  <td>26</td><td>24</td><td>4.15</td><td>1.35</td>
+                </tr>
+                <tr>
+                  <td>16</td><td class="name-col">原 樹理</td>
+                  <td>8</td><td>8</td><td>0</td><td>2</td><td>4</td>
+                  <td>0</td><td>0</td><td>46.0</td><td>30</td><td>18</td>
+                  <td>22</td><td>20</td><td>3.91</td><td>1.30</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td>14</td><td class="name-col">石山 泰稚</td>
+                  <td>22</td><td>0</td><td>0</td><td>1</td><td>2</td>
+                  <td>9</td><td>2</td><td>24.0</td><td>26</td><td>5</td>
+                  <td>4</td><td>4</td><td><strong>1.50</strong></td><td>0.83</td>
+                </tr>
+                <tr>
+                  <td>36</td><td class="name-col">清水 昇</td>
+                  <td>24</td><td>0</td><td>0</td><td>2</td><td>1</td>
+                  <td>2</td><td>10</td><td>26.1</td><td>28</td><td>7</td>
+                  <td>6</td><td>6</td><td>2.05</td><td>1.06</td>
+                </tr>
+                <tr>
+                  <td>35</td><td class="name-col">今野 龍太</td>
+                  <td>20</td><td>0</td><td>0</td><td>1</td><td>2</td>
+                  <td>0</td><td>8</td><td>20.2</td><td>22</td><td>8</td>
+                  <td>7</td><td>7</td><td>3.05</td><td>1.21</td>
+                </tr>
+                <tr>
+                  <td>29</td><td class="name-col">田口 麗斗</td>
+                  <td>18</td><td>0</td><td>0</td><td>1</td><td>1</td>
+                  <td>0</td><td>6</td><td>18.0</td><td>14</td><td>9</td>
+                  <td>8</td><td>7</td><td>3.50</td><td>1.33</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:12px;color:var(--text-muted);">※登板数順。防御率は自責点から算出。</p>
+        </div>
+
+        <!-- チーム成績推移 -->
+        <div class="tab-content" data-group="season" data-tab="team">
+          <div class="card-grid">
+            <div class="card">
+              <div class="card-title">月別成績</div>
+              <table style="width:100%;font-size:14px;border-collapse:collapse;">
+                <thead>
+                  <tr style="border-bottom:2px solid var(--border);">
+                    <th style="padding:8px;text-align:left;color:var(--text-muted);">月</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">勝</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">負</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">分</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">勝率</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:8px;font-weight:600;">3月</td>
+                    <td style="padding:8px;text-align:center;">3</td>
+                    <td style="padding:8px;text-align:center;">4</td>
+                    <td style="padding:8px;text-align:center;">0</td>
+                    <td style="padding:8px;text-align:center;">.429</td>
+                  </tr>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:8px;font-weight:600;">4月</td>
+                    <td style="padding:8px;text-align:center;">8</td>
+                    <td style="padding:8px;text-align:center;">10</td>
+                    <td style="padding:8px;text-align:center;">1</td>
+                    <td style="padding:8px;text-align:center;">.444</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px;font-weight:600;">5月（途中）</td>
+                    <td style="padding:8px;text-align:center;">6</td>
+                    <td style="padding:8px;text-align:center;">8</td>
+                    <td style="padding:8px;text-align:center;">0</td>
+                    <td style="padding:8px;text-align:center;">.429</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card">
+              <div class="card-title">本拠地・遠征別</div>
+              <table style="width:100%;font-size:14px;border-collapse:collapse;">
+                <thead>
+                  <tr style="border-bottom:2px solid var(--border);">
+                    <th style="padding:8px;text-align:left;color:var(--text-muted);">区分</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">勝</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">負</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">分</th>
+                    <th style="padding:8px;text-align:center;color:var(--text-muted);">勝率</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--border);">
+                    <td style="padding:8px;font-weight:600;">🏠 主催（神宮）</td>
+                    <td style="padding:8px;text-align:center;">9</td>
+                    <td style="padding:8px;text-align:center;">10</td>
+                    <td style="padding:8px;text-align:center;">0</td>
+                    <td style="padding:8px;text-align:center;">.474</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:8px;font-weight:600;">✈️ ビジター</td>
+                    <td style="padding:8px;text-align:center;">8</td>
+                    <td style="padding:8px;text-align:center;">12</td>
+                    <td style="padding:8px;text-align:center;">1</td>
+                    <td style="padding:8px;text-align:center;">.400</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card">
+              <div class="card-title">対戦チーム別成績</div>
+              <table style="width:100%;font-size:13px;border-collapse:collapse;">
+                <thead>
+                  <tr style="border-bottom:2px solid var(--border);">
+                    <th style="padding:6px;text-align:left;color:var(--text-muted);">相手</th>
+                    <th style="padding:6px;text-align:center;color:var(--text-muted);">勝</th>
+                    <th style="padding:6px;text-align:center;color:var(--text-muted);">負</th>
+                    <th style="padding:6px;text-align:center;color:var(--text-muted);">分</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px;">阪神</td><td style="padding:6px;text-align:center;">3</td><td style="padding:6px;text-align:center;">4</td><td style="padding:6px;text-align:center;">0</td></tr>
+                  <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px;">読売</td><td style="padding:6px;text-align:center;">3</td><td style="padding:6px;text-align:center;">4</td><td style="padding:6px;text-align:center;">0</td></tr>
+                  <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px;">広島</td><td style="padding:6px;text-align:center;">3</td><td style="padding:6px;text-align:center;">4</td><td style="padding:6px;text-align:center;">1</td></tr>
+                  <tr style="border-bottom:1px solid var(--border);"><td style="padding:6px;">DeNA</td><td style="padding:6px;text-align:center;">4</td><td style="padding:6px;text-align:center;">4</td><td style="padding:6px;text-align:center;">0</td></tr>
+                  <tr><td style="padding:6px;">中日</td><td style="padding:6px;text-align:center;">4</td><td style="padding:6px;text-align:center;">6</td><td style="padding:6px;text-align:center;">0</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="logo-swallow">🐦</span><span>東京ヤクルトスワローズ ファンサイト</span></div>
+      <p class="footer-note">このサイトはファンが作成した非公式サイトです。</p>
+      <p class="footer-copy">&copy; 2025 Swallows Fan Site.</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

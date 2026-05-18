@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>記録・データ | スワローズファンサイト</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    .record-card {
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
+      border-left: 5px solid var(--sw-blue);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .record-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+    .record-card.gold { border-left-color: var(--sw-gold-dark); }
+    .record-card.red { border-left-color: var(--sw-red); }
+    .record-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; letter-spacing: 0.04em; }
+    .record-holder { font-size: 17px; font-weight: 900; color: var(--sw-blue-dark); margin-bottom: 4px; }
+    .record-value { font-size: 32px; font-weight: 900; color: var(--sw-blue); line-height: 1; margin-bottom: 8px; }
+    .record-card.gold .record-value { color: var(--sw-gold-dark); }
+    .record-card.red .record-value { color: var(--sw-red); }
+    .record-year { font-size: 12px; color: var(--text-muted); }
+
+    .legend-section {
+      background: linear-gradient(135deg, var(--sw-blue-dark), var(--sw-blue));
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 48px;
+    }
+    .legend-section h3 { font-size: 20px; font-weight: 900; margin-bottom: 20px; color: var(--sw-gold); }
+    .legend-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+    .legend-item { }
+    .legend-name { font-size: 18px; font-weight: 900; margin-bottom: 4px; }
+    .legend-era { font-size: 12px; color: rgba(255,255,255,0.65); margin-bottom: 8px; }
+    .legend-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .legend-tag { font-size: 11px; padding: 2px 8px; border-radius: 20px; background: rgba(255,255,255,0.15); }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-swallow">🐦</span>
+        <div class="logo-text">
+          <span class="logo-main">東京ヤクルトスワローズ</span>
+          <span class="logo-sub">FANS SITE</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../index.html">トップ</a></li>
+          <li><a href="season2025.html">2025シーズン</a></li>
+          <li><a href="players.html">選手名鑑</a></li>
+          <li><a href="history.html">歴代成績</a></li>
+          <li><a href="records.html" class="active">記録・データ</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>記録・データ</h1>
+    <p>球団記録・個人記録・各種データ</p>
+  </div>
+
+  <main>
+    <section class="section" style="background:#fff;">
+      <div class="container">
+
+        <!-- 球団記録 -->
+        <h2 class="section-title">球団個人記録（主要）</h2>
+
+        <div class="tabs">
+          <button class="tab-btn active" data-group="rec" data-tab="batting">打撃記録</button>
+          <button class="tab-btn" data-group="rec" data-tab="pitching">投手記録</button>
+          <button class="tab-btn" data-group="rec" data-tab="season">シーズン記録</button>
+        </div>
+
+        <!-- 打撃記録 -->
+        <div class="tab-content active" data-group="rec" data-tab="batting">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:32px;">
+            <div class="record-card gold">
+              <div class="record-label">通算本塁打（球団最多）</div>
+              <div class="record-holder">山田 哲人</div>
+              <div class="record-value">300本+</div>
+              <div class="record-year">2013年〜現役</div>
+            </div>
+            <div class="record-card gold">
+              <div class="record-label">通算安打（球団最多）</div>
+              <div class="record-holder">古田 敦也</div>
+              <div class="record-value">2097本</div>
+              <div class="record-year">1990〜2007年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン本塁打（球団最多）</div>
+              <div class="record-holder">村上 宗隆</div>
+              <div class="record-value">56本</div>
+              <div class="record-year">2022年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン打点（球団最多）</div>
+              <div class="record-holder">村上 宗隆</div>
+              <div class="record-value">134打点</div>
+              <div class="record-year">2022年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">トリプルスリー達成</div>
+              <div class="record-holder">山田 哲人</div>
+              <div class="record-value">3回</div>
+              <div class="record-year">2015・16・19年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">三冠王</div>
+              <div class="record-holder">村上 宗隆</div>
+              <div class="record-value">1回</div>
+              <div class="record-year">2022年（打率.318・56本・134打点）</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン盗塁（球団最多）</div>
+              <div class="record-holder">土橋 勝征</div>
+              <div class="record-value">47個</div>
+              <div class="record-year">1994年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">通算盗塁（球団最多）</div>
+              <div class="record-holder">若松 勉</div>
+              <div class="record-value">259個</div>
+              <div class="record-year">1971〜1989年</div>
+            </div>
+          </div>
+
+          <h3 style="font-size:17px;font-weight:700;color:var(--sw-blue-dark);margin-bottom:16px;">歴代打率タイトル</h3>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th>年度</th><th>選手名</th><th>打率</th><th>備考</th></tr></thead>
+              <tbody>
+                <tr><td>2022</td><td class="name-col">村上 宗隆</td><td>.318</td><td>三冠王</td></tr>
+                <tr><td>2019</td><td class="name-col">山田 哲人</td><td>.271</td><td>トリプルスリー</td></tr>
+                <tr><td>2016</td><td class="name-col">山田 哲人</td><td>.304</td><td>トリプルスリー</td></tr>
+                <tr><td>2015</td><td class="name-col">山田 哲人</td><td>.329</td><td>トリプルスリー</td></tr>
+                <tr><td>2001</td><td class="name-col">ローズ</td><td>.327</td><td>日本一年</td></tr>
+                <tr><td>1992</td><td class="name-col">古田 敦也</td><td>.340</td><td>首位打者・最高出塁率</td></tr>
+                <tr><td>1990</td><td class="name-col">池山 隆寛</td><td>.278</td><td></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 投手記録 -->
+        <div class="tab-content" data-group="rec" data-tab="pitching">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-bottom:32px;">
+            <div class="record-card gold">
+              <div class="record-label">通算勝利（球団最多）</div>
+              <div class="record-holder">金田 正一</div>
+              <div class="record-value">400勝</div>
+              <div class="record-year">国鉄・サンケイ時代含む</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン奪三振（球団最多）</div>
+              <div class="record-holder">小川 泰弘</div>
+              <div class="record-value">196個</div>
+              <div class="record-year">2013年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン最多セーブ（球団）</div>
+              <div class="record-holder">石山 泰稚</div>
+              <div class="record-value">34S</div>
+              <div class="record-year">2019年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">通算セーブ（球団最多）</div>
+              <div class="record-holder">高津 臣吾</div>
+              <div class="record-value">286S</div>
+              <div class="record-year">1990〜2003・06年</div>
+            </div>
+            <div class="record-card red">
+              <div class="record-label">シーズン最優秀防御率</div>
+              <div class="record-holder">小川 泰弘</div>
+              <div class="record-value">2.03</div>
+              <div class="record-year">2013年（最多勝も獲得）</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">ノーヒットノーラン</div>
+              <div class="record-holder">小川 泰弘</div>
+              <div class="record-value">1回</div>
+              <div class="record-year">2013年9月19日</div>
+            </div>
+          </div>
+
+          <h3 style="font-size:17px;font-weight:700;color:var(--sw-blue-dark);margin-bottom:16px;">歴代最多勝投手</h3>
+          <div class="data-table-wrap">
+            <table class="data-table">
+              <thead><tr><th>年度</th><th>選手名</th><th>勝利数</th><th>防御率</th><th>備考</th></tr></thead>
+              <tbody>
+                <tr><td>2022</td><td class="name-col">高橋 奎二</td><td>12勝</td><td>2.68</td><td>リーグ優勝年</td></tr>
+                <tr><td>2021</td><td class="name-col">奥川 恭伸</td><td>9勝</td><td>2.20</td><td>日本一年</td></tr>
+                <tr><td>2019</td><td class="name-col">小川 泰弘</td><td>11勝</td><td>3.59</td><td></td></tr>
+                <tr><td>2013</td><td class="name-col">小川 泰弘</td><td>16勝</td><td>2.03</td><td>最多勝・最優秀防御率</td></tr>
+                <tr><td>2001</td><td class="name-col">石川 雅規</td><td>14勝</td><td>3.20</td><td>日本一年・新人王</td></tr>
+                <tr><td>1997</td><td class="name-col">川崎 憲次郎</td><td>17勝</td><td>2.27</td><td>日本一年</td></tr>
+                <tr><td>1993</td><td class="name-col">岡林 洋一</td><td>17勝</td><td>2.32</td><td>日本一年</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- シーズン記録 -->
+        <div class="tab-content" data-group="rec" data-tab="season">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-bottom:32px;">
+            <div class="record-card gold">
+              <div class="record-label">シーズン最多勝利</div>
+              <div class="record-value">82勝</div>
+              <div class="record-year">1997年（82勝48敗5分）</div>
+            </div>
+            <div class="record-card gold">
+              <div class="record-label">シーズン最高勝率</div>
+              <div class="record-value">.631</div>
+              <div class="record-year">1995・1997年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン最少失点</div>
+              <div class="record-value">413点</div>
+              <div class="record-year">1997年</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン最多本塁打（チーム）</div>
+              <div class="record-value">186本</div>
+              <div class="record-year">2022年</div>
+            </div>
+            <div class="record-card red">
+              <div class="record-label">シーズン最多敗戦</div>
+              <div class="record-value">96敗</div>
+              <div class="record-year">2017年（45勝96敗2分）</div>
+            </div>
+            <div class="record-card">
+              <div class="record-label">シーズン連勝記録</div>
+              <div class="record-value">12連勝</div>
+              <div class="record-year">1997年</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 球団レジェンド -->
+        <h2 class="section-title" style="margin-top:48px;">球団レジェンド</h2>
+        <div class="legend-section">
+          <h3>殿堂・名球会入りの偉人たち</h3>
+          <div class="legend-grid">
+            <div class="legend-item">
+              <div class="legend-name">古田 敦也</div>
+              <div class="legend-era">1990〜2007年（捕手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">名球会（2000安打）</span>
+                <span class="legend-tag">MVP3回</span>
+                <span class="legend-tag">盗塁阻止率.644</span>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-name">若松 勉</div>
+              <div class="legend-era">1971〜1989年（外野手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">名球会（2173安打）</span>
+                <span class="legend-tag">首位打者5回</span>
+                <span class="legend-tag">後に監督で日本一</span>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-name">山田 哲人</div>
+              <div class="legend-era">2011年〜現役（二塁手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">トリプルスリー3回</span>
+                <span class="legend-tag">MVP2回</span>
+                <span class="legend-tag">通算300本塁打以上</span>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-name">村上 宗隆</div>
+              <div class="legend-era">2018年〜現役（三塁手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">三冠王（2022年）</span>
+                <span class="legend-tag">シーズン56本塁打</span>
+                <span class="legend-tag">MVP2回</span>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-name">高津 臣吾</div>
+              <div class="legend-era">1990〜2003・06年（投手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">通算286セーブ</span>
+                <span class="legend-tag">MLB・韓国・独立L経験</span>
+                <span class="legend-tag">現監督</span>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-name">池山 隆寛</div>
+              <div class="legend-era">1984〜2002年（遊撃手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">通算293本塁打</span>
+                <span class="legend-tag">「ブンブン丸」</span>
+                <span class="legend-tag">ゴールデングラブ</span>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-name">青木 宣親</div>
+              <div class="legend-era">2004年〜現役（外野手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">名球会（2000安打）</span>
+                <span class="legend-tag">MLB6年</span>
+                <span class="legend-tag">首位打者5回</span>
+              </div>
+            </div>
+            <div class="legend-item">
+              <div class="legend-name">石川 雅規</div>
+              <div class="legend-era">2002〜2024年（投手）</div>
+              <div class="legend-tags">
+                <span class="legend-tag">通算175勝</span>
+                <span class="legend-tag">左腕小兵エース</span>
+                <span class="legend-tag">23年間在籍</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 受賞歴 -->
+        <h2 class="section-title">主要タイトル・表彰歴（2015年以降）</h2>
+        <div class="data-table-wrap">
+          <table class="data-table">
+            <thead><tr><th>年度</th><th>選手名</th><th>タイトル</th><th>成績</th></tr></thead>
+            <tbody>
+              <tr><td>2022</td><td class="name-col">村上 宗隆</td><td><span class="badge badge-gold">三冠王・MVP</span></td><td>打率.318・56本・134打点</td></tr>
+              <tr><td>2022</td><td class="name-col">山田 哲人</td><td>最多得点圏打率</td><td>.352</td></tr>
+              <tr><td>2021</td><td class="name-col">村上 宗隆</td><td>最多本塁打・最多打点</td><td>39本・112打点</td></tr>
+              <tr><td>2021</td><td class="name-col">奥川 恭伸</td><td>最高勝率</td><td>9勝2敗 .818</td></tr>
+              <tr><td>2019</td><td class="name-col">山田 哲人</td><td>最多本塁打・最多盗塁</td><td>35本・34盗塁（トリプルスリー）</td></tr>
+              <tr><td>2018</td><td class="name-col">村上 宗隆</td><td>新人王</td><td>打率.235・36本</td></tr>
+              <tr><td>2016</td><td class="name-col">山田 哲人</td><td>MVP・最多本塁打</td><td>打率.304・38本・30盗塁</td></tr>
+              <tr><td>2015</td><td class="name-col">山田 哲人</td><td>MVP・最多本塁打・最多盗塁</td><td>打率.329・38本・34盗塁</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="logo-swallow">🐦</span><span>東京ヤクルトスワローズ ファンサイト</span></div>
+      <p class="footer-note">このサイトはファンが作成した非公式サイトです。</p>
+      <p class="footer-copy">&copy; 2025 Swallows Fan Site.</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>

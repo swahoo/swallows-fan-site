@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>東京ヤクルトスワローズ ファンサイト</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-swallow">🐦</span>
+        <div class="logo-text">
+          <span class="logo-main">東京ヤクルトスワローズ</span>
+          <span class="logo-sub">FANS SITE</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">トップ</a></li>
+          <li><a href="pages/season2025.html">2025シーズン</a></li>
+          <li><a href="pages/players.html">選手名鑑</a></li>
+          <li><a href="pages/history.html">歴代成績</a></li>
+          <li><a href="pages/records.html">記録・データ</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ヒーローセクション -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">2025 セ・リーグ</div>
+        <h1>東京ヤクルトスワローズ</h1>
+        <p class="hero-sub">東京・神宮球場を本拠地とするプロ野球球団<br>ファンと選手が一体となる傘の応援で知られる名門</p>
+        <div class="hero-buttons">
+          <a href="pages/season2025.html" class="btn btn-primary">今シーズン成績</a>
+          <a href="pages/history.html" class="btn btn-secondary">歴代成績</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat-item">
+          <span class="stat-num">6</span>
+          <span class="stat-label">リーグ優勝回数</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="stat-num">5</span>
+          <span class="stat-label">日本一回数</span>
+        </div>
+        <div class="hero-stat-item">
+          <span class="stat-num">1969</span>
+          <span class="stat-label">創設年</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 順位表 -->
+    <section class="section standings-section">
+      <div class="container">
+        <h2 class="section-title">2025年 セ・リーグ順位表 <span class="update-date">（5月18日現在）</span></h2>
+        <div class="standings-table-wrap">
+          <table class="standings-table">
+            <thead>
+              <tr>
+                <th>順位</th>
+                <th>球団</th>
+                <th>試合</th>
+                <th>勝</th>
+                <th>負</th>
+                <th>分</th>
+                <th>勝率</th>
+                <th>ゲーム差</th>
+                <th>直近10試合</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="rank rank-1">1</td>
+                <td class="team-name">阪神タイガース</td>
+                <td>39</td><td>23</td><td>15</td><td>1</td>
+                <td>.605</td><td>-</td>
+                <td class="recent">6勝4敗</td>
+              </tr>
+              <tr>
+                <td class="rank rank-2">2</td>
+                <td class="team-name">読売ジャイアンツ</td>
+                <td>40</td><td>22</td><td>16</td><td>2</td>
+                <td>.579</td><td>1.5</td>
+                <td class="recent">5勝5敗</td>
+              </tr>
+              <tr>
+                <td class="rank rank-3">3</td>
+                <td class="team-name">広島東洋カープ</td>
+                <td>39</td><td>20</td><td>18</td><td>1</td>
+                <td>.526</td><td>3.5</td>
+                <td class="recent">5勝5敗</td>
+              </tr>
+              <tr>
+                <td class="rank rank-4">4</td>
+                <td class="team-name">横浜DeNAベイスターズ</td>
+                <td>40</td><td>19</td><td>19</td><td>2</td>
+                <td>.500</td><td>5.0</td>
+                <td class="recent">4勝6敗</td>
+              </tr>
+              <tr class="swallows-row">
+                <td class="rank rank-5">5</td>
+                <td class="team-name swallows-name">🐦 東京ヤクルトスワローズ</td>
+                <td>40</td><td>17</td><td>22</td><td>1</td>
+                <td>.436</td><td>7.0</td>
+                <td class="recent">5勝5敗</td>
+              </tr>
+              <tr>
+                <td class="rank rank-6">6</td>
+                <td class="team-name">中日ドラゴンズ</td>
+                <td>39</td><td>14</td><td>24</td><td>1</td>
+                <td>.368</td><td>10.0</td>
+                <td class="recent">4勝6敗</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 今シーズン注目選手 -->
+    <section class="section players-section">
+      <div class="container">
+        <h2 class="section-title">2025年 注目選手</h2>
+        <div class="players-grid">
+          <div class="player-card">
+            <div class="player-number">#5</div>
+            <div class="player-info">
+              <h3 class="player-name">村上 宗隆</h3>
+              <p class="player-pos">内野手（三塁手）</p>
+              <div class="player-stats">
+                <div class="pstat"><span class="pstat-label">打率</span><span class="pstat-val">.301</span></div>
+                <div class="pstat"><span class="pstat-label">本塁打</span><span class="pstat-val">11</span></div>
+                <div class="pstat"><span class="pstat-label">打点</span><span class="pstat-val">34</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="player-card">
+            <div class="player-number">#7</div>
+            <div class="player-info">
+              <h3 class="player-name">塩見 泰隆</h3>
+              <p class="player-pos">外野手（中堅手）</p>
+              <div class="player-stats">
+                <div class="pstat"><span class="pstat-label">打率</span><span class="pstat-val">.285</span></div>
+                <div class="pstat"><span class="pstat-label">盗塁</span><span class="pstat-val">8</span></div>
+                <div class="pstat"><span class="pstat-label">打点</span><span class="pstat-val">18</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="player-card">
+            <div class="player-number">#19</div>
+            <div class="player-info">
+              <h3 class="player-name">小川 泰弘</h3>
+              <p class="player-pos">投手（先発）</p>
+              <div class="player-stats">
+                <div class="pstat"><span class="pstat-label">防御率</span><span class="pstat-val">2.85</span></div>
+                <div class="pstat"><span class="pstat-label">勝利</span><span class="pstat-val">4</span></div>
+                <div class="pstat"><span class="pstat-label">奪三振</span><span class="pstat-val">42</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="player-card">
+            <div class="player-number">#14</div>
+            <div class="player-info">
+              <h3 class="player-name">石山 泰稚</h3>
+              <p class="player-pos">投手（抑え）</p>
+              <div class="player-stats">
+                <div class="pstat"><span class="pstat-label">防御率</span><span class="pstat-val">1.50</span></div>
+                <div class="pstat"><span class="pstat-label">セーブ</span><span class="pstat-val">9</span></div>
+                <div class="pstat"><span class="pstat-label">ホールド</span><span class="pstat-val">2</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="center-link">
+          <a href="pages/players.html" class="btn btn-outline">全選手を見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 歴代優勝 -->
+    <section class="section history-section">
+      <div class="container">
+        <h2 class="section-title">栄光の歴史</h2>
+        <div class="history-grid">
+          <div class="history-card championship">
+            <div class="history-year">2021</div>
+            <div class="history-detail">
+              <span class="history-badge">日本一</span>
+              <p>村上宗隆・山田哲人を中心に20年ぶりの日本一達成</p>
+            </div>
+          </div>
+          <div class="history-card pennant">
+            <div class="history-year">2022</div>
+            <div class="history-detail">
+              <span class="history-badge pennant-badge">リーグ優勝</span>
+              <p>2年連続セ・リーグ制覇。村上が三冠王を獲得</p>
+            </div>
+          </div>
+          <div class="history-card championship">
+            <div class="history-year">2001</div>
+            <div class="history-detail">
+              <span class="history-badge">日本一</span>
+              <p>若松勉監督のもと日本一。古田敦也が正捕手として活躍</p>
+            </div>
+          </div>
+          <div class="history-card pennant">
+            <div class="history-year">1978</div>
+            <div class="history-detail">
+              <span class="history-badge pennant-badge">初優勝</span>
+              <p>球団初のリーグ優勝・日本一。大杉勝男らが活躍</p>
+            </div>
+          </div>
+        </div>
+        <div class="center-link">
+          <a href="pages/history.html" class="btn btn-outline">歴代成績をすべて見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- クイックナビ -->
+    <section class="section quick-nav-section">
+      <div class="container">
+        <div class="quick-nav-grid">
+          <a href="pages/season2025.html" class="quick-nav-item">
+            <span class="qn-icon">📊</span>
+            <span class="qn-title">今シーズン成績</span>
+            <span class="qn-sub">チーム・個人成績</span>
+          </a>
+          <a href="pages/players.html" class="quick-nav-item">
+            <span class="qn-icon">👤</span>
+            <span class="qn-title">選手名鑑</span>
+            <span class="qn-sub">全選手プロフィール</span>
+          </a>
+          <a href="pages/history.html" class="quick-nav-item">
+            <span class="qn-icon">🏆</span>
+            <span class="qn-title">歴代成績</span>
+            <span class="qn-sub">年度別順位・優勝記録</span>
+          </a>
+          <a href="pages/records.html" class="quick-nav-item">
+            <span class="qn-icon">📈</span>
+            <span class="qn-title">記録・データ</span>
+            <span class="qn-sub">球団記録・個人記録</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <span class="logo-swallow">🐦</span>
+        <span>東京ヤクルトスワローズ ファンサイト</span>
+      </div>
+      <p class="footer-note">このサイトはファンが作成した非公式サイトです。球団公式情報は<a href="https://www.yakult-swallows.co.jp/" target="_blank" rel="noopener">公式サイト</a>をご確認ください。</p>
+      <p class="footer-copy">&copy; 2025 Swallows Fan Site. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

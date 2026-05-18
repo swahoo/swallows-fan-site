@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>試合日程・結果 | スワローズファンサイト</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    .schedule-month { margin-bottom: 48px; }
+    .month-header {
+      background: var(--sw-blue);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+      font-size: 18px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .month-record {
+      font-size: 13px;
+      font-weight: 500;
+      background: rgba(255,255,255,0.15);
+      padding: 3px 12px;
+      border-radius: 20px;
+    }
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .schedule-table thead th {
+      background: #f0f7ff;
+      color: var(--sw-blue-dark);
+      padding: 10px 12px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 12px;
+      border-bottom: 2px solid var(--sw-blue);
+    }
+    .schedule-table tbody td {
+      padding: 10px 12px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .schedule-table tbody tr:hover td { background: #f8fbff; }
+    .result-win { color: #2563eb; font-weight: 900; font-size: 16px; }
+    .result-loss { color: var(--sw-red); font-weight: 900; font-size: 16px; }
+    .result-draw { color: #718096; font-weight: 900; font-size: 16px; }
+    .result-future { color: var(--text-muted); font-size: 13px; }
+    .score-cell { font-weight: 700; font-size: 15px; color: var(--text-primary); }
+    .venue-cell { font-size: 12px; color: var(--text-muted); }
+    .home-badge {
+      display: inline-block;
+      background: #e8f4ff;
+      color: var(--sw-blue);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+    .away-badge {
+      display: inline-block;
+      background: #f5f5f5;
+      color: #666;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-right: 4px;
+    }
+    .pitcher-note { font-size: 11px; color: var(--text-muted); }
+    .today-row td { background: #fffbea !important; }
+    .today-row td:first-child { border-left: 4px solid var(--sw-gold); }
+
+    .standings-mini {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+    .scard {
+      background: #fff;
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      text-align: center;
+    }
+    .scard-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+    .scard-val { font-size: 28px; font-weight: 900; color: var(--sw-blue); line-height: 1; }
+    .scard-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+
+    .month-tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 24px; }
+    .month-tab-btn {
+      padding: 8px 18px;
+      border-radius: 24px;
+      border: 2px solid var(--border);
+      background: #fff;
+      font-family: var(--font);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.2s;
+    }
+    .month-tab-btn:hover, .month-tab-btn.active {
+      background: var(--sw-blue);
+      color: #fff;
+      border-color: var(--sw-blue);
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-swallow">🐦</span>
+        <div class="logo-text">
+          <span class="logo-main">東京ヤクルトスワローズ</span>
+          <span class="logo-sub">FANS SITE</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="../index.html">トップ</a></li>
+          <li><a href="season2025.html">2025シーズン</a></li>
+          <li><a href="schedule.html" class="active">日程・結果</a></li>
+          <li><a href="players.html">選手名鑑</a></li>
+          <li><a href="history.html">歴代成績</a></li>
+          <li><a href="records.html">記録・データ</a></li>
+          <li><a href="cheers.html">応援・ファン</a></li>
+        </ul>
+      </nav>
+      <button class="nav-toggle" id="navToggle">&#9776;</button>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>2025年 試合日程・結果</h1>
+    <p>東京ヤクルトスワローズ 2025年度公式戦（5月18日現在）</p>
+  </div>
+
+  <main>
+    <section class="section" style="background:#f8fafc;">
+      <div class="container">
+
+        <!-- チーム概況 -->
+        <div class="standings-mini">
+          <div class="scard">
+            <div class="scard-label">順位</div>
+            <div class="scard-val" style="color:var(--sw-blue);">5位</div>
+            <div class="scard-sub">セ・リーグ</div>
+          </div>
+          <div class="scard">
+            <div class="scard-label">勝敗</div>
+            <div class="scard-val">17勝22敗</div>
+            <div class="scard-sub">1分</div>
+          </div>
+          <div class="scard">
+            <div class="scard-label">勝率</div>
+            <div class="scard-val">.436</div>
+            <div class="scard-sub">首位差 7.0</div>
+          </div>
+          <div class="scard">
+            <div class="scard-label">連続記録</div>
+            <div class="scard-val" style="font-size:20px;">2連敗中</div>
+            <div class="scard-sub">（5/17現在）</div>
+          </div>
+          <div class="scard">
+            <div class="scard-label">直近10試合</div>
+            <div class="scard-val" style="font-size:20px;">5勝5敗</div>
+            <div class="scard-sub"></div>
+          </div>
+        </div>
+
+        <!-- 月別フィルター -->
+        <div class="month-tabs">
+          <button class="month-tab-btn active" data-month="march">3月</button>
+          <button class="month-tab-btn" data-month="april">4月</button>
+          <button class="month-tab-btn" data-month="may">5月</button>
+          <button class="month-tab-btn" data-month="june">6月（予定）</button>
+          <button class="month-tab-btn" data-month="july">7月（予定）</button>
+          <button class="month-tab-btn" data-month="aug">8月（予定）</button>
+          <button class="month-tab-btn" data-month="sep">9月〜（予定）</button>
+        </div>
+
+        <!-- 3月 -->
+        <div class="schedule-month" data-month-section="march">
+          <div class="month-header">
+            3月
+            <span class="month-record">3勝4敗0分</span>
+          </div>
+          <div style="overflow-x:auto;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>日付</th><th>曜日</th><th>H/A</th><th>対戦相手</th>
+                  <th>結果</th><th>スコア</th><th>球場</th><th>勝利投手</th><th>敗戦投手</th><th>セーブ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>3/28</td><td>金</td><td><span class="home-badge">H</span></td><td>阪神</td><td class="result-loss">●</td><td class="score-cell">2-5</td><td class="venue-cell">神宮</td><td class="pitcher-note">伊藤将司</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">岩崎</td></tr>
+                <tr><td>3/29</td><td>土</td><td><span class="home-badge">H</span></td><td>阪神</td><td class="result-win">○</td><td class="score-cell">5-3</td><td class="venue-cell">神宮</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">青柳</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>3/30</td><td>日</td><td><span class="home-badge">H</span></td><td>阪神</td><td class="result-loss">●</td><td class="score-cell">1-3</td><td class="venue-cell">神宮</td><td class="pitcher-note">村上頌樹</td><td class="pitcher-note">吉村</td><td class="pitcher-note">岩崎</td></tr>
+                <tr><td>4/1</td><td>火</td><td><span class="away-badge">A</span></td><td>広島</td><td class="result-win">○</td><td class="score-cell">7-4</td><td class="venue-cell">マツダ</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">床田</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/2</td><td>水</td><td><span class="away-badge">A</span></td><td>広島</td><td class="result-loss">●</td><td class="score-cell">2-6</td><td class="venue-cell">マツダ</td><td class="pitcher-note">九里亜蓮</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">—</td></tr>
+                <tr><td>4/4</td><td>金</td><td><span class="away-badge">A</span></td><td>読売</td><td class="result-win">○</td><td class="score-cell">4-2</td><td class="venue-cell">東京ドーム</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">山崎伊</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/5</td><td>土</td><td><span class="away-badge">A</span></td><td>読売</td><td class="result-loss">●</td><td class="score-cell">1-5</td><td class="venue-cell">東京ドーム</td><td class="pitcher-note">菅野智之</td><td class="pitcher-note">吉村</td><td class="pitcher-note">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4月 -->
+        <div class="schedule-month" data-month-section="april" style="display:none;">
+          <div class="month-header">
+            4月
+            <span class="month-record">8勝10敗1分</span>
+          </div>
+          <div style="overflow-x:auto;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>日付</th><th>曜日</th><th>H/A</th><th>対戦相手</th>
+                  <th>結果</th><th>スコア</th><th>球場</th><th>勝利投手</th><th>敗戦投手</th><th>セーブ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>4/8</td><td>火</td><td><span class="home-badge">H</span></td><td>DeNA</td><td class="result-win">○</td><td class="score-cell">6-3</td><td class="venue-cell">神宮</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">東克樹</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/9</td><td>水</td><td><span class="home-badge">H</span></td><td>DeNA</td><td class="result-loss">●</td><td class="score-cell">3-5</td><td class="venue-cell">神宮</td><td class="pitcher-note">バウアー</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">森原</td></tr>
+                <tr><td>4/10</td><td>木</td><td><span class="home-badge">H</span></td><td>DeNA</td><td class="result-draw">△</td><td class="score-cell">4-4</td><td class="venue-cell">神宮</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>4/11</td><td>金</td><td><span class="away-badge">A</span></td><td>中日</td><td class="result-win">○</td><td class="score-cell">5-2</td><td class="venue-cell">バンテリン</td><td class="pitcher-note">吉村</td><td class="pitcher-note">涌井</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/12</td><td>土</td><td><span class="away-badge">A</span></td><td>中日</td><td class="result-loss">●</td><td class="score-cell">1-3</td><td class="venue-cell">バンテリン</td><td class="pitcher-note">小笠原</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">マルティネス</td></tr>
+                <tr><td>4/13</td><td>日</td><td><span class="away-badge">A</span></td><td>中日</td><td class="result-win">○</td><td class="score-cell">8-4</td><td class="venue-cell">バンテリン</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">松葉</td><td class="pitcher-note">清水昇</td></tr>
+                <tr><td>4/15</td><td>火</td><td><span class="home-badge">H</span></td><td>読売</td><td class="result-loss">●</td><td class="score-cell">2-7</td><td class="venue-cell">神宮</td><td class="pitcher-note">菅野智之</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">—</td></tr>
+                <tr><td>4/16</td><td>水</td><td><span class="home-badge">H</span></td><td>読売</td><td class="result-win">○</td><td class="score-cell">3-2</td><td class="venue-cell">神宮</td><td class="pitcher-note">吉村</td><td class="pitcher-note">山崎伊</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/17</td><td>木</td><td><span class="home-badge">H</span></td><td>読売</td><td class="result-loss">●</td><td class="score-cell">0-4</td><td class="venue-cell">神宮</td><td class="pitcher-note">戸郷翔征</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">—</td></tr>
+                <tr><td>4/18</td><td>金</td><td><span class="away-badge">A</span></td><td>阪神</td><td class="result-loss">●</td><td class="score-cell">1-5</td><td class="venue-cell">甲子園</td><td class="pitcher-note">西勇輝</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">岩崎</td></tr>
+                <tr><td>4/19</td><td>土</td><td><span class="away-badge">A</span></td><td>阪神</td><td class="result-win">○</td><td class="score-cell">6-4</td><td class="venue-cell">甲子園</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">伊藤将司</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/20</td><td>日</td><td><span class="away-badge">A</span></td><td>阪神</td><td class="result-loss">●</td><td class="score-cell">2-4</td><td class="venue-cell">甲子園</td><td class="pitcher-note">才木浩人</td><td class="pitcher-note">吉村</td><td class="pitcher-note">岩崎</td></tr>
+                <tr><td>4/22</td><td>火</td><td><span class="home-badge">H</span></td><td>広島</td><td class="result-win">○</td><td class="score-cell">5-3</td><td class="venue-cell">神宮</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">九里亜蓮</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/23</td><td>水</td><td><span class="home-badge">H</span></td><td>広島</td><td class="result-loss">●</td><td class="score-cell">3-7</td><td class="venue-cell">神宮</td><td class="pitcher-note">大瀬良</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">—</td></tr>
+                <tr><td>4/24</td><td>木</td><td><span class="home-badge">H</span></td><td>広島</td><td class="result-win">○</td><td class="score-cell">4-1</td><td class="venue-cell">神宮</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">床田</td><td class="pitcher-note">清水昇</td></tr>
+                <tr><td>4/25</td><td>金</td><td><span class="away-badge">A</span></td><td>DeNA</td><td class="result-loss">●</td><td class="score-cell">2-4</td><td class="venue-cell">横浜</td><td class="pitcher-note">東克樹</td><td class="pitcher-note">吉村</td><td class="pitcher-note">森原</td></tr>
+                <tr><td>4/26</td><td>土</td><td><span class="away-badge">A</span></td><td>DeNA</td><td class="result-win">○</td><td class="score-cell">7-5</td><td class="venue-cell">横浜</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">バウアー</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>4/27</td><td>日</td><td><span class="away-badge">A</span></td><td>DeNA</td><td class="result-loss">●</td><td class="score-cell">1-6</td><td class="venue-cell">横浜</td><td class="pitcher-note">濱口遥大</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">—</td></tr>
+                <tr><td>4/29</td><td>火祝</td><td><span class="home-badge">H</span></td><td>中日</td><td class="result-win">○</td><td class="score-cell">3-0</td><td class="venue-cell">神宮</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">小笠原</td><td class="pitcher-note">石山</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 5月 -->
+        <div class="schedule-month" data-month-section="may" style="display:none;">
+          <div class="month-header">
+            5月
+            <span class="month-record">6勝8敗0分（5/18現在）</span>
+          </div>
+          <div style="overflow-x:auto;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);">
+            <table class="schedule-table">
+              <thead>
+                <tr>
+                  <th>日付</th><th>曜日</th><th>H/A</th><th>対戦相手</th>
+                  <th>結果</th><th>スコア</th><th>球場</th><th>勝利投手</th><th>敗戦投手</th><th>セーブ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>5/2</td><td>金</td><td><span class="home-badge">H</span></td><td>中日</td><td class="result-loss">●</td><td class="score-cell">2-3</td><td class="venue-cell">神宮</td><td class="pitcher-note">涌井</td><td class="pitcher-note">吉村</td><td class="pitcher-note">マルティネス</td></tr>
+                <tr><td>5/3</td><td>土祝</td><td><span class="home-badge">H</span></td><td>中日</td><td class="result-win">○</td><td class="score-cell">6-2</td><td class="venue-cell">神宮</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">柳裕也</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>5/4</td><td>日祝</td><td><span class="home-badge">H</span></td><td>中日</td><td class="result-win">○</td><td class="score-cell">5-1</td><td class="venue-cell">神宮</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">松葉</td><td class="pitcher-note">清水昇</td></tr>
+                <tr><td>5/6</td><td>火</td><td><span class="away-badge">A</span></td><td>読売</td><td class="result-loss">●</td><td class="score-cell">1-4</td><td class="venue-cell">東京ドーム</td><td class="pitcher-note">戸郷翔征</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/7</td><td>水</td><td><span class="away-badge">A</span></td><td>読売</td><td class="result-loss">●</td><td class="score-cell">2-5</td><td class="venue-cell">東京ドーム</td><td class="pitcher-note">グリフィン</td><td class="pitcher-note">吉村</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/8</td><td>木</td><td><span class="away-badge">A</span></td><td>読売</td><td class="result-win">○</td><td class="score-cell">4-3</td><td class="venue-cell">東京ドーム</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">山崎伊</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>5/9</td><td>金</td><td><span class="home-badge">H</span></td><td>阪神</td><td class="result-loss">●</td><td class="score-cell">0-2</td><td class="venue-cell">神宮</td><td class="pitcher-note">村上頌樹</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">岩崎</td></tr>
+                <tr><td>5/10</td><td>土</td><td><span class="home-badge">H</span></td><td>阪神</td><td class="result-win">○</td><td class="score-cell">3-1</td><td class="venue-cell">神宮</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">西勇輝</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>5/11</td><td>日</td><td><span class="home-badge">H</span></td><td>阪神</td><td class="result-loss">●</td><td class="score-cell">1-3</td><td class="venue-cell">神宮</td><td class="pitcher-note">伊藤将司</td><td class="pitcher-note">吉村</td><td class="pitcher-note">岩崎</td></tr>
+                <tr><td>5/13</td><td>火</td><td><span class="away-badge">A</span></td><td>広島</td><td class="result-win">○</td><td class="score-cell">7-3</td><td class="venue-cell">マツダ</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">大瀬良</td><td class="pitcher-note">清水昇</td></tr>
+                <tr><td>5/14</td><td>水</td><td><span class="away-badge">A</span></td><td>広島</td><td class="result-loss">●</td><td class="score-cell">2-5</td><td class="venue-cell">マツダ</td><td class="pitcher-note">森下暢仁</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/15</td><td>木</td><td><span class="away-badge">A</span></td><td>広島</td><td class="result-win">○</td><td class="score-cell">5-4</td><td class="venue-cell">マツダ</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">九里亜蓮</td><td class="pitcher-note">石山</td></tr>
+                <tr><td>5/16</td><td>金</td><td><span class="home-badge">H</span></td><td>DeNA</td><td class="result-loss">●</td><td class="score-cell">3-5</td><td class="venue-cell">神宮</td><td class="pitcher-note">東克樹</td><td class="pitcher-note">吉村</td><td class="pitcher-note">森原</td></tr>
+                <tr><td>5/17</td><td>土</td><td><span class="home-badge">H</span></td><td>DeNA</td><td class="result-loss">●</td><td class="score-cell">2-4</td><td class="venue-cell">神宮</td><td class="pitcher-note">バウアー</td><td class="pitcher-note">原樹理</td><td class="pitcher-note">森原</td></tr>
+                <tr class="today-row"><td>5/18</td><td>日</td><td><span class="home-badge">H</span></td><td>DeNA</td><td class="result-future">本日 14:00〜</td><td class="score-cell">—</td><td class="venue-cell">神宮</td><td class="pitcher-note">小川泰弘</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/20</td><td>火</td><td><span class="away-badge">A</span></td><td>中日</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">バンテリン</td><td class="pitcher-note">高橋奎二</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/21</td><td>水</td><td><span class="away-badge">A</span></td><td>中日</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">バンテリン</td><td class="pitcher-note">吉村</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/22</td><td>木</td><td><span class="away-badge">A</span></td><td>中日</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">バンテリン</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/23</td><td>金</td><td><span class="home-badge">H</span></td><td>読売</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">神宮</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/24</td><td>土</td><td><span class="home-badge">H</span></td><td>読売</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">神宮</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/25</td><td>日</td><td><span class="home-badge">H</span></td><td>読売</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">神宮</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/27</td><td>火</td><td><span class="away-badge">A</span></td><td>阪神</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">甲子園</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/28</td><td>水</td><td><span class="away-badge">A</span></td><td>阪神</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">甲子園</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/29</td><td>木</td><td><span class="away-badge">A</span></td><td>阪神</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">甲子園</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/30</td><td>金</td><td><span class="home-badge">H</span></td><td>広島</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">神宮</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+                <tr><td>5/31</td><td>土</td><td><span class="home-badge">H</span></td><td>広島</td><td class="result-future">予定</td><td class="score-cell">—</td><td class="venue-cell">神宮</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td><td class="pitcher-note">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 6月以降（予定のみ） -->
+        <div class="schedule-month" data-month-section="june" style="display:none;">
+          <div class="month-header" style="background:var(--text-muted);">
+            6月（予定）
+            <span class="month-record" style="background:rgba(255,255,255,0.2);">日程調整中</span>
+          </div>
+          <div style="background:#fff;border-radius:0 0 var(--radius) var(--radius);padding:32px;text-align:center;color:var(--text-muted);box-shadow:var(--shadow);">
+            <p style="font-size:16px;margin-bottom:8px;">6月の詳細日程は順次更新予定です。</p>
+            <p style="font-size:13px;">交流戦（6月上旬〜中旬）を含む予定。</p>
+          </div>
+        </div>
+
+        <div class="schedule-month" data-month-section="july" style="display:none;">
+          <div class="month-header" style="background:var(--text-muted);">
+            7月（予定）
+            <span class="month-record" style="background:rgba(255,255,255,0.2);">日程調整中</span>
+          </div>
+          <div style="background:#fff;border-radius:0 0 var(--radius) var(--radius);padding:32px;text-align:center;color:var(--text-muted);box-shadow:var(--shadow);">
+            <p style="font-size:16px;margin-bottom:8px;">7月の詳細日程は順次更新予定です。</p>
+          </div>
+        </div>
+
+        <div class="schedule-month" data-month-section="aug" style="display:none;">
+          <div class="month-header" style="background:var(--text-muted);">
+            8月（予定）
+            <span class="month-record" style="background:rgba(255,255,255,0.2);">日程調整中</span>
+          </div>
+          <div style="background:#fff;border-radius:0 0 var(--radius) var(--radius);padding:32px;text-align:center;color:var(--text-muted);box-shadow:var(--shadow);">
+            <p style="font-size:16px;margin-bottom:8px;">8月の詳細日程は順次更新予定です。</p>
+          </div>
+        </div>
+
+        <div class="schedule-month" data-month-section="sep" style="display:none;">
+          <div class="month-header" style="background:var(--text-muted);">
+            9月〜（予定）
+            <span class="month-record" style="background:rgba(255,255,255,0.2);">日程調整中</span>
+          </div>
+          <div style="background:#fff;border-radius:0 0 var(--radius) var(--radius);padding:32px;text-align:center;color:var(--text-muted);box-shadow:var(--shadow);">
+            <p style="font-size:16px;margin-bottom:8px;">9月以降（ポストシーズン含む）の日程は順次更新予定です。</p>
+            <p style="font-size:13px;">レギュラーシーズン終了予定：10月初旬</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-logo"><span class="logo-swallow">🐦</span><span>東京ヤクルトスワローズ ファンサイト</span></div>
+      <p class="footer-note">このサイトはファンが作成した非公式サイトです。球団公式情報は<a href="https://www.yakult-swallows.co.jp/" target="_blank" rel="noopener">公式サイト</a>をご確認ください。</p>
+      <p class="footer-copy">&copy; 2025 Swallows Fan Site. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    const monthTabBtns = document.querySelectorAll('.month-tab-btn');
+    monthTabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        monthTabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const month = btn.dataset.month;
+        document.querySelectorAll('.schedule-month').forEach(sec => {
+          sec.style.display = sec.dataset.monthSection === month ? 'block' : 'none';
+        });
+      });
+    });
+  </script>
+</body>
+</html>

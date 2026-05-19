@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NewsNow Japan — 主要メディアの最新ニュース</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ヘッダー -->
+  <header class="site-header">
+    <div class="header-top">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-mark">N</div>
+          <div class="logo-text">
+            <span class="logo-title">NewsNow Japan</span>
+            <span class="logo-sub">主要メディアのニュースをまとめて</span>
+          </div>
+        </div>
+        <div class="header-center">
+          <div class="search-wrap">
+            <svg class="search-icon" viewBox="0 0 20 20" fill="none"><circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" stroke-width="1.8"/><path d="M13 13l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <input type="search" id="searchInput" placeholder="キーワードで検索..." class="search-input" autocomplete="off">
+          </div>
+        </div>
+        <div class="header-right">
+          <span id="currentDateTime" class="datetime"></span>
+          <button class="refresh-btn" id="refreshBtn" title="ニュースを更新">
+            <svg id="refreshIcon" viewBox="0 0 20 20" fill="none" width="14" height="14"><path d="M16 10a6 6 0 1 1-1.76-4.24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M14 5.5l.5 2.5-2.5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            更新
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- カテゴリナビ -->
+    <nav class="cat-nav">
+      <div class="header-inner">
+        <ul class="cat-list" id="catList">
+          <li><button class="cat-btn active" data-cat="all">すべて</button></li>
+          <li><button class="cat-btn" data-cat="politics">🏛 政治</button></li>
+          <li><button class="cat-btn" data-cat="economy">📈 経済</button></li>
+          <li><button class="cat-btn" data-cat="society">👥 社会</button></li>
+          <li><button class="cat-btn" data-cat="international">🌍 国際</button></li>
+          <li><button class="cat-btn" data-cat="sports">⚽ スポーツ</button></li>
+          <li><button class="cat-btn" data-cat="science">🔬 科学・テクノロジー</button></li>
+          <li><button class="cat-btn" data-cat="entertainment">🎬 エンタメ</button></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- ソースバー -->
+    <div class="source-bar">
+      <div class="header-inner">
+        <span class="source-label">情報源：</span>
+        <div class="source-chips" id="sourceChips">
+          <button class="src-chip active" data-src="all">すべて</button>
+          <button class="src-chip" data-src="nhk">NHK</button>
+          <button class="src-chip" data-src="bbc">BBC</button>
+          <button class="src-chip" data-src="asahi">朝日新聞</button>
+          <button class="src-chip" data-src="sankei">産経新聞</button>
+          <button class="src-chip" data-src="tbs">TBS</button>
+        </div>
+        <span class="last-updated" id="lastUpdated"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 速報バー -->
+  <div class="breaking-bar" id="breakingBar" style="display:none">
+    <span class="breaking-label">速報</span>
+    <div class="breaking-ticker" id="breakingTicker"></div>
+  </div>
+
+  <main>
+    <div class="layout">
+
+      <!-- メインフィード -->
+      <div class="main-feed">
+
+        <!-- ローディング -->
+        <div id="loadingState" class="loading-state">
+          <div class="spinner"></div>
+          <p>各メディアからニュースを取得中…</p>
+        </div>
+
+        <!-- エラー -->
+        <div id="errorState" class="error-state" style="display:none">
+          <div class="error-icon">⚠️</div>
+          <p>ニュースの取得に失敗しました</p>
+          <button class="retry-btn" onclick="fetchAllFeeds()">再試行する</button>
+        </div>
+
+        <!-- フィードエリア -->
+        <div id="feedArea" style="display:none">
+          <!-- 特集記事 -->
+          <div id="featuredWrap" class="featured-wrap"></div>
+          <!-- 記事グリッド -->
+          <div id="newsGrid" class="news-grid"></div>
+          <!-- もっと見る -->
+          <div id="loadMoreWrap" class="load-more-wrap" style="display:none">
+            <button id="loadMoreBtn" class="load-more-btn">さらに表示する</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- サイドバー -->
+      <aside class="sidebar">
+
+        <!-- 注目ニュース -->
+        <div class="side-card">
+          <h3 class="side-title">📌 注目ニュース</h3>
+          <ul id="trendingList" class="trending-list">
+            <li class="skel-item"></li>
+            <li class="skel-item"></li>
+            <li class="skel-item"></li>
+            <li class="skel-item"></li>
+            <li class="skel-item"></li>
+          </ul>
+        </div>
+
+        <!-- ニュースソース一覧 -->
+        <div class="side-card">
+          <h3 class="side-title">🔗 メディア一覧</h3>
+          <ul class="media-list">
+            <li><a href="https://www3.nhk.or.jp/news/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-nhk">NHK</span>
+              <span class="media-name">NHK Web</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://www.bbc.com/japanese" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-bbc">BBC</span>
+              <span class="media-name">BBC Japan</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://www.asahi.com/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-asahi">朝日</span>
+              <span class="media-name">朝日新聞</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://www.sankei.com/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-sankei">産経</span>
+              <span class="media-name">産経新聞</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://www.nikkei.com/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-nikkei">日経</span>
+              <span class="media-name">日本経済新聞</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://mainichi.jp/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-mainichi">毎日</span>
+              <span class="media-name">毎日新聞</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://www.yomiuri.co.jp/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-yomiuri">読売</span>
+              <span class="media-name">読売新聞</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://news.tbs.co.jp/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-tbs">TBS</span>
+              <span class="media-name">TBSニュース</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://www.bbc.com/news" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-bbc">BBC</span>
+              <span class="media-name">BBC News (英語)</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://abcnews.go.com/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-abc">ABC</span>
+              <span class="media-name">ABC News</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://apnews.com/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-ap">AP</span>
+              <span class="media-name">AP News</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+            <li><a href="https://jp.reuters.com/" target="_blank" rel="noopener" class="media-link">
+              <span class="media-logo ml-reuters">R</span>
+              <span class="media-name">Reuters Japan</span>
+              <span class="media-arrow">›</span>
+            </a></li>
+          </ul>
+        </div>
+
+        <!-- カテゴリ別 -->
+        <div class="side-card">
+          <h3 class="side-title">📂 カテゴリ</h3>
+          <ul class="cat-side-list">
+            <li><a href="#" class="cat-side-btn" data-cat="politics">🏛 政治</a></li>
+            <li><a href="#" class="cat-side-btn" data-cat="economy">📈 経済</a></li>
+            <li><a href="#" class="cat-side-btn" data-cat="society">👥 社会</a></li>
+            <li><a href="#" class="cat-side-btn" data-cat="international">🌍 国際</a></li>
+            <li><a href="#" class="cat-side-btn" data-cat="sports">⚽ スポーツ</a></li>
+            <li><a href="#" class="cat-side-btn" data-cat="science">🔬 科学・テクノロジー</a></li>
+            <li><a href="#" class="cat-side-btn" data-cat="entertainment">🎬 エンタメ</a></li>
+          </ul>
+        </div>
+
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-note">
+        このサイトは各報道機関のRSSフィードを集約して表示しています。各記事の著作権は各メディアに帰属します。<br>
+        情報の正確性については各メディアの原文をご確認ください。
+      </p>
+      <div class="footer-links">
+        <a href="https://www3.nhk.or.jp/news/" target="_blank" rel="noopener">NHK</a>
+        <a href="https://www.bbc.com/japanese" target="_blank" rel="noopener">BBC</a>
+        <a href="https://www.asahi.com/" target="_blank" rel="noopener">朝日新聞</a>
+        <a href="https://www.nikkei.com/" target="_blank" rel="noopener">日経</a>
+        <a href="https://mainichi.jp/" target="_blank" rel="noopener">毎日新聞</a>
+        <a href="https://abcnews.go.com/" target="_blank" rel="noopener">ABC News</a>
+        <a href="https://apnews.com/" target="_blank" rel="noopener">AP News</a>
+      </div>
+      <p class="footer-copy">&copy; 2026 NewsNow Japan</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,409 +1,175 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>東京ヤクルトスワローズ ファンサイト</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-</head>
-<body>
+YS
+応燕スタンド
+トップ
+順位
+データ
+個人成績
+選手・スタッフ
+歴史・記録
+掲示板
+// 応燕スタンド — OFFICIAL FAN SITE
+東
+京
+ヤ
+ク
+ル
+ト
+ス
+ワ
+ロ
+ー
+ズ
+TOKYO YAKULT SWALLOWS
+ちなヤク専用。スワローズの全てがここにある。
 
-  <!-- ニューステッカー -->
-  <div class="ticker-bar">
-    <span class="ticker-label">NEWS</span>
-    <div class="ticker-track">
-      <span>【5/18】○ヤクルト 5-3 広島　村上2ランで逆転勝利</span>
-      <span>【5/17】●ヤクルト 2-4 広島　高橋奎二5回3失点</span>
-      <span>【5/16】○ヤクルト 7-1 巨人　小川7回1失点の好投</span>
-      <span>【5/15】○ヤクルト 4-2 巨人　石山が9セーブ目</span>
-      <span>【お知らせ】5/24（土）神宮球場 ファンフェスタ開催決定！</span>
-    </div>
-  </div>
+26
+WIN
+17
+LOSE
+.604
+勝率
+1位
+順位
++9
+貯金
+// NPB公式 2026.05.20現在  |  visitors
 
-  <!-- ヘッダー -->
-  <header class="site-header">
-    <div class="header-top">
-      <div class="header-inner">
-        <a href="index.html" class="logo">
-          <div class="logo-emblem">S</div>
-          <div class="logo-text">
-            <span class="logo-en">TOKYO YAKULT SWALLOWS</span>
-            <span class="logo-ja">東京ヤクルトスワローズ</span>
-          </div>
-        </a>
-        <div class="header-right">
-          <a href="pages/season2026.html" class="header-cta">チケット情報</a>
-          <button class="nav-toggle" id="navToggle">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
-      </div>
-    </div>
-    <nav class="global-nav">
-      <div class="header-inner">
-        <ul>
-          <li><a href="index.html" class="active">TOP</a></li>
-          <li><a href="pages/season2026.html">2026シーズン</a></li>
-          <li><a href="pages/players.html">選手・スタッフ</a></li>
-          <li><a href="pages/history.html">歴代成績</a></li>
-          <li><a href="pages/records.html">記録・データ</a></li>
-          <li><a href="#">スケジュール</a></li>
-          <li><a href="#">球場案内</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-
-    <!-- メインビジュアル -->
-    <section class="mv">
-      <div class="mv-slide active">
-        <div class="mv-bg mv-bg1"></div>
-        <div class="mv-content">
-          <div class="mv-inner">
-            <p class="mv-eyebrow">2026 CENTRAL LEAGUE</p>
-            <h1 class="mv-title">東京ヤクルト<br>スワローズ</h1>
-            <p class="mv-copy">神宮の空に、傘を広げろ。</p>
-            <div class="mv-actions">
-              <a href="pages/season2026.html" class="mv-btn mv-btn-primary">2026成績を見る</a>
-              <a href="pages/history.html" class="mv-btn mv-btn-ghost">歴代の軌跡</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="mv-indicators">
-        <button class="mv-dot active"></button>
-        <button class="mv-dot"></button>
-        <button class="mv-dot"></button>
-      </div>
-    </section>
-
-    <!-- 最新情報 + 順位 -->
-    <section class="top-info">
-      <div class="container">
-        <div class="top-info-grid">
-
-          <!-- 最新情報 -->
-          <div class="news-block">
-            <div class="block-header">
-              <h2 class="block-title">最新情報</h2>
-              <a href="#" class="block-more">すべて見る →</a>
-            </div>
-            <ul class="news-list">
-              <li class="news-item news-result win">
-                <span class="news-date">5.18</span>
-                <span class="news-tag tag-win">勝利</span>
-                <span class="news-text">村上2ランで逆転！ヤクルト5-3広島</span>
-              </li>
-              <li class="news-item">
-                <span class="news-date">5.17</span>
-                <span class="news-tag tag-info">お知らせ</span>
-                <span class="news-text">5/24（土）ファンフェスタ開催のご案内</span>
-              </li>
-              <li class="news-item news-result lose">
-                <span class="news-date">5.17</span>
-                <span class="news-tag tag-lose">敗戦</span>
-                <span class="news-text">ヤクルト2-4広島　高橋奎二登板</span>
-              </li>
-              <li class="news-item">
-                <span class="news-date">5.16</span>
-                <span class="news-tag tag-win">勝利</span>
-                <span class="news-text">小川7回1失点！ヤクルト7-1巨人</span>
-              </li>
-              <li class="news-item">
-                <span class="news-date">5.15</span>
-                <span class="news-tag tag-info">お知らせ</span>
-                <span class="news-text">村上宗隆 通算200本塁打まであと10本</span>
-              </li>
-              <li class="news-item">
-                <span class="news-date">5.14</span>
-                <span class="news-tag tag-win">勝利</span>
-                <span class="news-text">石山9セーブ！ヤクルト4-2巨人</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- 順位表 -->
-          <div class="standings-block">
-            <div class="block-header">
-              <h2 class="block-title">セ・リーグ順位表</h2>
-              <span class="block-more">5月18日現在</span>
-            </div>
-            <table class="standings-mini">
-              <thead>
-                <tr><th>順</th><th>球団</th><th>勝</th><th>負</th><th>率</th><th>差</th></tr>
-              </thead>
-              <tbody>
-                <tr><td class="s-rank r1">1</td><td class="s-team">阪神</td><td>23</td><td>15</td><td>.605</td><td>-</td></tr>
-                <tr><td class="s-rank r2">2</td><td class="s-team">読売</td><td>22</td><td>16</td><td>.579</td><td>1.5</td></tr>
-                <tr><td class="s-rank r3">3</td><td class="s-team">広島</td><td>20</td><td>18</td><td>.526</td><td>3.5</td></tr>
-                <tr><td class="s-rank">4</td><td class="s-team">DeNA</td><td>19</td><td>19</td><td>.500</td><td>5.0</td></tr>
-                <tr class="s-swallows"><td class="s-rank">5</td><td class="s-team">🐦ヤクルト</td><td>17</td><td>22</td><td>.436</td><td>7.0</td></tr>
-                <tr><td class="s-rank">6</td><td class="s-team">中日</td><td>14</td><td>24</td><td>.368</td><td>10.0</td></tr>
-              </tbody>
-            </table>
-
-            <!-- 次の試合 -->
-            <div class="next-game">
-              <div class="ng-label">NEXT GAME</div>
-              <div class="ng-info">
-                <span class="ng-date">5月20日（火）18:00</span>
-                <div class="ng-teams">
-                  <span class="ng-home">ヤクルト</span>
-                  <span class="ng-vs">VS</span>
-                  <span class="ng-away">阪神</span>
-                </div>
-                <span class="ng-venue">📍 明治神宮野球場</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 注目選手 -->
-    <section class="players-section">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">PLAYERS<span>注目選手</span></h2>
-          <a href="pages/players.html" class="section-more">選手名鑑へ →</a>
-        </div>
-        <div class="player-cards">
-          <a href="pages/players.html" class="pcard">
-            <div class="pcard-num">5</div>
-            <div class="pcard-body">
-              <div class="pcard-name">村上 宗隆</div>
-              <div class="pcard-pos">三塁手</div>
-              <div class="pcard-stats">
-                <div><span>打率</span><strong>.301</strong></div>
-                <div><span>HR</span><strong>11</strong></div>
-                <div><span>打点</span><strong>34</strong></div>
-              </div>
-            </div>
-            <div class="pcard-accent"></div>
-          </a>
-          <a href="pages/players.html" class="pcard">
-            <div class="pcard-num">3</div>
-            <div class="pcard-body">
-              <div class="pcard-name">山田 哲人</div>
-              <div class="pcard-pos">二塁手</div>
-              <div class="pcard-stats">
-                <div><span>打率</span><strong>.266</strong></div>
-                <div><span>HR</span><strong>7</strong></div>
-                <div><span>SB</span><strong>5</strong></div>
-              </div>
-            </div>
-            <div class="pcard-accent"></div>
-          </a>
-          <a href="pages/players.html" class="pcard">
-            <div class="pcard-num">19</div>
-            <div class="pcard-body">
-              <div class="pcard-name">小川 泰弘</div>
-              <div class="pcard-pos">先発投手</div>
-              <div class="pcard-stats">
-                <div><span>防御率</span><strong>2.85</strong></div>
-                <div><span>勝利</span><strong>4</strong></div>
-                <div><span>K</span><strong>42</strong></div>
-              </div>
-            </div>
-            <div class="pcard-accent"></div>
-          </a>
-          <a href="pages/players.html" class="pcard">
-            <div class="pcard-num">14</div>
-            <div class="pcard-body">
-              <div class="pcard-name">石山 泰稚</div>
-              <div class="pcard-pos">抑え投手</div>
-              <div class="pcard-stats">
-                <div><span>防御率</span><strong>1.50</strong></div>
-                <div><span>SV</span><strong>9</strong></div>
-                <div><span>HP</span><strong>2</strong></div>
-              </div>
-            </div>
-            <div class="pcard-accent"></div>
-          </a>
-          <a href="pages/players.html" class="pcard">
-            <div class="pcard-num">7</div>
-            <div class="pcard-body">
-              <div class="pcard-name">塩見 泰隆</div>
-              <div class="pcard-pos">中堅手</div>
-              <div class="pcard-stats">
-                <div><span>打率</span><strong>.285</strong></div>
-                <div><span>SB</span><strong>8</strong></div>
-                <div><span>打点</span><strong>18</strong></div>
-              </div>
-            </div>
-            <div class="pcard-accent"></div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 今月のスケジュール -->
-    <section class="schedule-section">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">SCHEDULE<span>5月のスケジュール</span></h2>
-          <a href="#" class="section-more">全日程へ →</a>
-        </div>
-        <div class="schedule-list">
-          <div class="schedule-item done win">
-            <div class="sch-date"><span class="sch-day">15</span><span class="sch-dow">木</span></div>
-            <div class="sch-result win-badge">○</div>
-            <div class="sch-match">
-              <span class="sch-home">ヤクルト</span>
-              <span class="sch-score">4 - 2</span>
-              <span class="sch-away">巨人</span>
-            </div>
-            <div class="sch-venue">神宮</div>
-          </div>
-          <div class="schedule-item done lose">
-            <div class="sch-date"><span class="sch-day">17</span><span class="sch-dow">土</span></div>
-            <div class="sch-result lose-badge">●</div>
-            <div class="sch-match">
-              <span class="sch-home">ヤクルト</span>
-              <span class="sch-score">2 - 4</span>
-              <span class="sch-away">広島</span>
-            </div>
-            <div class="sch-venue">神宮</div>
-          </div>
-          <div class="schedule-item done win">
-            <div class="sch-date"><span class="sch-day">18</span><span class="sch-dow">日</span></div>
-            <div class="sch-result win-badge">○</div>
-            <div class="sch-match">
-              <span class="sch-home">ヤクルト</span>
-              <span class="sch-score">5 - 3</span>
-              <span class="sch-away">広島</span>
-            </div>
-            <div class="sch-venue">神宮</div>
-          </div>
-          <div class="schedule-item upcoming">
-            <div class="sch-date"><span class="sch-day">20</span><span class="sch-dow">火</span></div>
-            <div class="sch-result upcoming-badge">予</div>
-            <div class="sch-match">
-              <span class="sch-home">ヤクルト</span>
-              <span class="sch-score">18:00〜</span>
-              <span class="sch-away">阪神</span>
-            </div>
-            <div class="sch-venue">神宮</div>
-          </div>
-          <div class="schedule-item upcoming">
-            <div class="sch-date"><span class="sch-day">21</span><span class="sch-dow">水</span></div>
-            <div class="sch-result upcoming-badge">予</div>
-            <div class="sch-match">
-              <span class="sch-home">ヤクルト</span>
-              <span class="sch-score">18:00〜</span>
-              <span class="sch-away">阪神</span>
-            </div>
-            <div class="sch-venue">神宮</div>
-          </div>
-          <div class="schedule-item upcoming">
-            <div class="sch-date"><span class="sch-day">23</span><span class="sch-dow">金</span></div>
-            <div class="sch-result upcoming-badge">予</div>
-            <div class="sch-match">
-              <span class="sch-home">DeNA</span>
-              <span class="sch-score">18:00〜</span>
-              <span class="sch-away">ヤクルト</span>
-            </div>
-            <div class="sch-venue">横浜</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 歴史バナー -->
-    <section class="history-banner">
-      <div class="container">
-        <div class="hb-inner">
-          <div class="hb-text">
-            <p class="hb-sub">HISTORY &amp; RECORDS</p>
-            <h2 class="hb-title">輝かしき<br>球団の歴史</h2>
-            <p class="hb-desc">1969年創設。日本一5回、リーグ優勝6回。<br>野村克也、古田敦也、山田哲人、村上宗隆——<br>レジェンドたちが紡いだ栄光の記録。</p>
-            <div class="hb-actions">
-              <a href="pages/history.html" class="mv-btn mv-btn-primary">歴代成績を見る</a>
-              <a href="pages/records.html" class="mv-btn mv-btn-ghost">球団記録</a>
-            </div>
-          </div>
-          <div class="hb-stats">
-            <div class="hb-stat"><span class="hb-num">5</span><span class="hb-label">日本一</span></div>
-            <div class="hb-stat"><span class="hb-num">6</span><span class="hb-label">リーグ優勝</span></div>
-            <div class="hb-stat"><span class="hb-num">56</span><span class="hb-label">村上 2022本塁打</span></div>
-            <div class="hb-stat"><span class="hb-num">3×</span><span class="hb-label">山田 トリプルスリー</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- コンテンツナビ -->
-    <section class="content-nav">
-      <div class="container">
-        <div class="cn-grid">
-          <a href="pages/season2026.html" class="cn-item">
-            <div class="cn-icon">📊</div>
-            <div class="cn-texts">
-              <span class="cn-title">2026シーズン成績</span>
-              <span class="cn-desc">打撃・投手・チーム成績</span>
-            </div>
-            <span class="cn-arrow">›</span>
-          </a>
-          <a href="pages/players.html" class="cn-item">
-            <div class="cn-icon">👤</div>
-            <div class="cn-texts">
-              <span class="cn-title">選手名鑑</span>
-              <span class="cn-desc">2026年度登録選手一覧</span>
-            </div>
-            <span class="cn-arrow">›</span>
-          </a>
-          <a href="pages/history.html" class="cn-item">
-            <div class="cn-icon">🏆</div>
-            <div class="cn-texts">
-              <span class="cn-title">歴代成績</span>
-              <span class="cn-desc">創設〜2024年の全記録</span>
-            </div>
-            <span class="cn-arrow">›</span>
-          </a>
-          <a href="pages/records.html" class="cn-item">
-            <div class="cn-icon">📈</div>
-            <div class="cn-texts">
-              <span class="cn-title">記録・データ</span>
-              <span class="cn-desc">球団・個人記録集</span>
-            </div>
-            <span class="cn-arrow">›</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <div class="footer-top">
-        <div class="footer-brand">
-          <div class="footer-logo-mark">S</div>
-          <div>
-            <div class="footer-name-en">TOKYO YAKULT SWALLOWS</div>
-            <div class="footer-name-ja">東京ヤクルトスワローズ ファンサイト</div>
-          </div>
-        </div>
-        <nav class="footer-nav">
-          <a href="pages/season2026.html">2026シーズン</a>
-          <a href="pages/players.html">選手名鑑</a>
-          <a href="pages/history.html">歴代成績</a>
-          <a href="pages/records.html">記録・データ</a>
-        </nav>
-      </div>
-      <div class="footer-bottom">
-        <p>このサイトはファンが作成した非公式サイトです。球団公式情報は<a href="https://www.yakult-swallows.co.jp/" target="_blank" rel="noopener">公式サイト</a>をご確認ください。</p>
-        <p class="footer-copy">&copy; 2026 Swallows Fan Site. All Rights Reserved.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
-</html>
+LIVE — 今日の試合情報
+NPBスコア随時更新
+// 一軍
+ヤクルト vs 巨人
+📍 いわきグリーンフィールド — 2026.05.19 18:00
+スコア確認 →
+// 二軍（イースタン）
+ファーム試合結果 →
+🗳️ 今日の推し選手投票 (5/20)
+今日活躍すると思う選手は？
+投手
+捕手
+内野手
+外野手
+J.キハダ
+石山 泰稚
+中村 優斗
+清水 昇
+奥川 恭伸
+石川 雅規
+木澤 尚文
+吉村 貢司郎
+星 知弥
+山野 太一
+松本 健吾
+小川 泰弘
+荘司 宏太
+山崎 太陽
+田口 麗斗
+石原 勇輝
+高梨 裕稔
+拓也
+増居 翔太
+大西 広樹
+小澤 怜史
+大道 温貴
+高橋 奎二
+鈴木 蓮吾
+長谷川 宙輝
+坂本 拓己
+N.ウォルターズ
+飯田 琉斗
+J.リランソ
+阪口 皓亮
+丸山 翔大
+下川 隼佑
+廣澤 優
+沼田 翔平
+青柳 晃洋
+STANDINGS
+📊
+セ・リーグ順位表
+2026.05.18
+チーム	試合	勝	負	勝率	差
+1	ヤクルト	43	26	17	.604	—
+2	阪神	42	24	17	.585	1.0
+3	巨人	42	24	18	.571	1.5
+4	DeNA	42	19	21	.475	5.0
+5	広島	39	15	22	.405	7.5
+6	中日	42	14	27	.341	10.5
+NEWS
+📰
+ニュースリンク
+🦅
+公式サイト
+東京ヤクルトスワローズ オフィシャル
+↗
+📰
+日刊スポーツ
+スワローズ最新ニュース
+↗
+📰
+スポーツニッポン
+ヤクルト最新情報
+↗
+📰
+スポーツ報知
+スワローズ関連記事
+↗
+⚾
+Full-Count
+野球専門メディア
+↗
+2026 SEASON
+🏆
+シーズン成績
+26
+勝利
+17
+敗戦
+0
+引分
+.604
+勝率
+1位
+順位
++9
+貯金
+📅
+次の試合
+2026.05.19 TUE 18:00
+ヤクルト
+vs
+巨人
+📍 いわきグリーンフィールド
+今季対巨人：6勝3敗
+⚔️
+チーム対戦成績
+相手	勝	負	勝率
+阪神	3	5	.375
+巨人	6	3	.667
+DeNA	7	1	.875
+広島	6	2	.750
+中日	4	5	.444
+🌱
+二軍（ファーム）
+⚾
+イースタン試合結果
+ファーム公式戦スコア
+↗
+📊
+イースタン順位表
+ファームリーグ最新順位
+↗
+🦅
+ファーム情報（公式）
+戸田球場 試合日程・結果
+↗
+COLUMN
+✍️
+観戦コラム
+📝
+コラム準備中
+試合の観戦記・分析・独自コラムを
+ここに掲載予定です。
+燕の巣
+東京ヤクルトスワローズ 非公式ファンサイト
+成績データ出典：NPB公式サイト（2026年5月18日現在）
+本サイトはファンによる非公式サイトです。球団・NPBとは一切関係ありません。

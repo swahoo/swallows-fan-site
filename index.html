@@ -93,47 +93,51 @@ nav{display:flex;align-items:stretch;}
 }
 .hero-inner{max-width:1100px;margin:0 auto;position:relative;}
 .hero-eyebrow{
-  font-family:'DM Mono',monospace;font-size:0.7rem;
-  color:rgba(0,200,80,0.8);letter-spacing:4px;
-  margin-bottom:20px;display:block;
+  font-family:'DM Mono',monospace;font-size:0.68rem;
+  color:rgba(0,230,100,0.85);letter-spacing:5px;
+  margin-bottom:18px;display:block;
 }
 .hero h1{
-  font-family:'Yuji Syuku',serif;
-  line-height:1;letter-spacing:0;margin-bottom:8px;
-  display:flex;align-items:flex-end;gap:0;
-  filter:url(#ink);
+  margin-bottom:6px;line-height:1;
 }
-.hero h1 .c{
-  display:inline-block;
-  color:#fff;
-  text-shadow: 3px 5px 8px rgba(0,0,0,0.7);
-  transform-origin:bottom center;
-}
-.hero h1 .c:nth-child(1){font-size:clamp(2.4rem,6.5vw,5.6rem);transform:rotate(-4deg) translateY(4px);color:#e8ffe8;}
-.hero h1 .c:nth-child(2){font-size:clamp(2rem,5.5vw,4.8rem);transform:rotate(2deg) translateY(2px);color:#fff;}
-.hero h1 .c:nth-child(3){font-size:clamp(1.8rem,5vw,4.2rem);transform:rotate(-2deg) translateY(6px);color:#f0fff4;}
-.hero h1 .c:nth-child(4){font-size:clamp(2.2rem,6vw,5.2rem);transform:rotate(4deg) translateY(-2px);color:#fff;}
-.hero h1 .c:nth-child(5){font-size:clamp(1.6rem,4.5vw,4rem);transform:rotate(-3deg) translateY(5px);color:#e0ffe8;}
-.hero h1 .c:nth-child(6){font-size:clamp(2rem,5.5vw,4.8rem);transform:rotate(1deg) translateY(0px);color:#fff;}
-.hero h1 .c:nth-child(7){font-size:clamp(1.8rem,4.8vw,4.2rem);transform:rotate(-5deg) translateY(7px);color:#f0fff4;}
-.hero h1 .c:nth-child(8){font-size:clamp(2.2rem,6vw,5.2rem);transform:rotate(3deg) translateY(1px);color:#e8ffe8;}
-.hero h1 .c:nth-child(9){font-size:clamp(1.6rem,4.5vw,3.8rem);transform:rotate(-2deg) translateY(4px);color:#fff;}
-.hero h1 .c:nth-child(10){font-size:clamp(2rem,5.5vw,4.6rem);transform:rotate(2deg) translateY(2px);color:#f0fff4;}
-.hero h1 .c:nth-child(11){font-size:clamp(1.8rem,5vw,4.2rem);transform:rotate(-4deg) translateY(6px);color:#e8ffe8;}
-.hero h1 .c-sep{width:0.08em;display:inline-block;}
-.hero h1 .kanji-sub{
+.hero h1 .line1{
   display:block;
-  font-size:0.65rem;
-  letter-spacing:6px;
-  font-family:'Barlow Condensed',sans-serif;
-  font-style:italic;
+  font-family:'Noto Sans JP',sans-serif;
   font-weight:900;
-  text-transform:uppercase;
-  color:rgba(255,255,255,0.2);
-  margin-top:16px;
-  filter:none;
+  font-size:clamp(0.85rem,2.2vw,1.4rem);
+  letter-spacing:0.5em;
+  color:rgba(255,255,255,0.5);
+  margin-bottom:6px;
 }
-.hero-sub{color:rgba(255,255,255,0.4);font-size:0.75rem;margin-bottom:36px;letter-spacing:3px;font-family:'DM Mono',monospace;}
+.hero h1 .line2{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-style:italic;
+  font-size:clamp(3.2rem,9vw,7.5rem);
+  letter-spacing:-2px;
+  line-height:0.9;
+  background:linear-gradient(160deg, #ffffff 0%, #a0ffcc 60%, #00e87a 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-transform:uppercase;
+}
+.hero h1 .line3{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-style:italic;
+  font-size:clamp(1.8rem,5vw,4rem);
+  letter-spacing:6px;
+  line-height:1.1;
+  -webkit-text-stroke:1.5px rgba(255,255,255,0.35);
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+.hero-sub{color:rgba(255,255,255,0.4);font-size:0.75rem;margin-bottom:32px;letter-spacing:3px;font-family:'DM Mono',monospace;}
 .hero-kpi{
   display:flex;gap:1px;flex-wrap:wrap;
   border:1px solid rgba(255,255,255,0.1);
@@ -423,18 +427,11 @@ footer a:hover{color:var(--green);}
 <div id="tab-top" class="tab-panel on">
   <div class="hero">
     <div class="hero-inner">
-      <span class="hero-eyebrow">// 応燕スタンド — OFFICIAL FAN SITE</span>
-      <svg width="0" height="0" style="position:absolute;">
-        <defs>
-          <filter id="ink">
-            <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" xChannelSelector="R" yChannelSelector="G"/>
-          </filter>
-        </defs>
-      </svg>
+      <span class="hero-eyebrow">// 応燕スタンド — ちなヤクによる、ちなヤクのためのサイト</span>
       <h1>
-        <span class="c">東</span><span class="c">京</span><span class="c">ヤ</span><span class="c">ク</span><span class="c">ル</span><span class="c">ト</span><span class="c">ス</span><span class="c">ワ</span><span class="c">ロ</span><span class="c">ー</span><span class="c">ズ</span>
-        <span class="kanji-sub">TOKYO YAKULT SWALLOWS</span>
+        <span class="line1">東京ヤクルトスワローズ</span>
+        <span class="line2">SWALLOWS</span>
+        
       </h1>
       <p class="hero-sub">ちなヤク専用。スワローズの全てがここにある。</p>
       <div class="hero-kpi">
@@ -444,9 +441,9 @@ footer a:hover{color:var(--green);}
         <div class="kpi-card"><span class="kpi-num">1位</span><div class="kpi-label">順位</div></div>
         <div class="kpi-card"><span class="kpi-num">+9</span><div class="kpi-label">貯金</div></div>
       </div>
-      <p class="hero-note">// NPB公式 2026.05.21現在 &nbsp;|&nbsp;
+      <p class="hero-note">
         <a href="https://hits.seeyoufarm.com" target="_blank" style="text-decoration:none;vertical-align:middle;">
-          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fumihiko528-collab.github.io%2Fswallows-fan-site%2F&count_bg=%23007A35&title_bg=%23002060&icon=&icon_color=%23FFFFFF&title=VISITORS&edge_flat=true" alt="visitors" style="vertical-align:middle;"/>
+          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fswahoo.github.io%2Fswallows-fan-site%2F&count_bg=%23007A35&title_bg=%23002060&icon=&icon_color=%23FFFFFF&title=VISITORS&edge_flat=true" alt="visitors" style="vertical-align:middle;"/>
         </a>
       </p>
     </div>
@@ -992,9 +989,9 @@ footer a:hover{color:var(--green);}
 
 <footer>
   <div class="ft-logo"><span>燕</span>の巣</div>
-  <p>東京ヤクルトスワローズ 非公式ファンサイト<br>
+  <p>東京ヤクルトスワローズ 個人ファンサイト<br>
   成績データ出典：<a href="https://npb.jp" target="_blank">NPB公式サイト</a>（2026年5月18日現在）<br>
-  本サイトはファンによる非公式サイトです。球団・NPBとは一切関係ありません。</p>
+  30年来のちなヤクによる個人サイトです。球団・NPBとは一切関係ありません。</p>
 </footer>
 
 <script>

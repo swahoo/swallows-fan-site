@@ -1,38 +1,37 @@
 #!/usr/bin/env python3
 """
-燕の巣 — 東京ヤクルトスワローズ ファンサイト 自動更新スクリプト
-毎日NPB公式からデータを取得してindex.htmlを更新する
+応燕スタンド 自動更新スクリプト
+複数の情報源（NPB公式・ヤクルト公式・スポカレ）からデータを取得してindex.htmlを更新
 """
-
 import requests
 from bs4 import BeautifulSoup
 import re
-from datetime import datetime, timezone, timedelta, date
+from datetime import datetime, timezone, timedelta
 import json
 
 JST = timezone(timedelta(hours=9))
 now = datetime.now(JST)
-today = now.strftime('%Y/%m/%d')
 today_badge = now.strftime('%Y.%m.%d')
 today_str = now.strftime('%Y年%m月%d日')
-today_date = now.date()
 
-HEADERS = {'User-Agent': 'Mozilla/5.0 (compatible; SwallowsFanSite/1.0)'}
+HEADERS = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'
+}
 
 def fetch(url):
     try:
-        res = requests.get(url, headers=HEADERS, timeout=15)
-        res.encoding = 'utf-8'
-        return BeautifulSoup(res.text, 'html.parser')
+        r = requests.get(url, headers=HEADERS, timeout=15)
+        r.encoding = 'utf-8'
+        return BeautifulSoup(r.text, 'html.parser')
     except Exception as e:
         print(f'  ⚠️  取得失敗: {url} -> {e}')
         return None
 
 # ============================================================
-# 1. セ・リーグ順位表
+# 1. 順位表（NPB公式）
 # ============================================================
 def get_standings():
-    print('📊 順位表取得中...')
+    print('📊 順位表取得中... (NPB公式)')
     soup = fetch('https://npb.jp/bis/2026/stats/std_c.html')
     if not soup:
         return None
@@ -41,312 +40,267 @@ def get_standings():
     if not table:
         return None
     for row in table.find_all('tr')[1:]:
-        cols = row.find_all('td')
-        if len(cols) >= 8:
+        cols = row.find_all(['td','th'])
+        if len(cols) < 7:
+            continue
+        name = cols[0].get_text(strip=True)
+        if not name or name in ('チーム',''):
+            continue
+        try:
             teams.append({
-                'name': cols[1].get_text(strip=True),
-                'games': cols[2].get_text(strip=True),
-                'wins': cols[3].get_text(strip=True),
-                'losses': cols[4].get_text(strip=True),
-                'draws': cols[5].get_text(strip=True),
-                'pct': cols[6].get_text(strip=True),
-                'gb': cols[7].get_text(strip=True),
+                'name': name,
+                'games': cols[1].get_text(strip=True),
+                'wins': cols[2].get_text(strip=True),
+                'losses': cols[3].get_text(strip=True),
+                'draws': cols[4].get_text(strip=True),
+                'pct': cols[5].get_text(strip=True),
+                'gb': cols[6].get_text(strip=True),
+                'home': cols[7].get_text(strip=True) if len(cols) > 7 else '—',
+                'road': cols[8].get_text(strip=True) if len(cols) > 8 else '—',
             })
+        except:
+            continue
+    print(f'  ✅ {len(teams)}チーム取得')
     return teams if teams else None
 
-def build_standings_rows(teams):
-    """順位表の行HTMLを生成（トップページ用・簡易版）"""
-    rank_class = ['rk1','rk2','rk3','rk4','rk5','rk6']
-    name_map = {
-        'ヤクルト': 'ヤクルト', '阪神': '阪神', '巨人': '巨人', '読売': '巨人',
-        'DeNA': 'DeNA', '横浜': 'DeNA', '広島': '広島', '中日': '中日'
-    }
-    html = ''
-    for i, t in enumerate(teams[:6]):
-        rank = i + 1
-        rc = rank_class[i] if i < 6 else 'rk4'
-        name = t['name']
-        for k, v in name_map.items():
-            if k in name:
-                name = v
-                break
-        is_ys = 'ヤクルト' in t['name']
-        tr = ' class="ys"' if is_ys else ''
-        html += f'<tr{tr}><td><span class="rk {rc}">{rank}</span></td><td class="l">{name}</td><td>{t["games"]}</td><td class="win">{t["wins"]}</td><td class="lose">{t["losses"]}</td><td>{t["pct"]}</td><td>{t["gb"]}</td></tr>'
-    return html
-
-def build_standings_rows_detail(teams):
-    """順位タブ用詳細版（ホーム/ロード含む）"""
-    rank_class = ['rk1','rk2','rk3','rk4','rk5','rk6']
-    full_names = {
-        'ヤクルト': 'ヤクルト', '阪神': '阪神タイガース', '巨人': '巨人ジャイアンツ',
-        '読売': '巨人ジャイアンツ', 'DeNA': '横浜DeNAベイスターズ', '横浜': '横浜DeNAベイスターズ',
-        '広島': '広島東洋カープ', '中日': '中日ドラゴンズ'
-    }
-    html = ''
-    for i, t in enumerate(teams[:6]):
-        rank = i + 1
-        rc = rank_class[i] if i < 6 else 'rk4'
-        name = t['name']
-        full = name
-        for k, v in full_names.items():
-            if k in name:
-                full = v
-                break
-        is_ys = 'ヤクルト' in t['name']
-        tr = ' class="ys"' if is_ys else ''
-        html += f'<tr{tr}><td><span class="rk {rc}">{rank}</span></td><td class="l">{full}</td><td>{t["games"]}</td><td class="win">{t["wins"]}</td><td class="lose">{t["losses"]}</td><td>{t["draws"]}</td><td>{t["pct"]}</td><td>{t["gb"]}</td><td>—</td><td>—</td></tr>'
-    return html
-
 # ============================================================
-# 2. 試合結果（月別）
+# 2. 次の試合（ヤクルト公式 + スポカレでクロスチェック）
 # ============================================================
-def get_game_results():
-    """全月の試合結果を取得して月別集計"""
-    print('📅 試合結果取得中...')
-    month_urls = {
-        '3・4月': 'https://npb.jp/bis/teams/results_s_04.html',
-        '5月': 'https://npb.jp/bis/teams/results_s_05.html',
-        '6月': 'https://npb.jp/bis/teams/results_s_06.html',
-        '7月': 'https://npb.jp/bis/teams/results_s_07.html',
-        '8月': 'https://npb.jp/bis/teams/results_s_08.html',
-        '9月': 'https://npb.jp/bis/teams/results_s_09.html',
-    }
-
-    monthly = {}
-    season_total = {'wins': 0, 'losses': 0, 'draws': 0, 'runs': 0, 'runs_against': 0, 'games': 0}
-    today_game = None
+def get_next_game():
+    print('⚾ 次の試合取得中...')
+    
+    # ソース1: ヤクルト公式
+    month = now.strftime('%Y%m')
+    soup = fetch(f'https://www.yakult-swallows.co.jp/game/{month}')
     next_game = None
-
-    for month_name, url in month_urls.items():
-        soup = fetch(url)
-        if not soup:
-            continue
-
-        wins = losses = draws = runs = runs_against = 0
-        rows = []
-
-        table = soup.find('table')
-        if not table:
-            continue
-
-        for row in table.find_all('tr'):
-            cols = row.find_all('td')
-            if len(cols) < 8:
-                continue
-            score_text = cols[6].get_text(strip=True) if len(cols) > 6 else ''
-            result = cols[7].get_text(strip=True) if len(cols) > 7 else ''
-            date_text = cols[0].get_text(strip=True) if cols else ''
-            opponent = cols[1].get_text(strip=True) if len(cols) > 1 else ''
-            stadium = cols[3].get_text(strip=True) if len(cols) > 3 else ''
-
-            if not score_text or '-' not in score_text:
-                # 未消化試合かも
-                # 今日の試合チェック
-                if date_text and opponent:
-                    rows.append({'date': date_text, 'opponent': opponent, 'stadium': stadium, 'score': '', 'result': ''})
-                continue
-
-            parts = score_text.split('-')
-            if len(parts) == 2:
-                try:
-                    r = int(parts[0].strip())
-                    ra = int(parts[1].strip())
-                    runs += r
-                    runs_against += ra
-                    if result == '○':
-                        wins += 1
-                    elif result == '●':
-                        losses += 1
-                    elif result == '△':
-                        draws += 1
-                    rows.append({'date': date_text, 'opponent': opponent, 'stadium': stadium,
-                                 'score': score_text, 'result': result})
-                except:
-                    pass
-
-        games = wins + losses + draws
-        if games > 0:
-            pct = wins / (wins + losses) if (wins + losses) > 0 else 0
-            monthly[month_name] = {
-                'games': games, 'wins': wins, 'losses': losses, 'draws': draws,
-                'pct': f'{pct:.3f}', 'runs': runs, 'runs_against': runs_against
-            }
-            season_total['wins'] += wins
-            season_total['losses'] += losses
-            season_total['draws'] += draws
-            season_total['runs'] += runs
-            season_total['runs_against'] += runs_against
-            season_total['games'] += games
-
-    return monthly, season_total
+    
+    if soup:
+        text = soup.get_text()
+        # 今日以降の試合を探す
+        today_yyyymmdd = now.strftime('%Y%m%d')
+        # 日付パターンを探す（例: 5 . 23）
+        month_num = now.month
+        for day in range(now.day, 32):
+            patterns = [
+                f'{month_num} . {day:02d}',
+                f'{month_num} . {day}',
+            ]
+            for pattern in patterns:
+                idx = text.find(pattern)
+                if idx >= 0:
+                    snippet = text[idx:idx+200]
+                    # 対戦相手を探す
+                    for team in ['DeNA','巨人','阪神','広島','中日','西武','楽天','ロッテ','日本ハム','ソフトバンク','オリックス']:
+                        if team in snippet:
+                            # 球場を探す
+                            venue = '—'
+                            for v in ['神宮','横浜','東京ドーム','甲子園','マツダ','バンテリン','みずほPayPay','楽天モバイル','ベルーナ','エスコン','ZOZOマリン','いわき']:
+                                if v in snippet:
+                                    venue = v
+                                    break
+                            # 時刻
+                            time_m = re.search(r'(\d{1,2}:\d{2})', snippet)
+                            time_str = time_m.group(1) if time_m else '18:00'
+                            # 曜日
+                            try:
+                                dt = datetime(now.year, month_num, day)
+                                weekdays = ['MON','TUE','WED','THU','FRI','SAT','SUN']
+                                weekday = weekdays[dt.weekday()]
+                            except:
+                                weekday = ''
+                            # 交流戦かどうか
+                            is_interleague = '交流戦' in snippet
+                            next_game = {
+                                'date': f'{now.year}.{month_num:02d}.{day:02d}',
+                                'day': day,
+                                'weekday': weekday,
+                                'time': time_str,
+                                'opponent': team,
+                                'venue': venue,
+                                'interleague': is_interleague
+                            }
+                            print(f'  ✅ 次の試合: {next_game["date"]} vs {team} {venue} {time_str}')
+                            return next_game
+    
+    # ソース2: スポカレ（クロスチェック）
+    if not next_game:
+        soup2 = fetch('https://spocale.com/sports/1/team_and_players/8')
+        if soup2:
+            text2 = soup2.get_text()
+            for day in range(now.day, 32):
+                pattern = f'.{now.month:02d}.{day:02d}'
+                idx = text2.find(pattern)
+                if idx >= 0:
+                    snippet = text2[idx:idx+150]
+                    for team in ['DeNA','巨人','阪神','広島','中日','西武','楽天','ロッテ','日本ハム','ソフトバンク','オリックス']:
+                        if team in snippet or f'横浜{team}' in snippet or f'東北{team}' in snippet:
+                            for v in ['神宮','横浜','東京ドーム','甲子園','マツダ','バンテリン','みずほPayPay','楽天モバイル','ベルーナ','エスコン','ZOZOマリン','いわき']:
+                                if v in snippet:
+                                    venue = v
+                                    break
+                            else:
+                                venue = '—'
+                            time_m = re.search(r'(\d{1,2}:\d{2})', snippet)
+                            time_str = time_m.group(1) if time_m else '18:00'
+                            try:
+                                dt = datetime(now.year, now.month, day)
+                                weekdays = ['MON','TUE','WED','THU','FRI','SAT','SUN']
+                                weekday = weekdays[dt.weekday()]
+                            except:
+                                weekday = ''
+                            next_game = {
+                                'date': f'{now.year}.{now.month:02d}.{day:02d}',
+                                'day': day,
+                                'weekday': weekday,
+                                'time': time_str,
+                                'opponent': team,
+                                'venue': venue,
+                                'interleague': '交流戦' in snippet
+                            }
+                            print(f'  ✅ 次の試合(スポカレ): {next_game["date"]} vs {team} {venue} {time_str}')
+                            return next_game
+    
+    print('  ⚠️  次の試合: 取得失敗')
+    return None
 
 # ============================================================
-# 3. 今日の試合
-# ============================================================
-def get_today_game():
-    print('⚾ 今日の試合取得中...')
-    soup = fetch('https://npb.jp/scores/')
-    if not soup:
-        return None
-
-    today_fmt = now.strftime('%-m/%-d')  # e.g. "5/19"
-    games_info = []
-
-    for link in soup.find_all('a', href=True):
-        text = link.get_text(strip=True)
-        href = link.get('href', '')
-        if 'scores/2026' in href and 's-' in href or '-s-' in href:
-            games_info.append({'text': text, 'href': href})
-
-    return games_info
-
-# ============================================================
-# 4. チーム成績（baseball-data-store）
+# 3. チーム成績（baseball-data-store）
 # ============================================================
 def get_team_stats():
     print('📈 チーム成績取得中...')
     soup = fetch('https://baseball-data-store.com/team/1/stats/1st?year=2026')
     if not soup:
         return None
-
     stats = {}
     text = soup.get_text()
-
     patterns = {
-        '防御率': r'防御率\s*([\d.]+)',
-        '打率': r'打率\s*([\d.]+)',
-        '得点': r'得点\s*(\d+)',
-        '本塁打': r'本塁打\s*(\d+)',
-        '盗塁': r'盗塁\s*(\d+)',
-        '出塁率': r'出塁率\s*([\d.]+)',
-        '長打率': r'長打率\s*([\d.]+)',
-        'OPS': r'OPS\s*([\d.]+)',
-        'WHIP': r'WHIP\s*([\d.]+)',
-        '奪三振': r'奪三振\s*(\d+)',
-        'セーブ': r'セーブ\s*(\d+)',
-        'ホールド': r'ホールド\s*(\d+)',
+        '防御率': r'防御率[^\d]*([\d.]+)',
+        '打率': r'打率[^\d]*([\d.]+)',
+        '得点': r'得点[^\d]*(\d+)',
+        '本塁打': r'本塁打[^\d]*(\d+)',
+        '盗塁': r'盗塁[^\d]*(\d+)',
+        '出塁率': r'出塁率[^\d]*([\d.]+)',
+        '長打率': r'長打率[^\d]*([\d.]+)',
+        'OPS': r'OPS[^\d]*([\d.]+)',
+        'WHIP': r'WHIP[^\d]*([\d.]+)',
+        '奪三振': r'奪三振[^\d]*(\d+)',
+        'セーブ': r'セーブ[^\d]*(\d+)',
+        'ホールド': r'ホールド[^\d]*(\d+)',
     }
-
     for key, pattern in patterns.items():
         m = re.search(pattern, text)
         if m:
             stats[key] = m.group(1)
-
+    print(f'  ✅ チーム成績取得: {list(stats.keys())}')
     return stats if stats else None
 
 # ============================================================
-# 5. HTML更新
+# 4. HTML更新
 # ============================================================
-def update_html(standings, monthly, season, team_stats):
+TEAM_SHORT = {
+    '東京ヤクルトスワローズ': 'ヤクルト',
+    '阪神タイガース': '阪神',
+    '読売ジャイアンツ': '巨人',
+    '横浜DeNAベイスターズ': 'DeNA',
+    '広島東洋カープ': '広島',
+    '中日ドラゴンズ': '中日',
+}
+TEAM_FULL = {v: k for k, v in TEAM_SHORT.items()}
+
+def shorten(name):
+    for k, v in TEAM_SHORT.items():
+        if k in name:
+            return v
+    return name
+
+def update_html(standings, next_game, team_stats):
     with open('index.html', 'r', encoding='utf-8') as f:
         html = f.read()
 
-    # --- 日付バッジ更新 ---
+    # 日付バッジ
     html = re.sub(r'NPB公式 \d{4}\.\d{2}\.\d{2}', f'NPB公式 {today_badge}', html)
-    html = re.sub(r'NPB \d{4}\.\d{2}\.\d{2}', f'NPB {today_badge}', html)
-    html = re.sub(r'\d{4}年\d{1,2}月\d{1,2}日現在', f'{today_str}現在', html)
-    html = re.sub(r'5/18現在', f'{today_badge}現在', html)
+    html = re.sub(r'\d{4}\.\d{2}\.\d{2}現在', f'{today_badge}現在', html)
 
-    # --- 順位表更新（トップページ簡易版）---
     if standings:
-        rows_simple = build_standings_rows(standings)
-        # トップの簡易順位表を置換
-        pattern = r'(<thead><tr><th class="l" colspan="2">チーム</th><th>試合</th><th>勝</th><th>負</th><th>勝率</th><th>差</th></tr></thead>\s*<tbody>)(.*?)(</tbody>)'
-        replacement = r'\g<1>' + rows_simple + r'\g<3>'
-        html = re.sub(pattern, replacement, html, flags=re.DOTALL)
-
-        # ヒーローのKPI（勝数・敗数・勝率・貯金）
-        total_wins = sum(int(t['wins']) for t in standings[:6] if t['name'] and 'ヤクルト' in t['name']) or None
         ys = next((t for t in standings if 'ヤクルト' in t['name']), None)
         if ys:
             w, l = int(ys['wins']), int(ys['losses'])
+            pct = ys['pct']
             貯金 = w - l
-            html = re.sub(r'<span class="kpi-num">\d+</span>\s*<div class="kpi-label">WIN', f'<span class="kpi-num">{w}</span>\n        <div class="kpi-label">WIN', html)
-            html = re.sub(r'<span class="kpi-num red">\d+</span>\s*<div class="kpi-label">LOSE', f'<span class="kpi-num red">{l}</span>\n        <div class="kpi-label">LOSE', html)
-            html = re.sub(r'<span class="kpi-num gold">[.\d]+</span>\s*<div class="kpi-label">勝率', f'<span class="kpi-num gold">{ys["pct"]}</span>\n        <div class="kpi-label">勝率', html)
             貯金_str = f'+{貯金}' if 貯金 >= 0 else str(貯金)
-            html = re.sub(r'<span class="kpi-num">[+\-\d]+</span>\s*<div class="kpi-label">貯金', f'<span class="kpi-num">{貯金_str}</span>\n        <div class="kpi-label">貯金', html)
-
+            
+            # KPI更新
+            html = re.sub(r'(<span class="kpi-num">)\d+(</span>\s*<div class="kpi-label">WIN)', rf'\g<1>{w}\g<2>', html)
+            html = re.sub(r'(<span class="kpi-num red">)\d+(</span>\s*<div class="kpi-label">LOSE)', rf'\g<1>{l}\g<2>', html)
+            html = re.sub(r'(<span class="kpi-num gold">)[.\d]+(</span>\s*<div class="kpi-label">勝率)', rf'\g<1>{pct}\g<2>', html)
+            html = re.sub(r'(<span class="kpi-num">[+\-]\d+</span>\s*<div class="kpi-label">貯金)', f'<span class="kpi-num">{貯金_str}</span>\n        <div class="kpi-label">貯金', html)
+            
             # シーズン成績ボックス
             html = re.sub(r'<span class="rec-num g">\d+</span><div class="rec-lbl">勝利', f'<span class="rec-num g">{w}</span><div class="rec-lbl">勝利', html)
             html = re.sub(r'<span class="rec-num r">\d+</span><div class="rec-lbl">敗戦', f'<span class="rec-num r">{l}</span><div class="rec-lbl">敗戦', html)
-            html = re.sub(r'<span class="rec-num gold">[.\d]+</span><div class="rec-lbl">勝率', f'<span class="rec-num gold">{ys["pct"]}</span><div class="rec-lbl">勝率', html)
+            html = re.sub(r'<span class="rec-num gold">[.\d]+</span><div class="rec-lbl">勝率', f'<span class="rec-num gold">{pct}</span><div class="rec-lbl">勝率', html)
             html = re.sub(r'<span class="rec-num g">[+\-\d]+</span><div class="rec-lbl">貯金', f'<span class="rec-num g">{貯金_str}</span><div class="rec-lbl">貯金', html)
 
-    # --- 月別成績更新 ---
-    if monthly:
-        rows_html = ''
-        total_w = total_l = total_d = total_r = total_ra = total_g = 0
-        for mname, m in monthly.items():
-            rows_html += f'<tr><td class="l">{mname}</td><td>{m["games"]}</td><td class="win">{m["wins"]}</td><td class="lose">{m["losses"]}</td><td>{m["draws"]}</td><td>{m["pct"]}</td><td>{m["runs"]}</td><td>{m["runs_against"]}</td></tr>'
-            total_w += m['wins']
-            total_l += m['losses']
-            total_d += m['draws']
-            total_r += m['runs']
-            total_ra += m['runs_against']
-            total_g += m['games']
-        total_pct = f'{total_w/(total_w+total_l):.3f}' if (total_w+total_l) > 0 else '.000'
-        rows_html += f'<tr class="ys"><td class="l">合計</td><td>{total_g}</td><td class="win">{total_w}</td><td class="lose">{total_l}</td><td>{total_d}</td><td>{total_pct}</td><td>{total_r}</td><td>{total_ra}</td></tr>'
+        # 順位表HTML生成（トップページ）
+        rank_cls = ['rk1','rk2','rk3','rk4','rk5','rk6']
+        rows_top = ''
+        for i, t in enumerate(standings[:6]):
+            rc = rank_cls[i]
+            sname = shorten(t['name'])
+            is_ys = 'ヤクルト' in t['name']
+            tr_cls = ' class="ys"' if is_ys else ''
+            rows_top += f'<tr{tr_cls}><td><span class="rk {rc}">{i+1}</span></td><td class="l">{sname}</td><td>{t["games"]}</td><td class="win">{t["wins"]}</td><td class="lose">{t["losses"]}</td><td>{t["pct"]}</td><td>{t["gb"]}</td></tr>'
+        
+        pattern = r'(<thead><tr><th class="l" colspan="2">チーム</th><th>試合</th><th>勝</th><th>負</th><th>勝率</th><th>差</th></tr></thead>\s*<tbody>)(.*?)(</tbody>)'
+        html = re.sub(pattern, r'\g<1>' + rows_top + r'\g<3>', html, flags=re.DOTALL)
 
-        pattern = r'(<thead><tr><th class="l">月</th>.*?</thead>\s*<tbody>)(.*?)(</tbody>)'
-        replacement = r'\g<1>' + rows_html + r'\g<3>'
-        html = re.sub(pattern, replacement, html, flags=re.DOTALL)
+    # 次の試合更新
+    if next_game:
+        g = next_game
+        interleague_str = '（交流戦）' if g['interleague'] else ''
+        date_str = f'{g["date"]} {g["weekday"]} {g["time"]}{interleague_str}'
+        html = re.sub(r'<div class="next-date">.*?</div>', f'<div class="next-date">{date_str}</div>', html)
+        
+        # ホーム/アウェー判定
+        if g['venue'] in ['神宮', '明治神宮']:
+            vs_html = f'<div class="next-vs">ヤクルト<br><span style="font-size:0.8rem;color:var(--muted);">vs</span><br>{g["opponent"]}</div>'
+        else:
+            vs_html = f'<div class="next-vs">{g["opponent"]}<br><span style="font-size:0.8rem;color:var(--muted);">vs</span><br>ヤクルト</div>'
+        html = re.sub(r'<div class="next-vs">.*?</div>', vs_html, html, flags=re.DOTALL)
+        html = re.sub(r'<div class="next-venue">.*?</div>', f'<div class="next-venue">📍 {g["venue"]}</div>', html)
 
-    # --- チーム成績更新 ---
+    # チーム成績更新
     if team_stats:
         replacements = {
-            r'チーム防御率</td><td class="hi">[.\d]+': f'チーム防御率</td><td class="hi">{team_stats.get("防御率", "—")}',
-            r'WHIP</td><td>[.\d]+': f'WHIP</td><td>{team_stats.get("WHIP", "—")}',
-            r'奪三振</td><td><strong>\d+': f'奪三振</td><td><strong>{team_stats.get("奪三振", "—")}',
-            r'セーブ</td><td>\d+': f'セーブ</td><td>{team_stats.get("セーブ", "—")}',
-            r'ホールド</td><td>\d+': f'ホールド</td><td>{team_stats.get("ホールド", "—")}',
-            r'チーム打率</td><td class="hi">[.\d]+': f'チーム打率</td><td class="hi">{team_stats.get("打率", "—")}',
-            r'本塁打</td><td><strong>\d+': f'本塁打</td><td><strong>{team_stats.get("本塁打", "—")}',
-            r'盗塁</td><td><strong>\d+': f'盗塁</td><td><strong>{team_stats.get("盗塁", "—")}',
-            r'出塁率</td><td>[.\d]+': f'出塁率</td><td>{team_stats.get("出塁率", "—")}',
-            r'長打率</td><td>[.\d]+': f'長打率</td><td>{team_stats.get("長打率", "—")}',
-            r'OPS</td><td class="hi">[.\d]+': f'OPS</td><td class="hi">{team_stats.get("OPS", "—")}',
+            r'チーム防御率</td><td class="hi">[.\d]+': f'チーム防御率</td><td class="hi">{team_stats.get("防御率","—")}',
+            r'WHIP</td><td>[.\d]+': f'WHIP</td><td>{team_stats.get("WHIP","—")}',
+            r'奪三振</td><td><strong>\d+': f'奪三振</td><td><strong>{team_stats.get("奪三振","—")}',
+            r'チーム打率</td><td class="hi">[.\d]+': f'チーム打率</td><td class="hi">{team_stats.get("打率","—")}',
+            r'OPS</td><td class="hi">[.\d]+': f'OPS</td><td class="hi">{team_stats.get("OPS","—")}',
+            r'出塁率</td><td>[.\d]+': f'出塁率</td><td>{team_stats.get("出塁率","—")}',
+            r'長打率</td><td>[.\d]+': f'長打率</td><td>{team_stats.get("長打率","—")}',
         }
         for pattern, replacement in replacements.items():
             html = re.sub(pattern, replacement, html)
 
     with open('index.html', 'w', encoding='utf-8') as f:
         f.write(html)
-
     print(f'✅ index.html 更新完了（{today_str}）')
 
 # ============================================================
 # メイン
 # ============================================================
 def main():
-    print(f'\n🐦 燕の巣 自動更新スクリプト')
-    print(f'📅 実行日時: {today_str} (JST)\n')
+    print(f'\n🐦 応燕スタンド 自動更新スクリプト')
+    print(f'📅 実行日時: {today_str} JST\n')
+    print('ℹ️  情報源: NPB公式 / ヤクルト公式 / スポカレ（複数ソース確認）\n')
 
-    # 1. 順位表
     standings = get_standings()
-    if standings:
-        print(f'  ✅ 順位表: {len(standings)}チーム取得')
-    else:
-        print('  ⚠️  順位表: 取得失敗')
-
-    # 2. 月別成績
-    monthly, season = get_game_results()
-    if monthly:
-        print(f'  ✅ 月別成績: {list(monthly.keys())} 取得')
-    else:
-        print('  ⚠️  月別成績: 取得失敗')
-
-    # 3. チーム成績
+    next_game = get_next_game()
     team_stats = get_team_stats()
-    if team_stats:
-        print(f'  ✅ チーム成績: {list(team_stats.keys())} 取得')
-    else:
-        print('  ⚠️  チーム成績: 取得失敗')
 
-    # 4. HTML更新
     print('\n📝 HTML更新中...')
-    update_html(standings, monthly, season, team_stats)
+    update_html(standings, next_game, team_stats)
 
 if __name__ == '__main__':
     main()

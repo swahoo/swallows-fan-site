@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>応燕スタンド — 東京ヤクルトスワローズ</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,900;1,900&family=Noto+Sans+JP:wght@400;700;900&family=DM+Mono&family=Yuji+Syuku&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green:#007a35;
+  --green-light:#00a84a;
+  --green-pale:#e8f7ed;
+  --green-mid:#c2ecd0;
+  --navy:#002060;
+  --navy-light:#1a3a7a;
+  --gold:#b8860b;
+  --gold-pale:#fdf6e3;
+  --bg:#f4f6f9;
+  --white:#ffffff;
+  --text:#1a1a2e;
+  --muted:#6b7280;
+  --border:#e2e8f0;
+  --shadow:0 2px 16px rgba(0,0,0,0.08);
+  --shadow-lg:0 8px 40px rgba(0,0,0,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-serif;min-height:100vh;}
+
+/* ===== HEADER ===== */
+header{
+  background:var(--white);
+  border-bottom:3px solid var(--green);
+  position:sticky;top:0;z-index:200;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
+}
+.header-inner{
+  max-width:1100px;margin:0 auto;padding:0 20px;
+  display:flex;align-items:center;gap:0;height:60px;
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex:1;}
+.logo-mark{
+  width:38px;height:38px;background:var(--green);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow Condensed',sans-serif;font-size:0.85rem;font-weight:900;
+  color:#fff;letter-spacing:1px;flex-shrink:0;
+}
+.logo-text{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.6rem;color:var(--text);letter-spacing:3px;white-space:nowrap;
+  background:linear-gradient(135deg, var(--navy) 0%, var(--green) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+nav{display:flex;align-items:stretch;}
+.nav-btn{
+  padding:0 14px;background:none;border:none;
+  color:var(--muted);font-family:'Noto Sans JP',sans-serif;
+  font-size:0.78rem;font-weight:700;letter-spacing:1px;
+  cursor:pointer;border-bottom:3px solid transparent;
+  transition:all .2s;white-space:nowrap;height:60px;
+}
+.nav-btn:hover{color:var(--green);}
+.nav-btn.on{color:var(--green);border-bottom-color:var(--green);}
+
+/* ===== TAB ===== */
+.tab-panel{display:none;}
+.tab-panel.on{display:block;}
+
+/* ===== HERO ===== */
+.hero{
+  background:linear-gradient(160deg, #001030 0%, #002060 45%, #004020 100%);
+  padding:64px 24px 52px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(
+    90deg,
+    rgba(255,255,255,0.015) 0px,
+    rgba(255,255,255,0.015) 1px,
+    transparent 1px,
+    transparent 80px
+  );
+  pointer-events:none;
+}
+.hero::after{
+  content:'SWALLOWS';
+  position:absolute;right:-20px;bottom:-30px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;font-style:italic;
+  font-size:clamp(6rem,16vw,14rem);color:rgba(255,255,255,0.04);
+  letter-spacing:-4px;line-height:1;pointer-events:none;
+}
+.hero-inner{max-width:1100px;margin:0 auto;position:relative;}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;font-size:0.68rem;
+  color:rgba(0,230,100,0.85);letter-spacing:5px;
+  margin-bottom:18px;display:block;
+}
+.hero h1{
+  margin-bottom:6px;line-height:1;
+}
+.hero h1 .line1{
+  display:block;
+  font-family:'Noto Sans JP',sans-serif;
+  font-weight:900;
+  font-size:clamp(0.85rem,2.2vw,1.4rem);
+  letter-spacing:0.5em;
+  color:rgba(255,255,255,0.5);
+  margin-bottom:6px;
+}
+.hero h1 .line2{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-style:italic;
+  font-size:clamp(3.2rem,9vw,7.5rem);
+  letter-spacing:-2px;
+  line-height:0.9;
+  background:linear-gradient(160deg, #ffffff 0%, #a0ffcc 60%, #00e87a 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  text-transform:uppercase;
+}
+.hero h1 .line3{
+  display:block;
+  font-family:'Barlow Condensed',sans-serif;
+  font-weight:900;
+  font-style:italic;
+  font-size:clamp(1.8rem,5vw,4rem);
+  letter-spacing:6px;
+  line-height:1.1;
+  -webkit-text-stroke:1.5px rgba(255,255,255,0.35);
+  -webkit-text-fill-color:transparent;
+  color:transparent;
+  text-transform:uppercase;
+  margin-top:4px;
+}
+.hero-sub{color:rgba(255,255,255,0.4);font-size:0.75rem;margin-bottom:32px;letter-spacing:3px;font-family:'DM Mono',monospace;}
+.hero-kpi{
+  display:flex;gap:1px;flex-wrap:wrap;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:4px;overflow:hidden;
+  max-width:560px;
+}
+.kpi-card{
+  flex:1;min-width:80px;padding:14px 16px;
+  text-align:center;
+  background:rgba(255,255,255,0.06);
+  border-right:1px solid rgba(255,255,255,0.08);
+}
+.kpi-card:last-child{border-right:none;}
+.kpi-num{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:2rem;color:#fff;line-height:1;display:block;
+}
+.kpi-num.gold{color:#ffd060;}
+.kpi-num.red{color:#ff6060;}
+.kpi-label{font-size:0.6rem;color:rgba(255,255,255,0.4);letter-spacing:3px;margin-top:3px;font-family:'DM Mono',monospace;}
+.hero-note{font-size:0.7rem;color:rgba(255,255,255,0.4);margin-top:16px;font-family:'DM Mono',monospace;}
+
+/* ===== WRAP & GRID ===== */
+.wrap{max-width:1100px;margin:0 auto;padding:32px 20px;}
+.grid-2{display:grid;grid-template-columns:1fr 320px;gap:24px;}
+@media(max-width:780px){.grid-2{grid-template-columns:1fr;}}
+
+/* ===== SECTION LABEL ===== */
+.sec-label{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.65rem;letter-spacing:3px;color:var(--green);
+  margin-bottom:10px;
+}
+.sec-heading{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.4rem;color:var(--text);margin-bottom:20px;
+}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--white);border-radius:14px;
+  box-shadow:var(--shadow);overflow:hidden;margin-bottom:20px;
+  border:1px solid var(--border);
+}
+.card-head{
+  padding:14px 20px;display:flex;align-items:center;gap:8px;
+  border-bottom:1px solid var(--border);
+}
+.card-head-icon{
+  width:28px;height:28px;border-radius:6px;
+  background:var(--green-pale);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;flex-shrink:0;
+}
+.card-head h2{font-size:0.85rem;font-weight:700;color:var(--text);letter-spacing:1px;}
+.card-badge{
+  margin-left:auto;background:var(--green-pale);color:var(--green);
+  font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:4px;
+  font-family:'DM Mono',monospace;white-space:nowrap;
+}
+
+/* ===== TABLE ===== */
+.tbl{width:100%;border-collapse:collapse;font-size:0.85rem;}
+.tbl th{
+  padding:10px 10px;background:#f8fafc;
+  font-size:0.68rem;color:var(--muted);letter-spacing:1.5px;
+  border-bottom:2px solid var(--border);text-align:center;
+  white-space:nowrap;font-weight:700;
+}
+.tbl th.l{text-align:left;}
+.tbl td{
+  padding:12px 10px;border-bottom:1px solid var(--border);
+  text-align:center;white-space:nowrap;
+}
+.tbl td.l{text-align:left;}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr.ys{background:var(--green-pale);}
+.tbl tr.ys td{color:var(--green);font-weight:700;}
+.tbl tr:hover:not(.ys){background:#fafbfc;}
+.win{color:var(--green);font-weight:700;}
+.lose{color:#e53e3e;}
+.hi{color:var(--gold);font-weight:700;}
+.rk{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:6px;
+  font-size:0.72rem;font-weight:900;margin-right:4px;
+}
+.rk1{background:#ffd700;color:#000;}
+.rk2{background:#c0c0c0;color:#000;}
+.rk3{background:#cd7f32;color:#fff;}
+.rk4,.rk5,.rk6{background:#f1f5f9;color:var(--muted);}
+
+/* ===== LIVE SECTION ===== */
+.live-card{
+  background:var(--white);border:2px solid var(--green);
+  border-radius:14px;overflow:hidden;margin-bottom:24px;
+  box-shadow:0 4px 24px rgba(0,122,53,0.12);
+}
+.live-head{
+  background:var(--green);padding:12px 20px;
+  display:flex;align-items:center;gap:10px;
+}
+.live-dot{
+  width:8px;height:8px;border-radius:50%;background:#fff;
+  animation:blink 1.4s infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.live-label{font-size:0.78rem;font-weight:700;color:#fff;letter-spacing:2px;}
+.live-badge{margin-left:auto;background:rgba(255,255,255,0.2);color:#fff;font-size:0.65rem;padding:2px 8px;border-radius:4px;font-family:'DM Mono',monospace;}
+.live-body{display:grid;grid-template-columns:1fr 1fr;}
+@media(max-width:640px){.live-body{grid-template-columns:1fr;}}
+
+/* ===== MOBILE ===== */
+@media(max-width:640px){
+  .header-inner{height:auto;flex-direction:column;padding:10px 12px;gap:0;}
+  .logo{width:100%;padding:8px 0 6px;}
+  nav{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;
+      display:flex;flex-wrap:nowrap;border-top:1px solid var(--border);}
+  .nav-btn{padding:0 10px;font-size:0.72rem;height:40px;white-space:nowrap;flex-shrink:0;}
+  .hero{padding:36px 16px 32px;}
+  .hero h1{font-size:clamp(2rem,10vw,3.5rem);}
+  .hero-kpi{gap:1px;}
+  .kpi-card{padding:10px 6px;min-width:55px;}
+  .kpi-num{font-size:1.4rem;}
+  .kpi-label{font-size:0.5rem;letter-spacing:1px;}
+  .wrap{padding:16px 12px;}
+  .card-head{padding:12px 14px;}
+  .tbl{font-size:0.76rem;}
+  .tbl th{padding:8px 5px;font-size:0.6rem;}
+  .tbl td{padding:9px 5px;}
+  .live-right{border-left:none!important;border-top:1px solid var(--border);}
+  .rec-num{font-size:1.4rem;}
+  .bbs-form{padding:16px 14px;}
+  .post-item{padding:14px;}
+  .sec-heading{font-size:1.1rem;}
+  .live-match{font-size:1rem;}
+  .legends-grid{grid-template-columns:1fr 1fr;}
+}
+.live-left,.live-right{padding:20px;}
+.live-left{border-right:1px solid var(--border);}
+.live-sub{font-size:0.68rem;color:var(--muted);letter-spacing:2px;margin-bottom:8px;font-family:'DM Mono',monospace;}
+.live-match{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;margin-bottom:6px;color:var(--text);}
+.live-venue{font-size:0.75rem;color:var(--muted);margin-bottom:16px;}
+.btn-green{
+  display:inline-block;background:var(--green);color:#fff;
+  font-size:0.75rem;font-weight:700;padding:9px 18px;border-radius:8px;
+  text-decoration:none;letter-spacing:1px;transition:background .2s;
+}
+.btn-green:hover{background:var(--green-light);}
+.btn-outline{
+  display:inline-block;border:2px solid var(--green);color:var(--green);
+  font-size:0.75rem;font-weight:700;padding:7px 16px;border-radius:8px;
+  text-decoration:none;margin-top:8px;transition:all .2s;
+}
+.btn-outline:hover{background:var(--green-pale);}
+
+/* ===== RECORD GRID ===== */
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.rec-cell{background:var(--white);padding:16px 8px;text-align:center;}
+.rec-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;line-height:1;display:block;}
+.rec-num.g{color:var(--green);}
+.rec-num.r{color:#e53e3e;}
+.rec-num.gold{color:var(--gold);}
+.rec-num.b{color:var(--navy);}
+.rec-lbl{font-size:0.62rem;color:var(--muted);margin-top:4px;letter-spacing:1px;}
+
+/* ===== NEXT BOX ===== */
+.next-box{padding:20px;text-align:center;}
+.next-date{font-size:0.7rem;color:var(--muted);letter-spacing:2px;margin-bottom:10px;font-family:'DM Mono',monospace;}
+.next-vs{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;line-height:1.3;margin-bottom:8px;}
+.next-venue{font-size:0.75rem;color:var(--muted);}
+.next-rec{font-size:0.75rem;color:var(--green);font-weight:700;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);}
+
+/* ===== LINK ITEM ===== */
+.link-item{
+  display:flex;align-items:center;gap:12px;padding:13px 20px;
+  border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);
+  transition:background .15s;
+}
+.link-item:last-child{border-bottom:none;}
+.link-item:hover{background:var(--green-pale);}
+.link-ico{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.link-src{font-size:0.8rem;font-weight:700;margin-bottom:2px;}
+.link-desc{font-size:0.7rem;color:var(--muted);}
+.link-arr{color:var(--muted);margin-left:auto;}
+
+/* ===== TIMELINE ===== */
+.timeline{padding:4px 20px;}
+.tl-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border);}
+.tl-row:last-child{border-bottom:none;}
+.tl-year{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.2rem;color:var(--navy);width:52px;flex-shrink:0;text-align:right;padding-top:2px;}
+.tl-line{width:2px;background:var(--green-mid);flex-shrink:0;position:relative;}
+.tl-line::before{content:'';position:absolute;top:5px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:var(--green);border:2px solid #fff;box-shadow:0 0 0 2px var(--green);}
+.tl-content{flex:1;}
+.tl-tag{display:inline-block;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px;letter-spacing:1px;}
+.tl-tag.ch{background:var(--green-pale);color:var(--green);}
+.tl-tag.ev{background:#e8f0fe;color:var(--navy);}
+.tl-tag.re{background:var(--gold-pale);color:var(--gold);}
+.tl-tag.now{background:var(--green);color:#fff;}
+.tl-title{font-weight:700;font-size:0.9rem;margin-bottom:4px;color:var(--text);}
+.tl-desc{font-size:0.78rem;color:var(--muted);line-height:1.7;}
+
+/* ===== LEGENDS ===== */
+.legends-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:20px;}
+.legend-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:10px;
+  padding:14px;display:flex;gap:12px;align-items:flex-start;
+  transition:all .2s;
+}
+.legend-card:hover{border-color:var(--green);background:var(--green-pale);transform:translateY(-2px);}
+.legend-num{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.8rem;color:var(--gold);line-height:1;min-width:32px;text-align:center;}
+.legend-name{font-weight:700;font-size:0.9rem;margin-bottom:2px;}
+.legend-pos{font-size:0.7rem;color:var(--muted);}
+.legend-note{font-size:0.7rem;color:var(--green);margin-top:4px;font-weight:700;}
+
+/* ===== BBS ===== */
+.bbs-form{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:20px;margin-bottom:20px;box-shadow:var(--shadow);}
+.bbs-label{font-size:0.72rem;color:var(--muted);letter-spacing:1px;margin-bottom:6px;display:block;font-weight:700;}
+.bbs-input{width:100%;background:#f8fafc;border:1px solid var(--border);border-radius:8px;color:var(--text);padding:10px 14px;font-size:0.86rem;font-family:'Noto Sans JP',sans-serif;outline:none;transition:border-color .2s;margin-bottom:12px;}
+.bbs-input:focus{border-color:var(--green);background:#fff;}
+textarea.bbs-input{resize:vertical;min-height:80px;}
+.bbs-submit{background:var(--green);color:#fff;border:none;border-radius:8px;padding:10px 24px;font-weight:700;font-size:0.86rem;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:background .2s;}
+.bbs-submit:hover{background:var(--green-light);}
+.post-list{display:flex;flex-direction:column;gap:12px;}
+.post-item{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow);}
+.post-header{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.post-avatar{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem;flex-shrink:0;color:#fff;}
+.post-name{font-weight:700;font-size:0.86rem;}
+.post-tag{background:var(--green-pale);color:var(--green);font-size:0.65rem;font-weight:700;padding:1px 7px;border-radius:4px;margin-left:6px;}
+.post-time{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--muted);margin-left:auto;}
+.post-body{font-size:0.86rem;line-height:1.75;}
+.post-like{display:flex;align-items:center;gap:8px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+.like-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 12px;color:var(--muted);font-size:0.72rem;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:all .15s;}
+.like-btn:hover,.like-btn.liked{border-color:var(--green);color:var(--green);}
+.like-count{font-size:0.72rem;color:var(--muted);font-family:'DM Mono',monospace;}
+
+/* ===== FOOTER ===== */
+footer{border-top:1px solid var(--border);background:var(--white);padding:28px 20px;text-align:center;margin-top:8px;}
+.ft-logo{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:2px;color:var(--text);margin-bottom:10px;}
+.ft-logo span{color:var(--green);}
+footer p{font-size:0.72rem;color:var(--muted);line-height:2;}
+footer a{color:var(--muted);text-decoration:none;}
+footer a:hover{color:var(--green);}
+
+/* ===== VOTE ===== */
+.vote-btn{
+  display:flex;align-items:center;justify-content:space-between;
+  background:#f8fafc;border:1px solid var(--border);border-radius:8px;
+  padding:10px 14px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;
+  font-size:0.85rem;font-weight:700;color:var(--text);
+  transition:all .2s;width:100%;text-align:left;
+}
+.vote-btn:hover{border-color:var(--green);background:var(--green-pale);}
+.vote-btn.voted{border-color:var(--green);background:var(--green-pale);color:var(--green);}
+.vote-bar-wrap{background:var(--border);border-radius:4px;height:6px;flex:1;margin:0 10px;}
+.vote-bar{background:var(--green);border-radius:4px;height:6px;transition:width .5s ease;}
+.vote-pct{font-family:'DM Mono',monospace;font-size:0.72rem;color:var(--muted);min-width:30px;text-align:right;}
+
+/* ===== ANIM ===== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
+.tab-panel.on .card,.tab-panel.on .live-card{animation:fadeUp .35s ease both;}
+.tab-panel.on .card:nth-child(2){animation-delay:.07s;}
+.tab-panel.on .card:nth-child(3){animation-delay:.14s;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-mark">YS</div>
+      <div class="logo-text">応燕スタンド</div>
+    </a>
+    <nav>
+      <button class="nav-btn on" onclick="switchTab('top',this)">トップ</button>
+      <button class="nav-btn" onclick="switchTab('standings',this)">順位</button>
+      <button class="nav-btn" onclick="switchTab('data',this)">データ</button>
+      <button class="nav-btn" onclick="switchTab('players',this)">個人成績</button>
+      <button class="nav-btn" onclick="switchTab('roster',this)">選手・スタッフ</button>
+      <button class="nav-btn" onclick="switchTab('history',this)">歴史・記録</button>
+      <button class="nav-btn" onclick="switchTab('bbs',this)">掲示板</button>
+    </nav>
+  </div>
+</header>
+
+<!-- TOP -->
+<div id="tab-top" class="tab-panel on">
+  <div class="hero">
+    <div class="hero-inner">
+      <span class="hero-eyebrow">// 応燕スタンド — ちなヤクによる、ちなヤクのためのサイト</span>
+      <h1>
+        <span class="line1">東京ヤクルトスワローズ</span>
+        <span class="line2">SWALLOWS</span>
+        
+      </h1>
+      <p class="hero-sub">ちなヤク専用。スワローズの全てがここにある。</p>
+      <div class="hero-kpi">
+        <div class="kpi-card"><span class="kpi-num">27</span><div class="kpi-label">WIN</div></div>
+        <div class="kpi-card"><span class="kpi-num red">17</span><div class="kpi-label">LOSE</div></div>
+        <div class="kpi-card"><span class="kpi-num gold">.614</span><div class="kpi-label">勝率</div></div>
+        <div class="kpi-card"><span class="kpi-num">1位</span><div class="kpi-label">順位</div></div>
+        <div class="kpi-card"><span class="kpi-num">+10</span><div class="kpi-label">貯金</div></div>
+      </div>
+      <p class="hero-note">
+        <a href="https://hits.seeyoufarm.com" target="_blank" style="text-decoration:none;vertical-align:middle;">
+          <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fswahoo.github.io%2Fswallows-fan-site%2F&count_bg=%23007A35&title_bg=%23002060&icon=&icon_color=%23FFFFFF&title=VISITORS&edge_flat=true" alt="visitors" style="vertical-align:middle;"/>
+        </a>
+      </p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="live-card">
+      <div class="live-head">
+        <div class="live-dot"></div>
+        <span class="live-label">LIVE — 今日の試合情報</span>
+        <span class="live-badge">NPBスコア随時更新</span>
+      </div>
+      <div class="live-body" style="grid-template-columns:1fr 1fr;">
+        <div class="live-left">
+          <div class="live-sub">// 一軍</div>
+          <div class="live-match">本日試合なし｜明日5/23 vs DeNA（横浜）</div>
+          <div class="live-venue">📍 5/23（土）14:00 横浜スタジアム、5/24（日）14:00 横浜スタジアム</div>
+          <a href="https://npb.jp/scores/" target="_blank" class="btn-green">スコア確認 →</a>
+          <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--border);">
+            <div class="live-sub">// 二軍（イースタン）</div>
+            <a href="https://npb.jp/farm/" target="_blank" class="btn-outline">ファーム試合結果 →</a>
+          </div>
+        </div>
+        <div class="live-right" style="border-left:1px solid var(--border);padding:16px 18px;overflow-y:auto;max-height:380px;">
+          <div class="live-sub" style="margin-bottom:10px;">🗳️ 今日の推し選手投票 <span id="vote-date" style="color:var(--muted);font-size:0.65rem;"></span></div>
+          <div style="font-size:0.7rem;color:var(--muted);margin-bottom:10px;">今日活躍すると思う選手は？</div>
+          <div id="vote-tabs" style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;"></div>
+          <div id="vote-list" style="display:flex;flex-direction:column;gap:6px;"></div>
+          <div id="vote-result" style="display:none;margin-top:10px;font-size:0.7rem;color:var(--muted);"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <div class="sec-label">STANDINGS</div>
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">📊</div><h2>セ・リーグ順位表</h2><span class="card-badge">2026.05.18</span></div>
+          <div style="overflow-x:auto;">
+            <table class="tbl" style="min-width:360px;">
+              <thead><tr><th class="l" colspan="2">チーム</th><th>試合</th><th>勝</th><th>負</th><th>勝率</th><th>差</th></tr></thead>
+              <tbody><tr class="ys"><td><span class="rk rk1">1</span></td><td class="l">ヤクルト</td><td>44</td><td class="win">27</td><td class="lose">17</td><td>.614</td><td>—</td></tr>
+                <tr><td><span class="rk rk2">2</span></td><td class="l">阪神</td><td>43</td><td class="win">25</td><td class="lose">17</td><td>.595</td><td>1.0</td></tr>
+                <tr><td><span class="rk rk3">3</span></td><td class="l">巨人</td><td>43</td><td class="win">24</td><td class="lose">19</td><td>.558</td><td>2.5</td></tr>
+                <tr><td><span class="rk rk4">4</span></td><td class="l">DeNA</td><td>44</td><td class="win">20</td><td class="lose">22</td><td>.476</td><td>6.0</td></tr>
+                <tr><td><span class="rk rk5">5</span></td><td class="l">広島</td><td>41</td><td class="win">16</td><td class="lose">23</td><td>.410</td><td>8.5</td></tr>
+                <tr><td><span class="rk rk6">6</span></td><td class="l">中日</td><td>43</td><td class="win">14</td><td class="lose">28</td><td>.333</td><td>12.0</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="sec-label">NEWS</div>
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">📰</div><h2>ニュースリンク</h2></div>
+          <a class="link-item" href="https://www.yakult-swallows.co.jp/" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🦅</div><div><div class="link-src">公式サイト</div><div class="link-desc">東京ヤクルトスワローズ オフィシャル</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://www.nikkansports.com/baseball/professional/yakult/" target="_blank"><div class="link-ico" style="background:#ffe8e8;">📰</div><div><div class="link-src">日刊スポーツ</div><div class="link-desc">スワローズ最新ニュース</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://www.sponichi.co.jp/baseball/npb/yakult/" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📰</div><div><div class="link-src">スポーツニッポン</div><div class="link-desc">ヤクルト最新情報</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://hochi.news/baseball/yakult/" target="_blank"><div class="link-ico" style="background:#fff3e0;">📰</div><div><div class="link-src">スポーツ報知</div><div class="link-desc">スワローズ関連記事</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://full-count.jp/category/npb/swallows/" target="_blank"><div class="link-ico" style="background:#e8f7ed;">⚾</div><div><div class="link-src">Full-Count</div><div class="link-desc">野球専門メディア</div></div><div class="link-arr">↗</div></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-label">2026 SEASON</div>
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🏆</div><h2>シーズン成績</h2></div>
+          <div class="rec-grid">
+            <div class="rec-cell"><span class="rec-num g">27</span><div class="rec-lbl">勝利</div></div>
+            <div class="rec-cell"><span class="rec-num r">17</span><div class="rec-lbl">敗戦</div></div>
+            <div class="rec-cell"><span class="rec-num">0</span><div class="rec-lbl">引分</div></div>
+            <div class="rec-cell"><span class="rec-num gold">.614</span><div class="rec-lbl">勝率</div></div>
+            <div class="rec-cell"><span class="rec-num b">1位</span><div class="rec-lbl">順位</div></div>
+            <div class="rec-cell"><span class="rec-num g">+10</span><div class="rec-lbl">貯金</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">📅</div><h2>次の試合</h2></div>
+          <div class="next-box">
+            <div class="next-date">2026.05.23 SAT 14:00</div>
+            <div class="next-vs">DeNA<br><span style="font-size:0.8rem;color:var(--muted);">vs</span><br>ヤクルト</div>
+            <div class="next-venue">📍 横浜スタジアム</div>
+            <div class="next-rec">今季対DeNA：7勝1敗 ⚾ 5/24も横浜で連戦</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">⚔️</div><h2>チーム対戦成績</h2></div>
+          <div style="overflow-x:auto;">
+            <table class="tbl">
+              <thead><tr><th class="l">相手</th><th>勝</th><th>負</th><th>勝率</th></tr></thead>
+              <tbody>
+                <tr><td class="l">阪神</td><td class="win">3</td><td class="lose">5</td><td class="lose">.375</td></tr>
+                <tr><td class="l">巨人</td><td class="win">7</td><td class="lose">4</td><td>.636</td></tr>
+                <tr><td class="l">DeNA</td><td class="win">7</td><td class="lose">1</td><td class="hi">.875</td></tr>
+                <tr><td class="l">広島</td><td class="win">6</td><td class="lose">2</td><td class="hi">.750</td></tr>
+                <tr><td class="l">中日</td><td class="win">4</td><td class="lose">5</td><td class="lose">.444</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🌱</div><h2>二軍（ファーム）</h2></div>
+          <a class="link-item" href="https://npb.jp/farm/" target="_blank"><div class="link-ico" style="background:#e8f7ed;">⚾</div><div><div class="link-src">イースタン試合結果</div><div class="link-desc">ファーム公式戦スコア</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://npb.jp/bis/2026/leagues/index_el.html" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📊</div><div><div class="link-src">イースタン順位表</div><div class="link-desc">ファームリーグ最新順位</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://www.yakult-swallows.co.jp/farm/game" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🦅</div><div><div class="link-src">ファーム情報（公式）</div><div class="link-desc">戸田球場 試合日程・結果</div></div><div class="link-arr">↗</div></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- コラム -->
+    <div style="margin-top:0;">
+      <div class="sec-label">COLUMN</div>
+      <div class="card">
+        <div class="card-head"><div class="card-head-icon">✍️</div><h2>観戦コラム</h2></div>
+        <div style="padding:32px 20px;text-align:center;color:var(--muted);">
+          <div style="font-size:2rem;margin-bottom:12px;">📝</div>
+          <div style="font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:8px;">コラム準備中</div>
+          <div style="font-size:0.78rem;line-height:1.8;">試合の観戦記・分析・独自コラムを<br>ここに掲載予定です。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA -->
+<div id="tab-data" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 SWALLOWS DATA</div>
+    <div class="sec-heading">独自データ分析</div>
+
+    <!-- 月別成績 -->
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📅</div><h2>月別成績</h2><span class="card-badge">NPB公式 5/22現在</span></div>
+      <div style="padding:20px;">
+        <table class="tbl">
+          <thead><tr><th class="l">月</th><th>試合</th><th>勝</th><th>負</th><th>分</th><th>勝率</th><th>得点</th><th>失点</th></tr></thead>
+          <tbody>
+            <tr><td class="l">3・4月</td><td>28</td><td class="win">17</td><td class="lose">11</td><td>0</td><td>.607</td><td>93</td><td>76</td></tr>
+            <tr><td class="l">5月（〜21日）</td><td>16</td><td class="win">10</td><td class="lose">6</td><td>0</td><td class="hi">.625</td><td>64</td><td>60</td></tr>
+            <tr class="ys"><td class="l">合計</td><td>44</td><td class="win">27</td><td class="lose">17</td><td>0</td><td>.614</td><td>157</td><td>149</td></tr>
+          </tbody>
+        </table>
+        <!-- 月別勝率バーグラフ -->
+        <div style="margin-top:20px;">
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:12px;font-weight:700;">月別勝率グラフ</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:0.78rem;width:80px;flex-shrink:0;">3・4月</span>
+              <div style="flex:1;background:var(--border);border-radius:4px;height:24px;position:relative;">
+                <div style="width:60.7%;background:var(--green);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;">
+                  <span style="font-size:0.72rem;font-weight:700;color:#fff;">.607</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:0.78rem;width:80px;flex-shrink:0;">5月</span>
+              <div style="flex:1;background:var(--border);border-radius:4px;height:24px;position:relative;">
+                <div style="width:60%;background:var(--green-light);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;">
+                  <span style="font-size:0.72rem;font-weight:700;color:#fff;">.600</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:0.78rem;width:80px;flex-shrink:0;">シーズン</span>
+              <div style="flex:1;background:var(--border);border-radius:4px;height:24px;position:relative;">
+                <div style="width:61.9%;background:var(--navy);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;">
+                  <span style="font-size:0.72rem;font-weight:700;color:#fff;">.619</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <!-- ホーム/ロード -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🏟️</div><h2>ホーム / ロード成績</h2></div>
+          <div style="padding:20px;">
+            <div style="display:flex;gap:16px;margin-bottom:20px;">
+              <div style="flex:1;background:var(--green-pale);border:1px solid var(--green-mid);border-radius:10px;padding:16px;text-align:center;">
+                <div style="font-size:0.7rem;color:var(--green);font-weight:700;letter-spacing:1px;margin-bottom:8px;">🏠 ホーム（神宮）</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--green);">12-6</div>
+                <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">勝率 .667</div>
+              </div>
+              <div style="flex:1;background:#f0f4ff;border:1px solid #c7d7ff;border-radius:10px;padding:16px;text-align:center;">
+                <div style="font-size:0.7rem;color:var(--navy);font-weight:700;letter-spacing:1px;margin-bottom:8px;">✈️ ビジター</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--navy);">14-10</div>
+                <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">勝率 .583</div>
+              </div>
+            </div>
+            <div style="font-size:0.75rem;color:var(--muted);line-height:1.8;">
+              ビジターでも勝率.583と高水準。ロードに強いのが今季の特徴。
+            </div>
+          </div>
+        </div>
+
+        <!-- チーム打撃 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🏏</div><h2>チーム打撃成績</h2><span class="card-badge">5/22現在</span></div>
+          <div style="overflow-x:auto;padding:4px;">
+            <table class="tbl" style="min-width:360px;">
+              <tbody>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">チーム打率</td><td class="hi">.244</td><td class="l" style="color:var(--muted);font-size:0.75rem;">得点</td><td class="win">154</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">本塁打</td><td><strong>30</strong></td><td class="l" style="color:var(--muted);font-size:0.75rem;">盗塁</td><td><strong>33</strong></td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">出塁率</td><td>.301</td><td class="l" style="color:var(--muted);font-size:0.75rem;">長打率</td><td>.353</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">OPS</td><td class="hi">.654</td><td class="l" style="color:var(--muted);font-size:0.75rem;">安打</td><td>341</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">打点</td><td>143</td><td class="l" style="color:var(--muted);font-size:0.75rem;">失策</td><td class="lose">19</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- チーム投手 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">⚾</div><h2>チーム投手成績</h2><span class="card-badge">5/22現在</span></div>
+          <div style="overflow-x:auto;padding:4px;">
+            <table class="tbl" style="min-width:360px;">
+              <tbody>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">チーム防御率</td><td class="hi">3.27</td><td class="l" style="color:var(--muted);font-size:0.75rem;">WHIP</td><td>1.19</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">奪三振</td><td><strong>325</strong></td><td class="l" style="color:var(--muted);font-size:0.75rem;">与四球</td><td>115</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">K/BB</td><td>2.83</td><td class="l" style="color:var(--muted);font-size:0.75rem;">被本塁打</td><td class="lose">35</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">セーブ</td><td>14</td><td class="l" style="color:var(--muted);font-size:0.75rem;">ホールド</td><td>30</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- サヨナラゲーム -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🎉</div><h2>今季サヨナラゲーム</h2></div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:12px;">
+                <div style="font-size:0.7rem;color:var(--green);font-weight:700;margin-bottom:4px;">2026年4月2日 vs 広島（神宮）</div>
+                <div style="font-size:0.88rem;font-weight:700;">ヤクルト 2-1 広島</div>
+                <div style="font-size:0.78rem;color:var(--muted);margin-top:4px;">9回2死 伊藤琉偉の三塁内野安打で2者生還。<br>開幕5連勝達成・池山監督新人監督球団初快挙</div>
+              </div>
+              <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
+                <div style="font-size:0.78rem;color:var(--muted);">他のサヨナラゲームは随時追加予定</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 連勝・連敗記録 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🔥</div><h2>連勝・連敗記録</h2></div>
+          <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:12px;">
+              <div style="font-size:0.7rem;color:var(--green);font-weight:700;margin-bottom:4px;">🔥 最長連勝（今季）</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:var(--green);">7連勝</div>
+              <div style="font-size:0.75rem;color:var(--muted);">vs DeNA 7連勝（球団タイ記録）</div>
+            </div>
+            <div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:12px;">
+              <div style="font-size:0.7rem;color:var(--green);font-weight:700;margin-bottom:4px;">🚀 開幕連勝</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:var(--green);">5連勝</div>
+              <div style="font-size:0.75rem;color:var(--muted);">3/27〜4/2 球団タイ記録・新人監督球団初</div>
+            </div>
+            <div style="background:#fff5f5;border:1px solid #fecaca;border-radius:8px;padding:12px;">
+              <div style="font-size:0.7rem;color:#e53e3e;font-weight:700;margin-bottom:4px;">最長連敗（今季）</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#e53e3e;">3連敗</div>
+              <div style="font-size:0.75rem;color:var(--muted);">vs 阪神 3連敗</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 対チーム別詳細 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">⚔️</div><h2>対チーム別詳細成績</h2></div>
+          <div style="overflow-x:auto;padding:4px;">
+            <table class="tbl" style="min-width:320px;">
+              <thead><tr><th class="l">相手</th><th>試合</th><th>勝率</th><th>得点</th><th>失点</th></tr></thead>
+              <tbody>
+                <tr><td class="l">阪神</td><td>8</td><td class="lose">.375</td><td>22</td><td class="lose">42</td></tr>
+                <tr><td class="l">巨人</td><td>11</td><td>.636</td><td>—</td><td>—</td></tr>
+                <tr><td class="l">DeNA</td><td>8</td><td class="hi">.875</td><td>44</td><td>32</td></tr>
+                <tr><td class="l">広島</td><td>8</td><td class="win">.750</td><td>—</td><td>—</td></tr>
+                <tr><td class="l">中日</td><td>9</td><td class="lose">.444</td><td>—</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:8px 16px 12px;font-size:0.7rem;color:var(--muted);">※一部データは集計中</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STANDINGS -->
+<div id="tab-standings" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 CENTRAL LEAGUE</div>
+    <div class="sec-heading">順位表</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📊</div><h2>セ・リーグ詳細順位表</h2><span class="card-badge">NPB 2026.05.21</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:580px;">
+          <thead><tr><th class="l" colspan="2">チーム</th><th>試合</th><th>勝</th><th>負</th><th>分</th><th>勝率</th><th>ゲーム差</th><th>ホーム</th><th>ロード</th></tr></thead>
+          <tbody><tr class="ys"><td><span class="rk rk1">1</span></td><td class="l">ヤクルト</td><td>44</td><td class="win">27</td><td class="lose">17</td><td>0</td><td>.614</td><td>—</td><td>13-7</td><td>14-10</td></tr>
+            <tr><td><span class="rk rk2">2</span></td><td class="l">阪神タイガース</td><td>43</td><td class="win">25</td><td class="lose">17</td><td>1</td><td>.595</td><td>1.0</td><td>14-9(1)</td><td>11-8</td></tr>
+            <tr><td><span class="rk rk3">3</span></td><td class="l">巨人ジャイアンツ</td><td>43</td><td class="win">24</td><td class="lose">19</td><td>0</td><td>.558</td><td>2.5</td><td>13-9</td><td>11-10</td></tr>
+            <tr><td><span class="rk rk4">4</span></td><td class="l">横浜DeNAベイスターズ</td><td>44</td><td class="win">20</td><td class="lose">22</td><td>2</td><td>.476</td><td>6.0</td><td>9-7(2)</td><td>11-15</td></tr>
+            <tr><td><span class="rk rk5">5</span></td><td class="l">広島東洋カープ</td><td>41</td><td class="win">16</td><td class="lose">23</td><td>2</td><td>.410</td><td>8.5</td><td>10-12</td><td>6-11(2)</td></tr>
+            <tr><td><span class="rk rk6">6</span></td><td class="l">中日ドラゴンズ</td><td>43</td><td class="win">14</td><td class="lose">28</td><td>1</td><td>.333</td><td>12.0</td><td>11-12</td><td>3-16(1)</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">⚔️</div><h2>対戦成績（ヤクルト視点）</h2></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:420px;">
+          <thead><tr><th class="l">相手チーム</th><th>勝</th><th>負</th><th>分</th><th>勝率</th><th>評価</th></tr></thead>
+          <tbody><tr><td class="l">阪神タイガース</td><td class="win">3</td><td class="lose">5</td><td>0</td><td class="lose">.375</td><td>⚠ 要注意</td></tr>
+            <tr><td class="l">巨人ジャイアンツ</td><td class="win">7</td><td class="lose">4</td><td>0</td><td>.636</td><td>✓ 優勢</td></tr>
+            <tr><td class="l">横浜DeNAベイスターズ</td><td class="win">7</td><td class="lose">1</td><td>0</td><td class="hi">.875</td><td>⭐ 得意</td></tr>
+            <tr><td class="l">広島東洋カープ</td><td class="win">6</td><td class="lose">2</td><td>0</td><td class="hi">.750</td><td>⭐ 得意</td></tr>
+            <tr><td class="l">中日ドラゴンズ</td><td class="win">4</td><td class="lose">5</td><td>0</td><td class="lose">.444</td><td>⚠ 要注意</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYERS -->
+<div id="tab-players" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 STATS</div>
+    <div class="sec-heading">個人成績</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📈</div><h2>NPB公式 個人成績リンク</h2></div>
+      <a class="link-item" href="https://npb.jp/bis/2026/stats/bat_c.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏏</div><div><div class="link-src">打撃成績（規定打席以上）</div><div class="link-desc">打率・本塁打・打点など</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/2026/stats/pit_c.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">⚾</div><div><div class="link-src">投手成績（規定投球回以上）</div><div class="link-desc">防御率・勝利・奪三振など</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/2026/stats/fld_c.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🧤</div><div><div class="link-src">守備成績</div><div class="link-desc">守備率・刺殺・補殺など</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/players/active/rst_s.html" target="_blank"><div class="link-ico" style="background:#e8f7ed;">🦅</div><div><div class="link-src">ヤクルト選手一覧（NPB公式）</div><div class="link-desc">全選手の個人年度別成績</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/stats_pitcher" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📊</div><div><div class="link-src">1軍成績（公式）</div><div class="link-desc">スワローズ公式の成績一覧</div></div><div class="link-arr">↗</div></a>
+    </div>
+  </div>
+</div>
+
+<!-- ROSTER -->
+<div id="tab-roster" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 STAFF & ROSTER</div>
+    <div class="sec-heading">選手・スタッフ</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">👔</div><h2>2026年 監督</h2></div>
+      <div style="padding:20px 20px;display:flex;align-items:center;gap:16px;">
+        <div style="width:60px;height:60px;background:var(--green-pale);border:2px solid var(--green);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.75rem;color:var(--green);flex-shrink:0;text-align:center;line-height:1.3;">23rd<br>MGR</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;">池山 隆寛</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">第23代監督 / 1965年12月17日生 / 兵庫県出身</div>
+          <div style="font-size:0.78rem;color:var(--green);font-weight:700;margin-top:4px;">元二軍監督（6年）→ 2026年より一軍監督就任</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🔗</div><h2>選手・スタッフ 公式リンク</h2></div>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/list" target="_blank"><div class="link-ico" style="background:#e8f7ed;">👥</div><div><div class="link-src">全選手一覧（公式）</div><div class="link-desc">2026年在籍全選手プロフィール</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/roster" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📋</div><div><div class="link-src">1軍登録選手一覧（公式）</div><div class="link-desc">現在の出場登録選手</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/players/active/rst_s.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">📋</div><div><div class="link-src">選手一覧（NPB公式）</div><div class="link-desc">背番号・ポジション別</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/pitcher" target="_blank"><div class="link-ico" style="background:#e8f0fe;">⚾</div><div><div class="link-src">投手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/catcher" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🧤</div><div><div class="link-src">捕手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/infielder" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏟️</div><div><div class="link-src">内野手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/outfielder" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏃</div><div><div class="link-src">外野手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/manager" target="_blank"><div class="link-ico" style="background:#e8f7ed;">👔</div><div><div class="link-src">監督・コーチ一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/announcement/2026/managers_s.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">📋</div><div><div class="link-src">NPB公式 監督・コーチ一覧</div></div><div class="link-arr">↗</div></a>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div id="tab-history" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">CLUB HISTORY & RECORDS</div>
+    <div class="sec-heading">球団の歴史・記録</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🏆</div><h2>タイトル獲得歴</h2></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:400px;">
+          <thead><tr><th class="l">タイトル</th><th>回数</th><th class="l">年度</th></tr></thead>
+          <tbody>
+            <tr class="ys"><td class="l">🥇 日本シリーズ優勝</td><td class="hi">6回</td><td class="l" style="font-size:0.78rem;">1978・1993・1995・1997・2001・2021</td></tr>
+            <tr><td class="l">🏅 セ・リーグ優勝</td><td class="hi">8回</td><td class="l" style="font-size:0.78rem;">1978・1992・1993・1995・1997・2001・2015・2021</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📈</div><h2>個人主要記録</h2><span class="card-badge">♦NPB ☆セ記録</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:500px;">
+          <thead><tr><th class="l">記録</th><th class="l">選手</th><th>数値</th><th>年度</th><th class="l">備考</th></tr></thead>
+          <tbody>
+            <tr><td class="l">シーズン本塁打</td><td class="l">バレンティン</td><td class="hi">60本</td><td>2013</td><td class="l">♦ NPB記録</td></tr>
+            <tr><td class="l">シーズン打率</td><td class="l">青木 宣親</td><td class="hi">.358</td><td>2006</td><td class="l">☆ セ・リーグ記録</td></tr>
+            <tr><td class="l">トリプルスリー</td><td class="l">山田 哲人</td><td class="hi">3回</td><td>2015・16・18</td><td class="l">♦ 史上初3回達成</td></tr>
+            <tr><td class="l">球団通算最多安打</td><td class="l">若松 勉</td><td class="hi">2173本</td><td>—</td><td class="l">球団歴代1位</td></tr>
+            <tr><td class="l">シーズン防御率（新人）</td><td class="l">伊藤 智仁</td><td class="hi">0.91</td><td>1993</td><td class="l">☆ セ記録（新人）</td></tr>
+            <tr><td class="l">球団通算最多勝</td><td class="l">松岡 弘</td><td class="hi">219勝</td><td>—</td><td class="l">球団歴代1位</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🔗</div><h2>公式記録リンク</h2></div>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/stats_batter" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏏</div><div><div class="link-src">個人打撃成績（公式）</div><div class="link-desc">2026年1軍打撃成績一覧</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/stats_pitcher" target="_blank"><div class="link-ico" style="background:#e8f0fe;">⚾</div><div><div class="link-src">個人投手成績（公式）</div><div class="link-desc">2026年1軍投手成績一覧</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/teams/index_s.html" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📊</div><div><div class="link-src">チーム記録（NPB公式）</div><div class="link-desc">東京ヤクルトスワローズ球団ページ</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/teams/yearly_s.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">📋</div><div><div class="link-src">年度別成績 1950〜2026（NPB）</div><div class="link-desc">全年度の勝敗・順位・監督一覧</div></div><div class="link-arr">↗</div></a>
+    </div>
+    <div class="sec-label">TIMELINE</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📖</div><h2>球団史年表</h2></div>
+      <div class="timeline">
+        <div class="tl-row"><div class="tl-year">1950</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ev">創設</span><div class="tl-title">国鉄スワローズとしてプロ野球参入</div><div class="tl-desc">セントラル・リーグ創設メンバーとして参加。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1978</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">初優勝</span><div class="tl-title">球団史上初のリーグ優勝・日本一</div><div class="tl-desc">大杉勝男・若松勉らの活躍で悲願の初優勝。広岡達朗監督のもと阪急ブレーブスを破り日本一に輝く。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1990</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ev">就任</span><div class="tl-title">野村克也監督就任・ID野球の時代</div><div class="tl-desc">データを重視した「ID野球」を導入し黄金時代の礎を築く。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1992</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">優勝</span><div class="tl-title">14年ぶりセ・リーグ優勝</div><div class="tl-desc">1978年以来14年ぶりのリーグ優勝。ハウエルが本塁打王・首位打者の二冠。日本シリーズは西武ライオンズに3勝4敗で惜敗。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1993</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">日本シリーズ制覇 / 伊藤智仁が防御率0.91（セ記録）</div><div class="tl-desc">池山隆寛・古田敦也・広澤克己らが活躍。西武ライオンズを破り日本一。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1995</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">2年ぶり日本一</div><div class="tl-desc">オリックスとの日本シリーズを制覇。野村ID野球の集大成。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1997</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">野村監督時代3度目の日本一</div><div class="tl-desc">4度のリーグ優勝・3度の日本一という黄金時代を築く。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2001</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">若松勉監督で日本一 / 古田敦也MVP</div><div class="tl-desc">近鉄バファローズとの日本シリーズを制覇。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2011</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ev">惜敗</span><div class="tl-title">小川淳司監督で首位快走も惜しくも2位</div><div class="tl-desc">東日本大震災の年、4月から首位を走り続けたが10月に中日に逆転されリーグ2位。日本シリーズ進出ならず。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2013</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag re">NPB記録</span><div class="tl-title">バレンティン、60本塁打の日本記録樹立</div><div class="tl-desc">NPB歴代最多の60本塁打を達成。今もNPB記録として残る。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2015</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag re">記録</span><div class="tl-title">山田哲人トリプルスリー達成・リーグ優勝</div><div class="tl-desc">打率.329・38本塁打・34盗塁のトリプルスリーを達成しリーグ優勝。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2021</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">高津臣吾監督で20年ぶり日本一</div><div class="tl-desc">村上宗隆・山田哲人・塩見泰隆らが活躍。オリックスとの死闘を制して感動の日本一。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2026</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag now">現在</span><div class="tl-title">池山隆寛監督でセ・リーグ首位快走中</div><div class="tl-desc">26勝17敗・勝率.605で首位。連覇・日本一奪還を目指す。</div></div></div>
+      </div>
+    </div>
+
+    <div class="sec-label">DRAFT HISTORY</div>
+
+    <!-- 近年ドラフト詳細 -->
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📋</div><h2>2025年ドラフト指名一覧</h2><span class="card-badge">2025.10.23</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:440px;">
+          <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th><th class="l">所属</th></tr></thead>
+          <tbody>
+            <tr class="ys"><td>1位</td><td class="l">松下 歩叶</td><td>内野手</td><td class="l">法政大</td></tr>
+            <tr><td>2位</td><td class="l">松川 玲央</td><td>内野手</td><td class="l">城西大</td></tr>
+            <tr><td>3位</td><td class="l">山崎 太陽</td><td>投手</td><td class="l">創価大</td></tr>
+            <tr><td>4位</td><td class="l">増居 翔太</td><td>投手</td><td class="l">トヨタ自動車</td></tr>
+            <tr><td>5位</td><td class="l">鈴木 蓮吾</td><td>投手</td><td class="l">東海大甲府高</td></tr>
+            <tr><td>6位</td><td class="l">石井 巧</td><td>内野手</td><td class="l">NTT東日本</td></tr>
+            <tr><td>7位</td><td class="l">飯田 琉斗</td><td>投手</td><td class="l">ENEOS</td></tr>
+            <tr><td>育成1位</td><td class="l">小宮 悠瞳</td><td>投手</td><td class="l">川崎総合科学高</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📋</div><h2>2024年ドラフト指名一覧</h2><span class="card-badge">2024.10</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:440px;">
+          <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th><th class="l">所属</th></tr></thead>
+          <tbody>
+            <tr class="ys"><td>1位</td><td class="l">中村 優斗</td><td>投手（右）</td><td class="l">愛知工業大</td></tr>
+            <tr><td>2位</td><td class="l">モイセエフ ニキータ</td><td>外野手（左）</td><td class="l">豊川高</td></tr>
+            <tr><td>3位</td><td class="l">荘司 宏太</td><td>投手（左）</td><td class="l">セガサミー</td></tr>
+            <tr><td>4位</td><td class="l">田中 陽翔</td><td>内野手</td><td class="l">健大高崎高</td></tr>
+            <tr><td>5位</td><td class="l">矢野 泰二郎</td><td>捕手（右）</td><td class="l">四国IL愛媛</td></tr>
+            <tr><td>育成</td><td class="l">根岸辰昇 / 廣澤優 / 下川隼佑 / 松本龍之介</td><td>—</td><td class="l">各所属</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📋</div><h2>2022・2023年ドラフト指名一覧</h2></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div style="overflow-x:auto;padding:4px;border-right:1px solid var(--border);">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--green);padding:10px 10px 6px;letter-spacing:1px;">2023年</div>
+          <table class="tbl" style="min-width:200px;">
+            <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th></tr></thead>
+            <tbody>
+              <tr class="ys"><td>1位</td><td class="l">西舘 昂汰</td><td>投手（右）</td></tr>
+              <tr><td>2位</td><td class="l">松本 健吾</td><td>投手（右）</td></tr>
+              <tr><td>3位</td><td class="l">石原 勇輝</td><td>投手（左）</td></tr>
+              <tr><td>4位</td><td class="l">鈴木 叶</td><td>捕手（右）</td></tr>
+              <tr><td>5位</td><td class="l">伊藤 琉偉</td><td>内野手（右）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="overflow-x:auto;padding:4px;">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--green);padding:10px 10px 6px;letter-spacing:1px;">2022年</div>
+          <table class="tbl" style="min-width:200px;">
+            <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th></tr></thead>
+            <tbody>
+              <tr class="ys"><td>1位</td><td class="l">吉村 貢司郎</td><td>投手（右）</td></tr>
+              <tr><td>2位</td><td class="l">西村 瑠伊斗</td><td>外野手（左）</td></tr>
+              <tr><td>3位</td><td class="l">澤井 廉</td><td>外野手（左）</td></tr>
+              <tr><td>4位</td><td class="l">坂本 拓己</td><td>投手（左）</td></tr>
+              <tr><td>5位</td><td class="l">北村 恵吾</td><td>内野手（右）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🔗</div><h2>歴代ドラフト全記録</h2></div>
+      <a class="link-item" href="https://www.draft-kaigi.jp/npb-draft/swallows/draftshimei/" target="_blank">
+        <div class="link-ico" style="background:#e8f0fe;">📋</div>
+        <div><div class="link-src">ドラフト会議HP — 全年度指名一覧</div><div class="link-desc">1965年〜現在の全指名選手</div></div>
+        <div class="link-arr">↗</div>
+      </a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/pages/company/archive/rookie" target="_blank">
+        <div class="link-ico" style="background:#e8f7ed;">🦅</div>
+        <div><div class="link-src">公式 新人選手一覧</div><div class="link-desc">スワローズ公式の新人選手アーカイブ</div></div>
+        <div class="link-arr">↗</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- BBS -->
+<div id="tab-bbs" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">FAN COMMUNITY</div>
+    <div class="sec-heading">ファン掲示板</div>
+    <div class="bbs-form">
+      <div style="margin-bottom:14px;"><label class="bbs-label">ニックネーム</label><input id="bbs-name" class="bbs-input" type="text" placeholder="燕ファン"></div>
+      <div><label class="bbs-label">投稿内容</label><textarea id="bbs-body" class="bbs-input" placeholder="試合の感想、選手への応援、何でもどうぞ！"></textarea></div>
+      <button class="bbs-submit" onclick="submitPost()">投稿する ⚾</button>
+    </div>
+    <div id="post-list" class="post-list"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-logo"><span>燕</span>の巣</div>
+  <p>東京ヤクルトスワローズ 個人ファンサイト<br>
+  成績データ出典：<a href="https://npb.jp" target="_blank">NPB公式サイト</a>（2026年5月18日現在）<br>
+  30年来のちなヤクによる個人サイトです。球団・NPBとは一切関係ありません。</p>
+</footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const INIT=[
+  {name:'神宮の住人',body:'今シーズンのスワローズは本当に強い！貯金10で首位って最高すぎる🐦',time:'2026/05/18 21:30',likes:24,liked:false},
+  {name:'ちなヤク歴30年',body:'1993年から応援してきたけど今年は特別な予感がする。連覇目指してくれ！',time:'2026/05/18 19:45',likes:18,liked:false},
+  {name:'燕party',body:'DeNA戦の7勝1敗がえぐすぎる笑。阪神・中日をどう攻略するかが後半戦の鍵かな。',time:'2026/05/17 23:10',likes:11,liked:false},
+  {name:'神宮の傘',body:'今年も神宮の雰囲気最高だよ。来週みんな行こう！',time:'2026/05/17 18:00',likes:9,liked:false}
+];
+let posts=JSON.parse(localStorage.getItem('swallows_bbs')||'null')||[...INIT];
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
+function renderPosts(){
+  const list=document.getElementById('post-list');list.innerHTML='';
+  const colors=['#007a35','#002060','#5b21b6','#b91c1c','#0369a1'];
+  posts.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='post-item';
+    d.innerHTML=`<div class="post-header"><div class="post-avatar" style="background:${colors[i%colors.length]}">${esc(p.name.charAt(0))}</div><div class="post-name">${esc(p.name)}<span class="post-tag">ちなヤク</span></div><div class="post-time">${p.time}</div></div><div class="post-body">${esc(p.body)}</div><div class="post-like"><button class="like-btn${p.liked?' liked':''}" onclick="toggleLike(${i})">${p.liked?'❤️':'🤍'} いいね</button><span class="like-count">${p.likes}</span></div>`;
+    list.appendChild(d);
+  });
+}
+function toggleLike(i){posts[i].liked?posts[i].likes--:posts[i].likes++;posts[i].liked=!posts[i].liked;save();renderPosts();}
+function submitPost(){
+  const name=document.getElementById('bbs-name').value.trim()||'名無しの燕ファン';
+  const body=document.getElementById('bbs-body').value.trim();
+  if(!body){alert('内容を入力してください');return;}
+  const n=new Date();
+  const t=`${n.getFullYear()}/${String(n.getMonth()+1).padStart(2,'0')}/${String(n.getDate()).padStart(2,'0')} ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+  posts.unshift({name,body,time:t,likes:0,liked:false});
+  save();renderPosts();
+  document.getElementById('bbs-name').value='';document.getElementById('bbs-body').value='';
+}
+// ===== VOTE =====
+const ROSTER = {
+  '投手': ['J.キハダ','石山 泰稚','中村 優斗','清水 昇','奥川 恭伸','石川 雅規','木澤 尚文','吉村 貢司郎','星 知弥','山野 太一','松本 健吾','小川 泰弘','荘司 宏太','山崎 太陽','田口 麗斗','石原 勇輝','高梨 裕稔','拓也','増居 翔太','大西 広樹','小澤 怜史','大道 温貴','高橋 奎二','鈴木 蓮吾','長谷川 宙輝','坂本 拓己','N.ウォルターズ','飯田 琉斗','J.リランソ','阪口 皓亮','丸山 翔大','下川 隼佑','廣澤 優','沼田 翔平','青柳 晃洋'],
+  '捕手': ['古賀 優大','中村 悠平','松本 直樹','柿沼 友哉','橋本 星哉','矢野 泰二郎','鈴木 叶'],
+  '内野手': ['赤羽 由紘','山田 哲人','内山 壮真','松下 歩叶','長岡 秀樹','茂木 栄五郎','宮本 丈','J.オスナ','山野辺 翔','石井 巧','松川 玲央','北村 恵吾','田中 陽翔','武岡 龍世','伊藤 琉偉'],
+  '外野手': ['並木 秀尊','丸山 和郁','塩見 泰隆','D.サンタナ','モイセエフ ニキータ','西村 瑠伊斗','澤井 廉','増田 珠','岩田 幸宏']
+};
+const CATS = Object.keys(ROSTER);
+let currentCat = '投手';
+
+const today = new Date().toDateString();
+document.getElementById('vote-date').textContent = '(' + new Date().toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'}) + ')';
+
+let votes = JSON.parse(localStorage.getItem('swallows_votes') || '{}');
+let votedDate = localStorage.getItem('swallows_voted_date') || '';
+let votedPlayer = localStorage.getItem('swallows_voted_player') || '';
+let hasVoted = votedDate === today;
+
+if (!votes[today]) {
+  votes[today] = {};
+  CATS.forEach(cat => {
+    ROSTER[cat].forEach(p => { votes[today][p] = 0; });
+  });
+}
+
+function totalVotes() {
+  return Object.values(votes[today]).reduce((s, v) => s + v, 0);
+}
+
+function renderTabs() {
+  const tabs = document.getElementById('vote-tabs');
+  tabs.innerHTML = '';
+  CATS.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.textContent = cat;
+    btn.style.cssText = `padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;cursor:pointer;border:1px solid;font-family:'Noto Sans JP',sans-serif;transition:all .15s;`;
+    if (cat === currentCat) {
+      btn.style.background = 'var(--green)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--green)';
+    } else {
+      btn.style.background = 'none';
+      btn.style.color = 'var(--muted)';
+      btn.style.borderColor = 'var(--border)';
+    }
+    btn.onclick = () => { currentCat = cat; renderTabs(); renderVoteList(); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderVoteList() {
+  const list = document.getElementById('vote-list');
+  const total = totalVotes();
+  list.innerHTML = '';
+  ROSTER[currentCat].forEach(p => {
+    const v = votes[today][p] || 0;
+    const pct = total > 0 ? Math.round(v / total * 100) : 0;
+    if (hasVoted) {
+      const isVoted = p === votedPlayer;
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;align-items:center;gap:8px;padding:4px 0;';
+      div.innerHTML = `
+        <span style="font-size:0.78rem;font-weight:${isVoted?'700':'400'};min-width:100px;color:${isVoted?'var(--green)':'inherit'}">${p}${isVoted?' ✓':''}</span>
+        <div class="vote-bar-wrap"><div class="vote-bar" style="width:${pct}%"></div></div>
+        <span class="vote-pct">${pct}%</span>`;
+      list.appendChild(div);
+    } else {
+      const btn = document.createElement('button');
+      btn.className = 'vote-btn';
+      btn.style.cssText = 'padding:7px 12px;font-size:0.8rem;';
+      btn.textContent = p;
+      btn.onclick = () => doVote(p);
+      list.appendChild(btn);
+    }
+  });
+  const result = document.getElementById('vote-result');
+  if (hasVoted) {
+    result.style.display = 'block';
+    result.innerHTML = `総投票数：${total}票`;
+  }
+}
+
+function doVote(player) {
+  if (hasVoted) return;
+  votes[today][player] = (votes[today][player] || 0) + 1;
+  hasVoted = true;
+  votedDate = today;
+  votedPlayer = player;
+  localStorage.setItem('swallows_votes', JSON.stringify(votes));
+  localStorage.setItem('swallows_voted_date', today);
+  localStorage.setItem('swallows_voted_player', player);
+  renderVoteList();
+}
+
+renderTabs();
+renderVoteList();
+
+</script>
+</body>
+</html>
+</tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="sec-label">NEWS</div>
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">📰</div><h2>ニュースリンク</h2></div>
+          <a class="link-item" href="https://www.yakult-swallows.co.jp/" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🦅</div><div><div class="link-src">公式サイト</div><div class="link-desc">東京ヤクルトスワローズ オフィシャル</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://www.nikkansports.com/baseball/professional/yakult/" target="_blank"><div class="link-ico" style="background:#ffe8e8;">📰</div><div><div class="link-src">日刊スポーツ</div><div class="link-desc">スワローズ最新ニュース</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://www.sponichi.co.jp/baseball/npb/yakult/" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📰</div><div><div class="link-src">スポーツニッポン</div><div class="link-desc">ヤクルト最新情報</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://hochi.news/baseball/yakult/" target="_blank"><div class="link-ico" style="background:#fff3e0;">📰</div><div><div class="link-src">スポーツ報知</div><div class="link-desc">スワローズ関連記事</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://full-count.jp/category/npb/swallows/" target="_blank"><div class="link-ico" style="background:#e8f7ed;">⚾</div><div><div class="link-src">Full-Count</div><div class="link-desc">野球専門メディア</div></div><div class="link-arr">↗</div></a>
+        </div>
+      </div>
+
+      <div>
+        <div class="sec-label">2026 SEASON</div>
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🏆</div><h2>シーズン成績</h2></div>
+          <div class="rec-grid">
+            <div class="rec-cell"><span class="rec-num g">27</span><div class="rec-lbl">勝利</div></div>
+            <div class="rec-cell"><span class="rec-num r">17</span><div class="rec-lbl">敗戦</div></div>
+            <div class="rec-cell"><span class="rec-num">0</span><div class="rec-lbl">引分</div></div>
+            <div class="rec-cell"><span class="rec-num gold">.614</span><div class="rec-lbl">勝率</div></div>
+            <div class="rec-cell"><span class="rec-num b">1位</span><div class="rec-lbl">順位</div></div>
+            <div class="rec-cell"><span class="rec-num g">+10</span><div class="rec-lbl">貯金</div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">📅</div><h2>次の試合</h2></div>
+          <div class="next-box">
+            <div class="next-date">2026.05.23 SAT 14:00</div>
+            <div class="next-vs">DeNA<br><span style="font-size:0.8rem;color:var(--muted);">vs</span><br>ヤクルト</div>
+            <div class="next-venue">📍 横浜スタジアム</div>
+            <div class="next-rec">今季対DeNA：7勝1敗 ⚾ 5/24も横浜で連戦</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">⚔️</div><h2>チーム対戦成績</h2></div>
+          <div style="overflow-x:auto;">
+            <table class="tbl">
+              <thead><tr><th class="l">相手</th><th>勝</th><th>負</th><th>勝率</th></tr></thead>
+              <tbody>
+                <tr><td class="l">阪神</td><td class="win">3</td><td class="lose">5</td><td class="lose">.375</td></tr>
+                <tr><td class="l">巨人</td><td class="win">7</td><td class="lose">4</td><td>.636</td></tr>
+                <tr><td class="l">DeNA</td><td class="win">7</td><td class="lose">1</td><td class="hi">.875</td></tr>
+                <tr><td class="l">広島</td><td class="win">6</td><td class="lose">2</td><td class="hi">.750</td></tr>
+                <tr><td class="l">中日</td><td class="win">4</td><td class="lose">5</td><td class="lose">.444</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🌱</div><h2>二軍（ファーム）</h2></div>
+          <a class="link-item" href="https://npb.jp/farm/" target="_blank"><div class="link-ico" style="background:#e8f7ed;">⚾</div><div><div class="link-src">イースタン試合結果</div><div class="link-desc">ファーム公式戦スコア</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://npb.jp/bis/2026/leagues/index_el.html" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📊</div><div><div class="link-src">イースタン順位表</div><div class="link-desc">ファームリーグ最新順位</div></div><div class="link-arr">↗</div></a>
+          <a class="link-item" href="https://www.yakult-swallows.co.jp/farm/game" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🦅</div><div><div class="link-src">ファーム情報（公式）</div><div class="link-desc">戸田球場 試合日程・結果</div></div><div class="link-arr">↗</div></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- コラム -->
+    <div style="margin-top:0;">
+      <div class="sec-label">COLUMN</div>
+      <div class="card">
+        <div class="card-head"><div class="card-head-icon">✍️</div><h2>観戦コラム</h2></div>
+        <div style="padding:32px 20px;text-align:center;color:var(--muted);">
+          <div style="font-size:2rem;margin-bottom:12px;">📝</div>
+          <div style="font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:8px;">コラム準備中</div>
+          <div style="font-size:0.78rem;line-height:1.8;">試合の観戦記・分析・独自コラムを<br>ここに掲載予定です。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DATA -->
+<div id="tab-data" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 SWALLOWS DATA</div>
+    <div class="sec-heading">独自データ分析</div>
+
+    <!-- 月別成績 -->
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📅</div><h2>月別成績</h2><span class="card-badge">NPB公式 5/22現在</span></div>
+      <div style="padding:20px;">
+        <table class="tbl">
+          <thead><tr><th class="l">月</th><th>試合</th><th>勝</th><th>負</th><th>分</th><th>勝率</th><th>得点</th><th>失点</th></tr></thead>
+          <tbody>
+            <tr><td class="l">3・4月</td><td>28</td><td class="win">17</td><td class="lose">11</td><td>0</td><td>.607</td><td>93</td><td>76</td></tr>
+            <tr><td class="l">5月（〜21日）</td><td>16</td><td class="win">10</td><td class="lose">6</td><td>0</td><td class="hi">.625</td><td>64</td><td>60</td></tr>
+            <tr class="ys"><td class="l">合計</td><td>44</td><td class="win">27</td><td class="lose">17</td><td>0</td><td>.614</td><td>157</td><td>149</td></tr>
+          </tbody>
+        </table>
+        <!-- 月別勝率バーグラフ -->
+        <div style="margin-top:20px;">
+          <div style="font-size:0.75rem;color:var(--muted);margin-bottom:12px;font-weight:700;">月別勝率グラフ</div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:0.78rem;width:80px;flex-shrink:0;">3・4月</span>
+              <div style="flex:1;background:var(--border);border-radius:4px;height:24px;position:relative;">
+                <div style="width:60.7%;background:var(--green);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;">
+                  <span style="font-size:0.72rem;font-weight:700;color:#fff;">.607</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:0.78rem;width:80px;flex-shrink:0;">5月</span>
+              <div style="flex:1;background:var(--border);border-radius:4px;height:24px;position:relative;">
+                <div style="width:60%;background:var(--green-light);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;">
+                  <span style="font-size:0.72rem;font-weight:700;color:#fff;">.600</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:12px;">
+              <span style="font-size:0.78rem;width:80px;flex-shrink:0;">シーズン</span>
+              <div style="flex:1;background:var(--border);border-radius:4px;height:24px;position:relative;">
+                <div style="width:61.9%;background:var(--navy);border-radius:4px;height:100%;display:flex;align-items:center;padding-left:8px;">
+                  <span style="font-size:0.72rem;font-weight:700;color:#fff;">.619</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <!-- ホーム/ロード -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🏟️</div><h2>ホーム / ロード成績</h2></div>
+          <div style="padding:20px;">
+            <div style="display:flex;gap:16px;margin-bottom:20px;">
+              <div style="flex:1;background:var(--green-pale);border:1px solid var(--green-mid);border-radius:10px;padding:16px;text-align:center;">
+                <div style="font-size:0.7rem;color:var(--green);font-weight:700;letter-spacing:1px;margin-bottom:8px;">🏠 ホーム（神宮）</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--green);">12-6</div>
+                <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">勝率 .667</div>
+              </div>
+              <div style="flex:1;background:#f0f4ff;border:1px solid #c7d7ff;border-radius:10px;padding:16px;text-align:center;">
+                <div style="font-size:0.7rem;color:var(--navy);font-weight:700;letter-spacing:1px;margin-bottom:8px;">✈️ ビジター</div>
+                <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:2rem;color:var(--navy);">14-10</div>
+                <div style="font-size:0.8rem;color:var(--muted);margin-top:4px;">勝率 .583</div>
+              </div>
+            </div>
+            <div style="font-size:0.75rem;color:var(--muted);line-height:1.8;">
+              ビジターでも勝率.583と高水準。ロードに強いのが今季の特徴。
+            </div>
+          </div>
+        </div>
+
+        <!-- チーム打撃 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🏏</div><h2>チーム打撃成績</h2><span class="card-badge">5/22現在</span></div>
+          <div style="overflow-x:auto;padding:4px;">
+            <table class="tbl" style="min-width:360px;">
+              <tbody>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">チーム打率</td><td class="hi">.244</td><td class="l" style="color:var(--muted);font-size:0.75rem;">得点</td><td class="win">154</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">本塁打</td><td><strong>30</strong></td><td class="l" style="color:var(--muted);font-size:0.75rem;">盗塁</td><td><strong>33</strong></td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">出塁率</td><td>.301</td><td class="l" style="color:var(--muted);font-size:0.75rem;">長打率</td><td>.353</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">OPS</td><td class="hi">.654</td><td class="l" style="color:var(--muted);font-size:0.75rem;">安打</td><td>341</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">打点</td><td>143</td><td class="l" style="color:var(--muted);font-size:0.75rem;">失策</td><td class="lose">19</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- チーム投手 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">⚾</div><h2>チーム投手成績</h2><span class="card-badge">5/22現在</span></div>
+          <div style="overflow-x:auto;padding:4px;">
+            <table class="tbl" style="min-width:360px;">
+              <tbody>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">チーム防御率</td><td class="hi">3.27</td><td class="l" style="color:var(--muted);font-size:0.75rem;">WHIP</td><td>1.19</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">奪三振</td><td><strong>325</strong></td><td class="l" style="color:var(--muted);font-size:0.75rem;">与四球</td><td>115</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">K/BB</td><td>2.83</td><td class="l" style="color:var(--muted);font-size:0.75rem;">被本塁打</td><td class="lose">35</td></tr>
+                <tr><td class="l" style="color:var(--muted);font-size:0.75rem;">セーブ</td><td>14</td><td class="l" style="color:var(--muted);font-size:0.75rem;">ホールド</td><td>30</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <!-- サヨナラゲーム -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🎉</div><h2>今季サヨナラゲーム</h2></div>
+          <div style="padding:16px 20px;">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:12px;">
+                <div style="font-size:0.7rem;color:var(--green);font-weight:700;margin-bottom:4px;">2026年4月2日 vs 広島（神宮）</div>
+                <div style="font-size:0.88rem;font-weight:700;">ヤクルト 2-1 広島</div>
+                <div style="font-size:0.78rem;color:var(--muted);margin-top:4px;">9回2死 伊藤琉偉の三塁内野安打で2者生還。<br>開幕5連勝達成・池山監督新人監督球団初快挙</div>
+              </div>
+              <div style="background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:12px;text-align:center;">
+                <div style="font-size:0.78rem;color:var(--muted);">他のサヨナラゲームは随時追加予定</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 連勝・連敗記録 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">🔥</div><h2>連勝・連敗記録</h2></div>
+          <div style="padding:16px 20px;display:flex;flex-direction:column;gap:10px;">
+            <div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:12px;">
+              <div style="font-size:0.7rem;color:var(--green);font-weight:700;margin-bottom:4px;">🔥 最長連勝（今季）</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:var(--green);">7連勝</div>
+              <div style="font-size:0.75rem;color:var(--muted);">vs DeNA 7連勝（球団タイ記録）</div>
+            </div>
+            <div style="background:var(--green-pale);border:1px solid var(--green-mid);border-radius:8px;padding:12px;">
+              <div style="font-size:0.7rem;color:var(--green);font-weight:700;margin-bottom:4px;">🚀 開幕連勝</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:var(--green);">5連勝</div>
+              <div style="font-size:0.75rem;color:var(--muted);">3/27〜4/2 球団タイ記録・新人監督球団初</div>
+            </div>
+            <div style="background:#fff5f5;border:1px solid #fecaca;border-radius:8px;padding:12px;">
+              <div style="font-size:0.7rem;color:#e53e3e;font-weight:700;margin-bottom:4px;">最長連敗（今季）</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.6rem;color:#e53e3e;">3連敗</div>
+              <div style="font-size:0.75rem;color:var(--muted);">vs 阪神 3連敗</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 対チーム別詳細 -->
+        <div class="card">
+          <div class="card-head"><div class="card-head-icon">⚔️</div><h2>対チーム別詳細成績</h2></div>
+          <div style="overflow-x:auto;padding:4px;">
+            <table class="tbl" style="min-width:320px;">
+              <thead><tr><th class="l">相手</th><th>試合</th><th>勝率</th><th>得点</th><th>失点</th></tr></thead>
+              <tbody>
+                <tr><td class="l">阪神</td><td>8</td><td class="lose">.375</td><td>22</td><td class="lose">42</td></tr>
+                <tr><td class="l">巨人</td><td>11</td><td>.636</td><td>—</td><td>—</td></tr>
+                <tr><td class="l">DeNA</td><td>8</td><td class="hi">.875</td><td>44</td><td>32</td></tr>
+                <tr><td class="l">広島</td><td>8</td><td class="win">.750</td><td>—</td><td>—</td></tr>
+                <tr><td class="l">中日</td><td>9</td><td class="lose">.444</td><td>—</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="padding:8px 16px 12px;font-size:0.7rem;color:var(--muted);">※一部データは集計中</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STANDINGS -->
+<div id="tab-standings" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 CENTRAL LEAGUE</div>
+    <div class="sec-heading">順位表</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📊</div><h2>セ・リーグ詳細順位表</h2><span class="card-badge">NPB 2026.05.21</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:580px;">
+          <thead><tr><th class="l" colspan="2">チーム</th><th>試合</th><th>勝</th><th>負</th><th>分</th><th>勝率</th><th>ゲーム差</th><th>ホーム</th><th>ロード</th></tr></thead>
+          <tbody><tr class="ys"><td><span class="rk rk1">1</span></td><td class="l">ヤクルト</td><td>44</td><td class="win">27</td><td class="lose">17</td><td>0</td><td>.614</td><td>—</td><td>13-7</td><td>14-10</td></tr>
+            <tr><td><span class="rk rk2">2</span></td><td class="l">阪神タイガース</td><td>43</td><td class="win">25</td><td class="lose">17</td><td>1</td><td>.595</td><td>1.0</td><td>14-9(1)</td><td>11-8</td></tr>
+            <tr><td><span class="rk rk3">3</span></td><td class="l">巨人ジャイアンツ</td><td>43</td><td class="win">24</td><td class="lose">19</td><td>0</td><td>.558</td><td>2.5</td><td>13-9</td><td>11-10</td></tr>
+            <tr><td><span class="rk rk4">4</span></td><td class="l">横浜DeNAベイスターズ</td><td>44</td><td class="win">20</td><td class="lose">22</td><td>2</td><td>.476</td><td>6.0</td><td>9-7(2)</td><td>11-15</td></tr>
+            <tr><td><span class="rk rk5">5</span></td><td class="l">広島東洋カープ</td><td>41</td><td class="win">16</td><td class="lose">23</td><td>2</td><td>.410</td><td>8.5</td><td>10-12</td><td>6-11(2)</td></tr>
+            <tr><td><span class="rk rk6">6</span></td><td class="l">中日ドラゴンズ</td><td>43</td><td class="win">14</td><td class="lose">28</td><td>1</td><td>.333</td><td>12.0</td><td>11-12</td><td>3-16(1)</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">⚔️</div><h2>対戦成績（ヤクルト視点）</h2></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:420px;">
+          <thead><tr><th class="l">相手チーム</th><th>勝</th><th>負</th><th>分</th><th>勝率</th><th>評価</th></tr></thead>
+          <tbody><tr><td class="l">阪神タイガース</td><td class="win">3</td><td class="lose">5</td><td>0</td><td class="lose">.375</td><td>⚠ 要注意</td></tr>
+            <tr><td class="l">巨人ジャイアンツ</td><td class="win">7</td><td class="lose">4</td><td>0</td><td>.636</td><td>✓ 優勢</td></tr>
+            <tr><td class="l">横浜DeNAベイスターズ</td><td class="win">7</td><td class="lose">1</td><td>0</td><td class="hi">.875</td><td>⭐ 得意</td></tr>
+            <tr><td class="l">広島東洋カープ</td><td class="win">6</td><td class="lose">2</td><td>0</td><td class="hi">.750</td><td>⭐ 得意</td></tr>
+            <tr><td class="l">中日ドラゴンズ</td><td class="win">4</td><td class="lose">5</td><td>0</td><td class="lose">.444</td><td>⚠ 要注意</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLAYERS -->
+<div id="tab-players" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 STATS</div>
+    <div class="sec-heading">個人成績</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📈</div><h2>NPB公式 個人成績リンク</h2></div>
+      <a class="link-item" href="https://npb.jp/bis/2026/stats/bat_c.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏏</div><div><div class="link-src">打撃成績（規定打席以上）</div><div class="link-desc">打率・本塁打・打点など</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/2026/stats/pit_c.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">⚾</div><div><div class="link-src">投手成績（規定投球回以上）</div><div class="link-desc">防御率・勝利・奪三振など</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/2026/stats/fld_c.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🧤</div><div><div class="link-src">守備成績</div><div class="link-desc">守備率・刺殺・補殺など</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/players/active/rst_s.html" target="_blank"><div class="link-ico" style="background:#e8f7ed;">🦅</div><div><div class="link-src">ヤクルト選手一覧（NPB公式）</div><div class="link-desc">全選手の個人年度別成績</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/stats_pitcher" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📊</div><div><div class="link-src">1軍成績（公式）</div><div class="link-desc">スワローズ公式の成績一覧</div></div><div class="link-arr">↗</div></a>
+    </div>
+  </div>
+</div>
+
+<!-- ROSTER -->
+<div id="tab-roster" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">2026 STAFF & ROSTER</div>
+    <div class="sec-heading">選手・スタッフ</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">👔</div><h2>2026年 監督</h2></div>
+      <div style="padding:20px 20px;display:flex;align-items:center;gap:16px;">
+        <div style="width:60px;height:60px;background:var(--green-pale);border:2px solid var(--green);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:0.75rem;color:var(--green);flex-shrink:0;text-align:center;line-height:1.3;">23rd<br>MGR</div>
+        <div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:1.4rem;">池山 隆寛</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:4px;">第23代監督 / 1965年12月17日生 / 兵庫県出身</div>
+          <div style="font-size:0.78rem;color:var(--green);font-weight:700;margin-top:4px;">元二軍監督（6年）→ 2026年より一軍監督就任</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🔗</div><h2>選手・スタッフ 公式リンク</h2></div>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/list" target="_blank"><div class="link-ico" style="background:#e8f7ed;">👥</div><div><div class="link-src">全選手一覧（公式）</div><div class="link-desc">2026年在籍全選手プロフィール</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/roster" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📋</div><div><div class="link-src">1軍登録選手一覧（公式）</div><div class="link-desc">現在の出場登録選手</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/players/active/rst_s.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">📋</div><div><div class="link-src">選手一覧（NPB公式）</div><div class="link-desc">背番号・ポジション別</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/pitcher" target="_blank"><div class="link-ico" style="background:#e8f0fe;">⚾</div><div><div class="link-src">投手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/catcher" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🧤</div><div><div class="link-src">捕手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/infielder" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏟️</div><div><div class="link-src">内野手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/outfielder" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏃</div><div><div class="link-src">外野手一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/category/manager" target="_blank"><div class="link-ico" style="background:#e8f7ed;">👔</div><div><div class="link-src">監督・コーチ一覧（公式）</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/announcement/2026/managers_s.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">📋</div><div><div class="link-src">NPB公式 監督・コーチ一覧</div></div><div class="link-arr">↗</div></a>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORY -->
+<div id="tab-history" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">CLUB HISTORY & RECORDS</div>
+    <div class="sec-heading">球団の歴史・記録</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🏆</div><h2>タイトル獲得歴</h2></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:400px;">
+          <thead><tr><th class="l">タイトル</th><th>回数</th><th class="l">年度</th></tr></thead>
+          <tbody>
+            <tr class="ys"><td class="l">🥇 日本シリーズ優勝</td><td class="hi">6回</td><td class="l" style="font-size:0.78rem;">1978・1993・1995・1997・2001・2021</td></tr>
+            <tr><td class="l">🏅 セ・リーグ優勝</td><td class="hi">8回</td><td class="l" style="font-size:0.78rem;">1978・1992・1993・1995・1997・2001・2015・2021</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📈</div><h2>個人主要記録</h2><span class="card-badge">♦NPB ☆セ記録</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:500px;">
+          <thead><tr><th class="l">記録</th><th class="l">選手</th><th>数値</th><th>年度</th><th class="l">備考</th></tr></thead>
+          <tbody>
+            <tr><td class="l">シーズン本塁打</td><td class="l">バレンティン</td><td class="hi">60本</td><td>2013</td><td class="l">♦ NPB記録</td></tr>
+            <tr><td class="l">シーズン打率</td><td class="l">青木 宣親</td><td class="hi">.358</td><td>2006</td><td class="l">☆ セ・リーグ記録</td></tr>
+            <tr><td class="l">トリプルスリー</td><td class="l">山田 哲人</td><td class="hi">3回</td><td>2015・16・18</td><td class="l">♦ 史上初3回達成</td></tr>
+            <tr><td class="l">球団通算最多安打</td><td class="l">若松 勉</td><td class="hi">2173本</td><td>—</td><td class="l">球団歴代1位</td></tr>
+            <tr><td class="l">シーズン防御率（新人）</td><td class="l">伊藤 智仁</td><td class="hi">0.91</td><td>1993</td><td class="l">☆ セ記録（新人）</td></tr>
+            <tr><td class="l">球団通算最多勝</td><td class="l">松岡 弘</td><td class="hi">219勝</td><td>—</td><td class="l">球団歴代1位</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🔗</div><h2>公式記録リンク</h2></div>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/stats_batter" target="_blank"><div class="link-ico" style="background:#e8f0fe;">🏏</div><div><div class="link-src">個人打撃成績（公式）</div><div class="link-desc">2026年1軍打撃成績一覧</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/players/stats_pitcher" target="_blank"><div class="link-ico" style="background:#e8f0fe;">⚾</div><div><div class="link-src">個人投手成績（公式）</div><div class="link-desc">2026年1軍投手成績一覧</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/teams/index_s.html" target="_blank"><div class="link-ico" style="background:#e8f7ed;">📊</div><div><div class="link-src">チーム記録（NPB公式）</div><div class="link-desc">東京ヤクルトスワローズ球団ページ</div></div><div class="link-arr">↗</div></a>
+      <a class="link-item" href="https://npb.jp/bis/teams/yearly_s.html" target="_blank"><div class="link-ico" style="background:#e8f0fe;">📋</div><div><div class="link-src">年度別成績 1950〜2026（NPB）</div><div class="link-desc">全年度の勝敗・順位・監督一覧</div></div><div class="link-arr">↗</div></a>
+    </div>
+    <div class="sec-label">TIMELINE</div>
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📖</div><h2>球団史年表</h2></div>
+      <div class="timeline">
+        <div class="tl-row"><div class="tl-year">1950</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ev">創設</span><div class="tl-title">国鉄スワローズとしてプロ野球参入</div><div class="tl-desc">セントラル・リーグ創設メンバーとして参加。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1978</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">初優勝</span><div class="tl-title">球団史上初のリーグ優勝・日本一</div><div class="tl-desc">大杉勝男・若松勉らの活躍で悲願の初優勝。広岡達朗監督のもと阪急ブレーブスを破り日本一に輝く。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1990</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ev">就任</span><div class="tl-title">野村克也監督就任・ID野球の時代</div><div class="tl-desc">データを重視した「ID野球」を導入し黄金時代の礎を築く。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1992</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">優勝</span><div class="tl-title">14年ぶりセ・リーグ優勝</div><div class="tl-desc">1978年以来14年ぶりのリーグ優勝。ハウエルが本塁打王・首位打者の二冠。日本シリーズは西武ライオンズに3勝4敗で惜敗。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1993</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">日本シリーズ制覇 / 伊藤智仁が防御率0.91（セ記録）</div><div class="tl-desc">池山隆寛・古田敦也・広澤克己らが活躍。西武ライオンズを破り日本一。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1995</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">2年ぶり日本一</div><div class="tl-desc">オリックスとの日本シリーズを制覇。野村ID野球の集大成。</div></div></div>
+        <div class="tl-row"><div class="tl-year">1997</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">野村監督時代3度目の日本一</div><div class="tl-desc">4度のリーグ優勝・3度の日本一という黄金時代を築く。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2001</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">若松勉監督で日本一 / 古田敦也MVP</div><div class="tl-desc">近鉄バファローズとの日本シリーズを制覇。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2011</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ev">惜敗</span><div class="tl-title">小川淳司監督で首位快走も惜しくも2位</div><div class="tl-desc">東日本大震災の年、4月から首位を走り続けたが10月に中日に逆転されリーグ2位。日本シリーズ進出ならず。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2013</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag re">NPB記録</span><div class="tl-title">バレンティン、60本塁打の日本記録樹立</div><div class="tl-desc">NPB歴代最多の60本塁打を達成。今もNPB記録として残る。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2015</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag re">記録</span><div class="tl-title">山田哲人トリプルスリー達成・リーグ優勝</div><div class="tl-desc">打率.329・38本塁打・34盗塁のトリプルスリーを達成しリーグ優勝。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2021</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag ch">日本一</span><div class="tl-title">高津臣吾監督で20年ぶり日本一</div><div class="tl-desc">村上宗隆・山田哲人・塩見泰隆らが活躍。オリックスとの死闘を制して感動の日本一。</div></div></div>
+        <div class="tl-row"><div class="tl-year">2026</div><div class="tl-line"></div><div class="tl-content"><span class="tl-tag now">現在</span><div class="tl-title">池山隆寛監督でセ・リーグ首位快走中</div><div class="tl-desc">26勝17敗・勝率.605で首位。連覇・日本一奪還を目指す。</div></div></div>
+      </div>
+    </div>
+
+    <div class="sec-label">DRAFT HISTORY</div>
+
+    <!-- 近年ドラフト詳細 -->
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📋</div><h2>2025年ドラフト指名一覧</h2><span class="card-badge">2025.10.23</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:440px;">
+          <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th><th class="l">所属</th></tr></thead>
+          <tbody>
+            <tr class="ys"><td>1位</td><td class="l">松下 歩叶</td><td>内野手</td><td class="l">法政大</td></tr>
+            <tr><td>2位</td><td class="l">松川 玲央</td><td>内野手</td><td class="l">城西大</td></tr>
+            <tr><td>3位</td><td class="l">山崎 太陽</td><td>投手</td><td class="l">創価大</td></tr>
+            <tr><td>4位</td><td class="l">増居 翔太</td><td>投手</td><td class="l">トヨタ自動車</td></tr>
+            <tr><td>5位</td><td class="l">鈴木 蓮吾</td><td>投手</td><td class="l">東海大甲府高</td></tr>
+            <tr><td>6位</td><td class="l">石井 巧</td><td>内野手</td><td class="l">NTT東日本</td></tr>
+            <tr><td>7位</td><td class="l">飯田 琉斗</td><td>投手</td><td class="l">ENEOS</td></tr>
+            <tr><td>育成1位</td><td class="l">小宮 悠瞳</td><td>投手</td><td class="l">川崎総合科学高</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📋</div><h2>2024年ドラフト指名一覧</h2><span class="card-badge">2024.10</span></div>
+      <div style="overflow-x:auto;padding:4px;">
+        <table class="tbl" style="min-width:440px;">
+          <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th><th class="l">所属</th></tr></thead>
+          <tbody>
+            <tr class="ys"><td>1位</td><td class="l">中村 優斗</td><td>投手（右）</td><td class="l">愛知工業大</td></tr>
+            <tr><td>2位</td><td class="l">モイセエフ ニキータ</td><td>外野手（左）</td><td class="l">豊川高</td></tr>
+            <tr><td>3位</td><td class="l">荘司 宏太</td><td>投手（左）</td><td class="l">セガサミー</td></tr>
+            <tr><td>4位</td><td class="l">田中 陽翔</td><td>内野手</td><td class="l">健大高崎高</td></tr>
+            <tr><td>5位</td><td class="l">矢野 泰二郎</td><td>捕手（右）</td><td class="l">四国IL愛媛</td></tr>
+            <tr><td>育成</td><td class="l">根岸辰昇 / 廣澤優 / 下川隼佑 / 松本龍之介</td><td>—</td><td class="l">各所属</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">📋</div><h2>2022・2023年ドラフト指名一覧</h2></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+        <div style="overflow-x:auto;padding:4px;border-right:1px solid var(--border);">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--green);padding:10px 10px 6px;letter-spacing:1px;">2023年</div>
+          <table class="tbl" style="min-width:200px;">
+            <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th></tr></thead>
+            <tbody>
+              <tr class="ys"><td>1位</td><td class="l">西舘 昂汰</td><td>投手（右）</td></tr>
+              <tr><td>2位</td><td class="l">松本 健吾</td><td>投手（右）</td></tr>
+              <tr><td>3位</td><td class="l">石原 勇輝</td><td>投手（左）</td></tr>
+              <tr><td>4位</td><td class="l">鈴木 叶</td><td>捕手（右）</td></tr>
+              <tr><td>5位</td><td class="l">伊藤 琉偉</td><td>内野手（右）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="overflow-x:auto;padding:4px;">
+          <div style="font-size:0.72rem;font-weight:700;color:var(--green);padding:10px 10px 6px;letter-spacing:1px;">2022年</div>
+          <table class="tbl" style="min-width:200px;">
+            <thead><tr><th>順位</th><th class="l">選手名</th><th>ポジション</th></tr></thead>
+            <tbody>
+              <tr class="ys"><td>1位</td><td class="l">吉村 貢司郎</td><td>投手（右）</td></tr>
+              <tr><td>2位</td><td class="l">西村 瑠伊斗</td><td>外野手（左）</td></tr>
+              <tr><td>3位</td><td class="l">澤井 廉</td><td>外野手（左）</td></tr>
+              <tr><td>4位</td><td class="l">坂本 拓己</td><td>投手（左）</td></tr>
+              <tr><td>5位</td><td class="l">北村 恵吾</td><td>内野手（右）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><div class="card-head-icon">🔗</div><h2>歴代ドラフト全記録</h2></div>
+      <a class="link-item" href="https://www.draft-kaigi.jp/npb-draft/swallows/draftshimei/" target="_blank">
+        <div class="link-ico" style="background:#e8f0fe;">📋</div>
+        <div><div class="link-src">ドラフト会議HP — 全年度指名一覧</div><div class="link-desc">1965年〜現在の全指名選手</div></div>
+        <div class="link-arr">↗</div>
+      </a>
+      <a class="link-item" href="https://www.yakult-swallows.co.jp/pages/company/archive/rookie" target="_blank">
+        <div class="link-ico" style="background:#e8f7ed;">🦅</div>
+        <div><div class="link-src">公式 新人選手一覧</div><div class="link-desc">スワローズ公式の新人選手アーカイブ</div></div>
+        <div class="link-arr">↗</div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- BBS -->
+<div id="tab-bbs" class="tab-panel">
+  <div class="wrap">
+    <div class="sec-label">FAN COMMUNITY</div>
+    <div class="sec-heading">ファン掲示板</div>
+    <div class="bbs-form">
+      <div style="margin-bottom:14px;"><label class="bbs-label">ニックネーム</label><input id="bbs-name" class="bbs-input" type="text" placeholder="燕ファン"></div>
+      <div><label class="bbs-label">投稿内容</label><textarea id="bbs-body" class="bbs-input" placeholder="試合の感想、選手への応援、何でもどうぞ！"></textarea></div>
+      <button class="bbs-submit" onclick="submitPost()">投稿する ⚾</button>
+    </div>
+    <div id="post-list" class="post-list"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-logo"><span>燕</span>の巣</div>
+  <p>東京ヤクルトスワローズ 個人ファンサイト<br>
+  成績データ出典：<a href="https://npb.jp" target="_blank">NPB公式サイト</a>（2026年5月18日現在）<br>
+  30年来のちなヤクによる個人サイトです。球団・NPBとは一切関係ありません。</p>
+</footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('on'));
+  document.getElementById('tab-'+id).classList.add('on');
+  btn.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+const INIT=[
+  {name:'神宮の住人',body:'今シーズンのスワローズは本当に強い！貯金10で首位って最高すぎる🐦',time:'2026/05/18 21:30',likes:24,liked:false},
+  {name:'ちなヤク歴30年',body:'1993年から応援してきたけど今年は特別な予感がする。連覇目指してくれ！',time:'2026/05/18 19:45',likes:18,liked:false},
+  {name:'燕party',body:'DeNA戦の7勝1敗がえぐすぎる笑。阪神・中日をどう攻略するかが後半戦の鍵かな。',time:'2026/05/17 23:10',likes:11,liked:false},
+  {name:'神宮の傘',body:'今年も神宮の雰囲気最高だよ。来週みんな行こう！',time:'2026/05/17 18:00',likes:9,liked:false}
+];
+let posts=JSON.parse(localStorage.getItem('swallows_bbs')||'null')||[...INIT];
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');}
+function renderPosts(){
+  const list=document.getElementById('post-list');list.innerHTML='';
+  const colors=['#007a35','#002060','#5b21b6','#b91c1c','#0369a1'];
+  posts.forEach((p,i)=>{
+    const d=document.createElement('div');d.className='post-item';
+    d.innerHTML=`<div class="post-header"><div class="post-avatar" style="background:${colors[i%colors.length]}">${esc(p.name.charAt(0))}</div><div class="post-name">${esc(p.name)}<span class="post-tag">ちなヤク</span></div><div class="post-time">${p.time}</div></div><div class="post-body">${esc(p.body)}</div><div class="post-like"><button class="like-btn${p.liked?' liked':''}" onclick="toggleLike(${i})">${p.liked?'❤️':'🤍'} いいね</button><span class="like-count">${p.likes}</span></div>`;
+    list.appendChild(d);
+  });
+}
+function toggleLike(i){posts[i].liked?posts[i].likes--:posts[i].likes++;posts[i].liked=!posts[i].liked;save();renderPosts();}
+function submitPost(){
+  const name=document.getElementById('bbs-name').value.trim()||'名無しの燕ファン';
+  const body=document.getElementById('bbs-body').value.trim();
+  if(!body){alert('内容を入力してください');return;}
+  const n=new Date();
+  const t=`${n.getFullYear()}/${String(n.getMonth()+1).padStart(2,'0')}/${String(n.getDate()).padStart(2,'0')} ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}`;
+  posts.unshift({name,body,time:t,likes:0,liked:false});
+  save();renderPosts();
+  document.getElementById('bbs-name').value='';document.getElementById('bbs-body').value='';
+}
+// ===== VOTE =====
+const ROSTER = {
+  '投手': ['J.キハダ','石山 泰稚','中村 優斗','清水 昇','奥川 恭伸','石川 雅規','木澤 尚文','吉村 貢司郎','星 知弥','山野 太一','松本 健吾','小川 泰弘','荘司 宏太','山崎 太陽','田口 麗斗','石原 勇輝','高梨 裕稔','拓也','増居 翔太','大西 広樹','小澤 怜史','大道 温貴','高橋 奎二','鈴木 蓮吾','長谷川 宙輝','坂本 拓己','N.ウォルターズ','飯田 琉斗','J.リランソ','阪口 皓亮','丸山 翔大','下川 隼佑','廣澤 優','沼田 翔平','青柳 晃洋'],
+  '捕手': ['古賀 優大','中村 悠平','松本 直樹','柿沼 友哉','橋本 星哉','矢野 泰二郎','鈴木 叶'],
+  '内野手': ['赤羽 由紘','山田 哲人','内山 壮真','松下 歩叶','長岡 秀樹','茂木 栄五郎','宮本 丈','J.オスナ','山野辺 翔','石井 巧','松川 玲央','北村 恵吾','田中 陽翔','武岡 龍世','伊藤 琉偉'],
+  '外野手': ['並木 秀尊','丸山 和郁','塩見 泰隆','D.サンタナ','モイセエフ ニキータ','西村 瑠伊斗','澤井 廉','増田 珠','岩田 幸宏']
+};
+const CATS = Object.keys(ROSTER);
+let currentCat = '投手';
+
+const today = new Date().toDateString();
+document.getElementById('vote-date').textContent = '(' + new Date().toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'}) + ')';
+
+let votes = JSON.parse(localStorage.getItem('swallows_votes') || '{}');
+let votedDate = localStorage.getItem('swallows_voted_date') || '';
+let votedPlayer = localStorage.getItem('swallows_voted_player') || '';
+let hasVoted = votedDate === today;
+
+if (!votes[today]) {
+  votes[today] = {};
+  CATS.forEach(cat => {
+    ROSTER[cat].forEach(p => { votes[today][p] = 0; });
+  });
+}
+
+function totalVotes() {
+  return Object.values(votes[today]).reduce((s, v) => s + v, 0);
+}
+
+function renderTabs() {
+  const tabs = document.getElementById('vote-tabs');
+  tabs.innerHTML = '';
+  CATS.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.textContent = cat;
+    btn.style.cssText = `padding:3px 10px;border-radius:20px;font-size:0.7rem;font-weight:700;cursor:pointer;border:1px solid;font-family:'Noto Sans JP',sans-serif;transition:all .15s;`;
+    if (cat === currentCat) {
+      btn.style.background = 'var(--green)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--green)';
+    } else {
+      btn.style.background = 'none';
+      btn.style.color = 'var(--muted)';
+      btn.style.borderColor = 'var(--border)';
+    }
+    btn.onclick = () => { currentCat = cat; renderTabs(); renderVoteList(); };
+    tabs.appendChild(btn);
+  });
+}
+
+function renderVoteList() {
+  const list = document.getElementById('vote-list');
+  const total = totalVotes();
+  list.innerHTML = '';
+  ROSTER[currentCat].forEach(p => {
+    const v = votes[today][p] || 0;
+    const pct = total > 0 ? Math.round(v / total * 100) : 0;
+    if (hasVoted) {
+      const isVoted = p === votedPlayer;
+      const div = document.createElement('div');
+      div.style.cssText = 'display:flex;align-items:center;gap:8px;padding:4px 0;';
+      div.innerHTML = `
+        <span style="font-size:0.78rem;font-weight:${isVoted?'700':'400'};min-width:100px;color:${isVoted?'var(--green)':'inherit'}">${p}${isVoted?' ✓':''}</span>
+        <div class="vote-bar-wrap"><div class="vote-bar" style="width:${pct}%"></div></div>
+        <span class="vote-pct">${pct}%</span>`;
+      list.appendChild(div);
+    } else {
+      const btn = document.createElement('button');
+      btn.className = 'vote-btn';
+      btn.style.cssText = 'padding:7px 12px;font-size:0.8rem;';
+      btn.textContent = p;
+      btn.onclick = () => doVote(p);
+      list.appendChild(btn);
+    }
+  });
+  const result = document.getElementById('vote-result');
+  if (hasVoted) {
+    result.style.display = 'block';
+    result.innerHTML = `総投票数：${total}票`;
+  }
+}
+
+function doVote(player) {
+  if (hasVoted) return;
+  votes[today][player] = (votes[today][player] || 0) + 1;
+  hasVoted = true;
+  votedDate = today;
+  votedPlayer = player;
+  localStorage.setItem('swallows_votes', JSON.stringify(votes));
+  localStorage.setItem('swallows_voted_date', today);
+  localStorage.setItem('swallows_voted_player', player);
+  renderVoteList();
+}
+
+renderTabs();
+renderVoteList();
+
+</script>
+</body>
+</html>
